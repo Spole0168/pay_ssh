@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+    <definition name="main" extends="default"> 
+        <!--<put-attribute name="contant" value="/common/main.jsp" />-->
+        <put-attribute name="contant" value="/WEB-INF/pages/main/main.jsp" />
+    </definition>
+    <definition name="modifyPassword" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/main/modifyPassword.jsp" />
+    </definition>
+
+	<!-- Global results -->
+	<definition name="main.error" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/error.jsp" />
+	</definition>
+	<definition name="main.exception" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/exception.jsp" />
+	</definition>
+	<definition name="main.done" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/done.jsp" />
+	</definition>
+	<definition name="main.forbidden" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/forbidden.jsp" />
+	</definition>
+	<definition name="main.none" extends="default"> 
+		<put-attribute name="contant" value="/common/none.jsp" />
+	</definition>
+	<definition name="main.success" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/success.jsp" />
+	</definition>
+	<definition name="main.construction" extends="default"> 
+		<put-attribute name="contant" value="/WEB-INF/pages/main/construction.jsp" />
+	</definition>
+	
+</tiles-definitions>

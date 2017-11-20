@@ -1,0 +1,24 @@
+<project name="ordcore" basedir="." default="default">
+	<!-- overridden properties (must be before the import!) -->
+
+	<!-- import base -->
+	<import file="build-common.xml"/>
+	<import file="${framework}/build/build-module.xml"/>
+	
+	<!-- overridden targets -->
+
+	<path id="classpath.share">
+		<!--
+		<fileset dir="${library}/mdm" includes="*.jar" />
+		-->
+	</path>
+
+	<target name="clean">
+		<antcall target="clean-common"/>
+	</target>
+	
+	<target name="default">
+		<antcall target="finish"/>
+	</target>
+	
+</project>

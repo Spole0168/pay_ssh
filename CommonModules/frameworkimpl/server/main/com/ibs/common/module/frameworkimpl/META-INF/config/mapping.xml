@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	
+	<class name="com.ibs.common.module.frameworkimpl.security.domain.Role" table="T_MDM_ROLE" schema="PBL">
+		<id name="id" column="ROLE_ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+		<property column="ROLE_NAME" length="100" name="roleName"
+			type="java.lang.String" not-null="true" />
+		<property column="ROLE_CODE" length="100" name="roleCode"
+			type="java.lang.String" />
+		<property column="DESCRIPTION" length="200" name="description"
+			type="java.lang.String" />
+		<property column="IS_ADMIN" length="1" name="isAdmin"
+			type="java.lang.String" />
+		<!-- ADD 2011-02-25 支持是否可以删除角色 -->
+		<property column="DELETABLE" length="10" name="deletable"
+			type="java.lang.String" />
+		<!-- Add 2011-03-28 支持不同组织管理自己角色 -->
+		<property column="CREATE_ROLE_ID" length="50" name="createOrgId"
+			type="java.lang.String" />
+		<!-- 
+		<property column="WHOLE_CREATE_ROLE_ID" length="1000" name="wholeCreateRoleId"
+			type="java.lang.String" />
+		 -->
+		<many-to-one name="application" column="APP_ID" update="false" insert="false"></many-to-one>
+		<property column="APP_ID" length="50" name="appId"
+			type="java.lang.String" />
+		<!-- ADD 2011-02-25 支持角色组织使用范围 -->
+		<property column="SCOPE" length="1000" name="scope"
+			type="java.lang.String" />
+		<!-- ADD 2011-02-25 支持角色用户类型使用范围 -->		
+		<property column="USER_SCOPE" length="1000" name="userScope"
+			type="java.lang.String" />
+		
+		<!-- ADD 2012-06-11 支持管理角色组织使用范围 -->		
+		<property column="MANAGE_SCOPE" length="1000" name="manageScope"
+			type="java.lang.String" />
+			
+		<set name="includedUsers" table="T_MDM_USER_ROLE" schema="PBL" inverse="true"> <!-- Role为受控 -->
+			<key column="ROLE_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.User" column="USER_ID" />
+		</set>
+		<set name="grantedMenus" table="T_MDM_ROLE_MENU" schema="PBL" cascade="none" lazy="true"> <!-- Role为主控 -->
+			<key column="ROLE_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" />
+		</set>
+		<!-- <set name="grantedGuiMenus" table="T_MDM_ROLE_GUIMENU" schema="PBL" cascade="none" lazy="true"> Role为主控
+			<key column="ROLE_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" />
+		</set> -->
+		<set name="grantedOpers" table="T_MDM_ROLE_OPERATION" schema="PBL" cascade="none" lazy="true"> <!-- Role为主控 -->
+			<key column="ROLE_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" />
+		</set>
+	</class>
+
+	<class name="com.ibs.common.module.frameworkimpl.security.domain.User" table="T_MDM_USER" schema="PBL">
+		<id name="id" column="USER_ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+		<property column="USER_NAME" length="100" name="userName"
+			type="java.lang.String" not-null="true" />
+		<property column="USER_CODE" length="100" name="userCode"
+			type="java.lang.String" not-null="true" />
+		<property column="DESCRIPTION" length="200" name="description"
+			type="java.lang.String" />
+		<property column="USER_PWD" length="100" name="userPwd"
+			type="java.lang.String" />
+		<property column="LAST_LOGIN_TM" length="26" name="lastLoginTm"
+			type="java.util.Date" />
+		<property column="LAST_LOGIN_IP" length="100" name="lastLoginIP"
+			type="java.lang.String" />
+		<property column="DEFAULT_LOCALE" length="100"
+			name="defaultLocate" type="java.lang.String" />
+		<property column="STATUS" length="10" name="status"
+			type="java.lang.String" />
+		<property column="CREATE_TM" length="26" name="createTm"
+			type="java.util.Date" />
+		<property column="CREATOR" length="100" name="creator"
+			type="java.lang.String" />
+		<property column="CREATE_ID" name="createId"
+			type="java.lang.String" />
+		<property column="CREATE_CODE" name="createCode"
+			type="java.lang.String" />
+		<property column="LAST_UPDATE_TM" length="26"
+			name="lastUpdateTm" type="java.util.Date" />
+		<property column="LAST_UPDATOR" length="100" name="lastUpdator"
+			type="java.lang.String" />
+		<property column="LAST_UPDATE_ID" name="lastUpdateId"
+			type="java.lang.String" />
+		<property column="LAST_UPDATE_CODE" name="lastUpdateCode"
+			type="java.lang.String" />
+		<!-- <property column="USER_TYPE" length="50" name="userType"
+			type="java.lang.String" insert="false" update="false" /> -->
+		<property column="USER_TYPE" length="50" name="userType"
+			type="java.lang.String" />
+		<property column="PWD_UPDATE_DATE" length="26" name="pwdUpdateDate"
+			type="java.util.Date" />
+		<property column="VERSION_NO" length="100" name="versionNo" type="java.lang.Long" />
+		<property column="PHONENUM" name="phonenum" type="java.lang.String" />
+		<property column="EMAIL" name="email" type="java.lang.String" />
+		<set name="assignedRoles" table="T_MDM_USER_ROLE" schema="PBL" cascade="none" lazy="true"> <!-- User为主控 -->
+			<key column="USER_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Role" column="ROLE_ID" />
+		</set>
+	</class>
+
+	<class name="com.ibs.common.module.frameworkimpl.security.domain.Menu" table="T_MDM_MENU" schema="PBL">
+		<id name="id" column="MENU_ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+		<property column="MENU_NAME" length="100" name="menuName"
+			type="java.lang.String" not-null="true" />
+		<property column="MENU_TITLE" length="100" name="menuTitle"
+			type="java.lang.String" />
+		<property column="MENU_TITLE_EN" length="100" name="menuTitleEn"
+			type="java.lang.String" />
+		<property column="LOCATION" length="200" name="location"
+			type="java.lang.String" />
+		<property column="DESCRIPTION" length="200" name="description"
+			type="java.lang.String" />
+		<property column="DISPLAY_ORDER" name="displayOrder"
+			type="java.lang.Integer" />
+		<property column="TARGET" length="100" name="target"
+			type="java.lang.String" />
+		<many-to-one name="parentMenu" class="com.ibs.common.module.frameworkimpl.security.domain.Menu" lazy="false" fetch="select">
+			<column name="PARENT_MENU_ID" />
+		</many-to-one>
+		<property column="MENU_LEVEL" name="menuLevel"
+			type="java.lang.Integer" />
+		<property column="MENU_TYPE" name="menuType"
+			type="java.lang.String" />
+		<set name="includedRoles" table="T_MDM_ROLE_MENU" schema="PBL" inverse="true"> <!-- Menu为受控 -->
+			<key column="MENU_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Role" column="ROLE_ID" />
+		</set>
+		<many-to-one name="application" column="APP_ID"></many-to-one>
+		<property name="subMenuCount" type="java.lang.Integer" 
+			formula="(select count(*) from pbl.t_mdm_menu submenu where submenu.parent_menu_id = menu_id)" />
+	</class>
+
+	<class name="com.ibs.common.module.frameworkimpl.security.domain.Application" table="T_MDM_APP" schema="PBL">
+		<id name="id" column="APP_ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+		<property column="APP_NAME" length="120" name="appName"
+			type="java.lang.String" not-null="true" />
+		<property column="DESCRIPTION" length="200" name="description"
+			type="java.lang.String" />
+		<set name="includedMenus" table="T_MDM_MENU" schema="PBL" inverse="true"> <!-- Menu为受控 -->
+			<key column="APP_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" />
+		</set>
+		<set name="includedOpers" table="T_MDM_MENU" schema="PBL" inverse="true"> <!-- Application为受控 -->
+			<key column="APP_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" where="MENU_TYPE in ('url','button')"/>
+		</set>
+		<set name="includedGuiMenus" table="T_MDM_MENU" schema="PBL" inverse="true"> <!-- Application为受控 -->
+			<key column="APP_ID" />
+			<many-to-many class="com.ibs.common.module.frameworkimpl.security.domain.Menu" column="MENU_ID" where="MENU_TYPE='guimenu'"/>
+		</set>
+	</class>
+    <class name="com.ibs.common.module.frameworkimpl.config.domain.Properties" table="T_PBL_PROPERTIES" schema="PBL">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="50"/>
+			<generator class="uuid.hex"/>
+		</id>
+		<property name="key" type="java.lang.String">
+			<column name="KEY" />
+		</property>
+		<property name="value" type="java.lang.String">
+			<column name="VALUE" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="DESCRIPTION" />
+		</property>
+        <property name="status" type="java.lang.Boolean">
+        	<column name="STATUS" />
+        </property>
+	</class>
+    <class name="com.ibs.common.module.frameworkimpl.security.domain.JqGridObj" table="T_PBL_JQGRID_CUSTOMIZE" schema="PBL">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="50"/>
+			<generator class="uuid.hex"/>
+		</id>
+		<property name="jqgrid" type="java.lang.String">
+			<column name="JQGRID" />
+		</property>
+		<property name="userid" type="java.lang.String">
+			<column name="USERID" />
+		</property>
+		<property name="field" type="java.lang.String">
+			<column name="FIELD" />
+		</property>
+        <property name="operTime" type="java.util.Date">
+            <column name="OPER_TIME" />
+        </property>
+	</class>
+	<class name="com.ibs.common.module.frameworkimpl.file.domain.FilePersistence" table="T_PBL_FILE_PERSISTENCE" schema="PBL">
+		<id name="id" type="java.lang.String">
+			<column name="ID" length="50"/>
+			<generator class="uuid.hex"/>
+		</id>
+		<property name="fileName" type="java.lang.String">
+			<column name="FILE_NAME" length="120" />
+		</property>
+		<property name="phsicalName" type="java.lang.String">
+			<column name="PHYSICAL_NAME" length="100" />
+		</property>
+		<property name="operatorID" type="java.lang.String">
+			<column name="OPERATION_ID" length="100" />
+		</property>
+		<property name="ownerModule" type="java.lang.String">
+			<column name="OWNER_MODULE" length="100" />
+		</property>
+		<property name="logDate" type="java.util.Date">
+			<column name="LOG_DATE" length="100" />
+		</property>
+		<property name="contentType" type="java.lang.String">
+			<column name="CONTENT_TYPE" length="100" />
+		</property>
+		<property name="contentLength" type="java.lang.Long">
+			<column name="CONTENT_LENGTH" />
+		</property>
+		<property name="downLoadPath" type="java.lang.String">
+            <column name="DOWNLOAD_PATH" length="120" />
+        </property>
+	</class>
+	
+	<!-- BEGIN Log Framework mapping-->
+    <class name="com.ibs.common.module.frameworkimpl.log.domain.ActionLog" table="T_PBL_ACTION_LOG" schema="PBL">
+        <comment>记录HTTP相关日志信息</comment>
+        <id name="id" type="java.lang.String">
+            <column name="ACTION_ID" />
+        </id>
+        <property name="userCode" type="java.lang.String">
+            <column name="USER_CODE" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="orgCode" type="java.lang.String">
+            <column name="ORG_CODE" />
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="ORG_NAME" />
+        </property>
+        <property name="serverName" type="java.lang.String">
+            <column name="SERVER_NAME" />
+        </property>
+        <property name="serverAddr" type="java.lang.String">
+            <column name="SERVER_ADDR" />
+        </property>
+        <property name="clientName" type="java.lang.String">
+            <column name="CLIENT_NAME" />
+        </property>
+        <property name="clientAddr" type="java.lang.String">
+            <column name="CLIENT_ADDR" />
+        </property>
+        <property name="clientMac" type="java.lang.String">
+            <column name="CLIENT_MAC" />
+        </property>
+        <property name="clientUserAgent" type="java.lang.String">
+            <column name="CLIENT_USER_AGENT" />
+        </property>
+        <property name="sessionId" type="java.lang.String">
+            <column name="SESSION_ID" />
+        </property>
+        <property name="locale" type="java.lang.String">
+            <column name="LOCALE" />
+        </property>
+        <property name="requestTime" type="java.util.Date">
+            <column name="REQ_TIME" />
+        </property>
+        <property name="responseTime" type="java.util.Date">
+            <column name="RESPONSE_TIME" />
+        </property>
+        <property name="appId" type="java.lang.String">
+            <column name="APP_ID" />
+        </property>
+        <property name="menuId" type="java.lang.String">
+            <column name="MENU_ID" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="URL" />
+        </property>
+        <property name="method" type="java.lang.String">
+            <column name="METHOD" />
+        </property>
+        <property name="params" type="java.lang.String">
+            <column name="PARAMS" />
+        </property>
+        <property name="actionClass" type="java.lang.String">
+            <column name="ACTION_CLASS" />
+        </property>
+        <property name="actionMethod" type="java.lang.String">
+            <column name="ACTION_METHOD" />
+        </property>
+        <property name="actionResult" type="java.lang.String">
+            <column name="ACTION_RESULT" />
+        </property>
+        <property name="isException" type="java.lang.Boolean">
+            <column name="IS_EXCEPTION" precision="1" scale="0" />
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.log.domain.EntityInfo" table="T_PBL_ENTITY_INFO" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="ENTITY_TYPE" length="20" />
+        </id>
+        <property name="entityClass" type="java.lang.String">
+            <column name="ENTITY_CLASS" length="1000" />
+        </property>
+        <property name="hisEntityClass" type="java.lang.String">
+            <column name="HIS_ENTITY_CLASS" length="1000" />
+        </property>
+        <property name="appId" type="java.lang.String">
+            <column name="APP_ID" length="20" />
+        </property>
+        <property name="entityName" type="java.lang.String">
+            <column name="ENTITY_NAME"/>
+        </property>
+        <property name="entityDesc" type="java.lang.String">
+            <column name="ENTITY_DESC"/>
+        </property>
+        <property name="codeProperty" type="java.lang.String">
+            <column name="CODE_PROPERTY" />
+        </property>
+        <property name="nameProperty" type="java.lang.String">
+            <column name="NAME_PROPERTY" />
+        </property>
+        <property name="viewUrl" type="java.lang.String">
+            <column name="VIEW_URL" />
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.log.domain.BizInfo" table="T_PBL_BIZ_INFO" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="BIZ_TYPE" length="20" />
+        </id>
+        <property name="appId" type="java.lang.String">
+            <column name="APP_ID" length="20" />
+        </property>
+        <property name="bizName" type="java.lang.String">
+            <column name="BIZ_NAME" length="100" />
+        </property>
+        <property name="bizDesc" type="java.lang.String">
+            <column name="BIZ_DESC" length="1000" />
+        </property>
+        <property name="bizClass" type="java.lang.String">
+            <column name="BIZ_CLASS" length="1000" />
+        </property>
+        <property name="bizMethod" type="java.lang.String">
+            <column name="BIZ_METHOD" length="1000" />
+        </property>
+        <many-to-one name="entityInfo" class="com.ibs.common.module.frameworkimpl.log.domain.EntityInfo" fetch="join">
+            <column name="ENTITY_TYPE" length="20" />
+        </many-to-one>
+        <property name="sort" type="java.lang.Integer">
+            <column name="SORT" />
+        </property>
+        <property name="status" type="java.lang.Short">
+            <column name="STATUS" precision="4" scale="0">
+                <comment>1. 启用 0. 禁用</comment>
+            </column>
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.log.domain.BizLog" table="T_PBL_BIZ_LOG" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="BIZ_ID" length="100" />
+        </id>
+        <property name="bizType" type="java.lang.String">
+            <column name="BIZ_TYPE" length="100" />
+        </property>
+        <property name="actionId" type="java.lang.String">
+            <column name="ACTION_ID" length="100" />
+        </property>
+        <property name="userCode" type="java.lang.String">
+            <column name="USER_CODE" length="100" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" length="100" />
+        </property>
+        <property name="orgCode" type="java.lang.String">
+            <column name="ORG_CODE" length="100" />
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="ORG_NAME" length="100" />
+        </property>
+        <property name="bizTime" type="java.util.Date">
+            <column name="BIZ_TIME" length="7" not-null="true" />
+        </property>
+        <property name="entityId" type="java.lang.String">
+            <column name="ENTITY_ID" length="100" />
+        </property>
+        <property name="entityCode" type="java.lang.String">
+            <column name="ENTITY_CODE" length="1000" />
+        </property>
+        <property name="entityName" type="java.lang.String">
+            <column name="ENTITY_NAME" length="1000" />
+        </property>
+        <property name="isException" type="java.lang.Boolean">
+            <column name="IS_EXCEPTION" precision="1" scale="0" />
+        </property>
+    </class>
+    <!-- END Log Framework mapping-->
+    <!-- -->
+    <class name="com.ibs.common.module.frameworkimpl.scheduler.domain.SchedulerLog" table="T_PBL_SCHEDULER_LOG" schema="PBL">
+        <id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+        <property name="schedulerId" type="java.lang.String">
+            <column name="SCHEDULER_ID" length="100" />
+        </property>
+        <property name="jobName" type="java.lang.String">
+            <column name="JOB_NAME" length="100" />
+        </property>
+        <property name="jobDesc" type="java.lang.String">
+            <column name="JOB_DESC" length="100" />
+        </property>
+        <property name="hostName" type="java.lang.String">
+            <column name="HOST_NAME" length="100" />
+        </property>
+        <property name="hostAddress" type="java.lang.String">
+            <column name="HOST_ADDRESS" length="100" />
+        </property>
+        <property name="flag" type="java.lang.Boolean">
+            <column name="FLAG" precision="1" scale="0" />
+        </property>
+        <property name="prevStartTime" type="java.util.Date">
+            <column name="PREV_START_TIME" length="100" />
+        </property>
+        <property name="prevResult" type="java.lang.String">
+            <column name="PREV_RESULT" length="100" />
+        </property>
+        <property name="prevEndTime" type="java.util.Date">
+            <column name="PREV_END_TIME" length="100" />
+        </property>
+    </class> 
+    
+	<class name="com.ibs.common.module.frameworkimpl.scheduler.domain.SchedulerSetting" table="T_PBL_SCHEDULER_SETTING" schema="PBL">
+        <id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex"/>
+		</id>
+		<property name="schedulerId" type="java.lang.String">
+            <column name="SCHEDULER_ID" length="100" />
+        </property>
+        <property name="schedulerWar" type="java.lang.String">
+            <column name="SCHEDULER_WAR" length="100" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" length="100" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="200" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" length="1" />
+        </property>
+        <property name="enable" type="java.lang.Boolean">
+            <column name="ENABLE" precision="1" scale="0" />
+        </property>
+        <property name="cronExpress" type="java.lang.String">
+            <column name="CRON_EXPRESS" length="100" />
+        </property>
+        <property name="simpleStartTime" type="java.util.Date">
+            <column name="SIMPLE_START_TIME"  />
+        </property>
+        <property name="simpleEndTime" type="java.util.Date">
+            <column name="SIMPLE_END_TIME"  />
+        </property>
+        <property column="SIMPLE_REPEAT_COUNT" name="simpleRepeatCount"
+			type="java.lang.Integer" />
+        <property column="SIMPLE_REPEAT_INTERVEL" name="simpleRepeatIntervel"
+			type="java.lang.Integer" />
+		<property name="param1" type="java.lang.String">
+            <column name="PARAM1" length="100" />
+        </property>
+		<property name="param2" type="java.lang.String">
+            <column name="PARAM2" length="100" />
+        </property>
+		<property name="refValue" type="java.lang.String">
+            <column name="REF_VALUE" length="200" />
+        </property>
+		<property name="remark" type="java.lang.String">
+            <column name="REMARK" length="1000" />
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.security.domain.Mac" table="T_PBL_MAC" schema="PBL">
+        <comment>MAC地址</comment>
+        <id name="id" type="java.lang.String">
+            <column name="MAC_ID" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="mac" type="java.lang.String">
+            <column name="MAC">
+                <comment>MAC地址字符串</comment>
+            </column>
+        </property>
+        <property name="cpuId" type="java.lang.String">
+            <column name="CPU_ID">
+                <comment>CPU ID</comment>
+            </column>
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK">
+                <comment>备注</comment>
+            </column>
+        </property>
+        <property name="status" type="java.lang.Boolean">
+        	<column name="STATUS">
+        		<comment>状态</comment>
+        	</column>
+        </property>
+        <property name="recentlyUsedTime" type="java.util.Date">
+        	<column name="RECENTLY_USED_TIME">
+        		<comment>最近使用时间</comment>
+        	</column>
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.security.domain.MacMenu" table="T_PBL_MAC_MENU" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="macId" type="java.lang.String">
+            <column name="MAC_ID" />
+        </property>
+        <property name="menuId" type="java.lang.String">
+            <column name="MENU_ID" />
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.security.domain.MacUser" table="T_PBL_MAC_USER" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="macId" type="java.lang.String">
+            <column name="MAC_ID" />
+        </property>
+        <property name="userCode" type="java.lang.String">
+            <column name="USER_CODE" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="orgCode" type="java.lang.String">
+            <column name="ORG_CODE" />
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="ORG_NAME" />
+        </property>
+    </class>
+    
+    <class name="com.ibs.common.module.frameworkimpl.data.domain.ImportInfo" table="T_PBL_IMPORT_INFO" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="IMPORT_ID" />
+            <!-- <generator class="uuid.hex"/> -->
+        </id>
+        <property name="fileId" type="java.lang.String">
+            <column name="FILE_ID" />
+        </property>
+        <property name="excelId" type="java.lang.String">
+            <column name="EXCEL_ID" />
+        </property>
+        <property name="importTime" type="java.util.Date">
+            <column name="IMPORT_TIME" />
+        </property>
+        <property name="defaultConfig" type="java.lang.Boolean">
+            <column name="DEFAULT_CONFIG" />
+        </property>
+        <property name="excelConfig" type="java.lang.String">
+            <column name="EXCEL_CONFIG" />
+        </property>
+        <!-- <property name="excelConfig" type="org.springframework.orm.hibernate3.support.ClobStringType">
+            <column name="EXCEL_CONFIG" />
+        </property> -->
+        <property name="importParams" type="java.lang.String">
+            <column name="IMPORT_PARAMS" />
+        </property>
+    </class>
+    <class name="com.ibs.common.module.frameworkimpl.data.domain.ImportData" table="T_PBL_IMPORT_DATA" schema="PBL">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="uuid.hex"/>
+        </id>
+        <property name="importId" type="java.lang.String">
+            <column name="IMPORT_ID" />
+        </property>
+        <property name="importTime" type="java.util.Date">
+            <column name="IMPORT_TIME" />
+        </property>
+        <property name="rowNo" type="java.lang.Long">
+            <column name="ROW_NO" />
+        </property>
+        <property name="isSuccess" type="java.lang.Boolean">
+            <column name="IS_SUCCESS" />
+        </property>
+        <property name="errorMessage" type="java.lang.String">
+            <column name="ERROR_MESSAGE" />
+        </property>
+        <property name="excelRowId" type="java.lang.String">
+            <column name="EXCEL_ROW_ID" />
+        </property>
+        <property name="excelRowCode" type="java.lang.String">
+            <column name="EXCEL_ROW_CODE" />
+        </property>
+        <property name="excelData" type="java.lang.String">
+            <column name="EXCEL_DATA" />
+        </property>
+        <!-- <property name="excelData" type="java.sql.Clob">
+            <column name="EXCEL_DATA" />
+        </property> -->
+        <!-- <property name="excelData" type="org.springframework.orm.hibernate3.support.ClobStringType">
+            <column name="EXCEL_DATA" />
+        </property> -->
+        <property name="sum1" type="java.lang.Double">
+            <column name="SUM1" />
+        </property>
+        <property name="sum2" type="java.lang.Double">
+            <column name="SUM2" />
+        </property>
+        <property name="sum3" type="java.lang.Double">
+            <column name="SUM3" />
+        </property>
+        <property name="sum4" type="java.lang.Double">
+            <column name="SUM4" />
+        </property>
+        <property name="sum5" type="java.lang.Double">
+            <column name="SUM5" />
+        </property>
+    </class>
+</hibernate-mapping>

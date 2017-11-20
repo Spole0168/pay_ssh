@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="main" namespace="/" extends="web-default">
+		
+		<action name="showSuccess" class="successMessageAction" method="showSuccess">
+			<result name="success" type="tiles">main.success</result>
+		</action>
+		
+		<action name="redirect" class="redirectAction" method="redirect">
+			<result name="success">/WEB-INF/pages/main/redirect.jsp</result>
+		</action>
+		
+		<!-- 
+		<action name="initPassword" class="mainAction" method="initPassword">
+			<result name="success">/WEB-INF/pages/main/initPassword.jsp</result>
+		</action>
+		 -->
+		<action name="mainMessage" class="mainAction" method="getInformMessages">
+			<result name="ajax" type="json">
+				<param name="include">messages</param>
+			</result>
+		</action>
+		
+        <action name="modifyPassword" class="mainAction" method="toModifyPassword">
+            <result type="tiles">modifyPassword</result>
+        </action>
+       
+        <action name="checkUserPwd" class="mainAction" method="checkUserPwd">
+			<result></result>
+		</action>
+        <action name="forWardPage" class="mainAction" method="forWard">
+            <result name="success">/WEB-INF/pages/frameworkimpl/print.jsp</result>
+        </action>
+		<!-- 
+		<action name="switchRole" class="mainAction" method="switchRole">
+			<result>/common/main.jsp</result>
+		</action>
+		
+		<action name="toModifyPassword" class="userManagerAction" method="toModifyPassword">
+			<result>/modifyPassword.jsp</result>
+		</action>
+		<action name="modifyPassword" class="userManagerAction" method="modifyPassword">
+			<result>/modifyPassword.jsp</result>
+		</action>
+		 -->
+	</package>
+	<package name="main-log" namespace="/" extends="web-log-default">
+		<action name="main" class="mainAction" method="show">
+			<result name="changePassword" type="tiles">modifyPassword</result>
+			<result name="success" type="tiles">main</result>
+		</action>
+		
+		<action name="modifyPasswordPost" class="mainAction" method="modifyPassword">
+            <result type="tiles">modifyPassword</result>
+        </action>
+	</package>
+	<package name="main-tiles" namespace="/" extends="tiles-default">
+		<action name="showConstruction" class="mainAction" method="execute">
+			<result name="success" type="tiles">main.construction</result>
+		</action>
+	</package>
+</struts>

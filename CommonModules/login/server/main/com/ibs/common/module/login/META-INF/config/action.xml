@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="" namespace="/" extends="struts-default">
+		<action name="index" class="loginAction" method="index">
+			<result name="success" type="redirect">/main.action</result>
+			<!--<result>/WEB-INF/pages/login/login.jsp</result>-->
+		</action>
+		<action name="logout" class="loginAction" method="logout">
+			<result>/WEB-INF/pages/login/login.jsp</result>
+		</action>
+		<action name="login" class="loginAction" method="login">
+			<result name="success" type="redirect">/main.action</result>
+			<result name="initPassword">/WEB-INF/pages/login/initPassword.jsp</result>
+			<result name="error">/WEB-INF/pages/login/login.jsp</result>
+		</action>
+		<action name="initPassword" class="loginAction" method="initPassword">
+			<result name="initPassword">/WEB-INF/pages/login/initPassword.jsp</result>
+		</action>
+		<action name="initPasswordPost" class="loginAction" method="modifyPassword">
+           <!--  <result name="success">/WEB-INF/pages/login/login.jsp</result> -->
+            <result name="initPassword">/WEB-INF/pages/login/initPassword.jsp</result>
+        </action>
+		<action name="forbidden" class="forwardAction">
+			<result>/common/forbidden.html</result>
+		</action>
+		<action name="rand"
+			class="com.ibs.common.module.login.action.RandomAction">
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
+	<package name="loginmgmt-gui" namespace="/loginmgmt" extends="gui-default">
+		<action name="guilogin" class="guiLoginAction" method="login">
+			<result type="data" />
+		</action>
+		<action name="pdalogin" class="guiLoginAction" method="pdaLogin">
+			<result type="data" />
+		</action>
+		<action name="syncuserinfo" class="guiLoginAction" method="syncUserInfo">
+			<result type="data" />
+		</action>
+		<action name="change_password_gui" class="guiLoginAction"
+			method="changePassword">
+			<result type="data" />
+		</action>
+	</package>
+</struts>

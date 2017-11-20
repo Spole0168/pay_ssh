@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+
+	<bean id="mainAction" class="com.ibs.common.module.main.action.MainAction" scope="prototype">
+		<property name="mainBiz" ref="mainBiz" />
+		<property name="informBiz" ref="informBiz" />
+		<!-- <property name="loginBiz" ref="loginBiz" /> -->
+	</bean>
+	<bean id="successMessageAction" class="com.ibs.common.module.main.action.SuccessMessageAction" scope="prototype">
+	</bean>
+	<bean id="redirectAction" class="com.ibs.common.module.main.action.RedirectAction" scope="prototype">
+	</bean>
+	
+	<bean id="mainBiz" class="com.ibs.common.module.main.biz.impl.MainBiz">
+		<property name="permissionService" ref="permissionService"></property>
+	</bean>
+	
+	<bean id="informBiz" class="com.ibs.common.module.main.biz.impl.InformBizImpl">
+		<property name="mainInformDao" ref="mainInformDao"></property>
+		<property name="messageInformDao" ref="messageInformDao"></property>
+	</bean>
+	
+	<bean id="mainInformDao" class="com.ibs.common.module.main.dao.impl.MainInformDaoImpl" parent="baseEntityDao">
+	</bean>
+	
+	<bean id="messageInformDao" class="com.ibs.common.module.main.dao.impl.MessageInformDaoImpl" parent="baseEntityDao">
+	</bean>
+	
+</beans>

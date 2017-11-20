@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="frameworkimpl" namespace="/" extends="web-default">
+		<action name="jqGridSaveAction" class="JqGridManagerAction" method="saveJqGrid">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="jqGridDelAction" class="JqGridManagerAction" method="delJqGrid">
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="jqGridFindAction" class="JqGridManagerAction" method="findJqGrid">
+			<result name="ajax" type="json">
+				<param name="include">jqGridObj</param>
+			</result>
+		</action>
+
+		<action name="importDataList" class="importerAction" method="list">
+			<result name="success" type="tiles">importPreviewList</result>
+		</action>
+	</package>
+	
+	<package name="frameworkimpl-ajaxjson" namespace="/" extends="web-ajaxjson">
+		<action name="importDataSearch" class="importerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+			<result name="error" type="jsonexception"></result>
+		</action>
+	</package>
+	
+	<package name="frameworkimpl-log-default" namespace="/" extends="web-log-default">
+
+		<action name="downloadAction" class="downloadAction" method="download">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream,charset=ISO8859-1</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">${bufferSize}</param>
+			</result>
+		</action>
+		
+		<action name="downloadFile" class="downloadAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType},charset=ISO8859-1</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">${bufferSize}</param>
+			</result>
+		</action>
+		
+		<action name="importDataSave" class="importerAction" method="saveOrUpdate">
+			<result name="success" type="tiles">main.success</result>
+			<result name="redirect" type="redirect">
+				<param name="location">${nextAction}</param>
+				<param name="importId">${importId}</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 无登陆查看图片信息 -->
+	<package name="frameworkimpl-file-default" namespace="/" extends="framework-default">
+		<action name="downloadFileByClt" class="downloadAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType},charset=ISO8859-1</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">${bufferSize}</param>
+			</result>
+		</action>
+	</package>
+</struts>

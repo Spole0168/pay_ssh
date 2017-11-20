@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping schema="PBL">
+
+	<class name="com.ibs.common.module.main.domain.MainInform" table="T_PBL_MAIN_INFORM">
+		<id name="id" type="java.lang.String">
+			<column name="INFORM_ID" length="100" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="informName" type="java.lang.String">
+			<column name="INFORM_NAME" />
+		</property>
+		<property name="informUrl" type="java.lang.String">
+			<column name="INFORM_URL" />
+		</property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="STATUS" precision="1" scale="0" />
+        </property>
+        <property name="sort" type="java.lang.Integer">
+            <column name="SORT" precision="9" scale="0" />
+        </property>
+	</class>
+
+	<class name="com.ibs.common.module.main.domain.MessageInform" table="T_PBL_MSG_INFORM">
+		<id name="id" type="java.lang.String">
+			<column name="INFORM_ID" length="100" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="informName" type="java.lang.String">
+			<column name="INFORM_NAME" />
+		</property>
+		<property name="informLevel" type="java.lang.String">
+			<column name="INFORM_LEVEL" />
+		</property>
+		<property name="informUrl" type="java.lang.String">
+			<column name="INFORM_URL" />
+		</property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="STATUS" precision="1" scale="0" />
+        </property>
+        <property name="sort" type="java.lang.Integer">
+            <column name="SORT" precision="9" scale="0" />
+        </property>
+	</class>
+
+</hibernate-mapping>

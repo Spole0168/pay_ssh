@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+	<bean id="loginAction" class="com.ibs.common.module.login.action.LoginAction"
+		scope="prototype">
+		<property name="loginBiz" ref="loginBiz" />
+	</bean>
+
+	<!-- Gui的登录 -->
+	<bean id="guiLoginAction" class="com.ibs.common.module.login.action.GuiLoginAction"
+		scope="prototype">
+		<property name="loginBiz" ref="loginBiz" />
+	</bean>
+
+	<bean id="loginBiz" class="com.ibs.common.module.login.biz.impl.LoginBiz">
+		<property name="permissionService" ref="permissionService"></property>
+	</bean>
+
+</beans>

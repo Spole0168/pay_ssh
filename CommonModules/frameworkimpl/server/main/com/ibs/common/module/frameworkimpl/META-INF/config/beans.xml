@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+	
+	<!-- =================================================================== -->
+	<!-- AOP: Configuration and Aspects                                      -->
+	<!-- =================================================================== -->
+	<!-- Global Transaction Management -->
+	<aop:config proxy-target-class="true">
+        <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..biz.impl.*.*(..))" order="1"/>
+    </aop:config>
+	<tx:advice id="txAdvice" transaction-manager="localTransactionManager">
+		<tx:attributes>
+			<tx:method name="list*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="query*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="search*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="load*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="show*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="view*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="export*" propagation="REQUIRED" read-only="true"/>
+			<!--
+			<tx:method name="sync*" propagation="REQUIRED" read-only="true"/>
+			-->
+			<tx:method name="sync*" propagation="REQUIRED"/>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="new*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="remove*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="modify*" propagation="REQUIRED"/>
+			<tx:method name="submit*" propagation="REQUIRED"/>
+			<tx:method name="audit*" propagation="REQUIRED"/>
+			<tx:method name="gen*" propagation="REQUIRED"/>
+			<tx:method name="do*" propagation="REQUIRED"/>
+			<tx:method name="grant*" propagation="REQUIRED"/>
+			<tx:method name="ungrant*" propagation="REQUIRED"/>
+			<tx:method name="confirm*" propagation="REQUIRED"/>
+			<tx:method name="cancel*" propagation="REQUIRED"/>
+			<tx:method name="hedge*" propagation="REQUIRED"/>
+			<tx:method name="writeOff*" propagation="REQUIRED"/>
+			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="reject*" propagation="REQUIRED"/>
+			<tx:method name="execute*" propagation="REQUIRED"/>
+			<tx:method name="requiresNew*" propagation="REQUIRES_NEW"/>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- Global Biz Log Conf -->
+	<!-- add it to dataAccessContext.xml for job performance
+	<aop:config proxy-target-class="true">
+        <aop:aspect ref="logAspect" order="2">
+        	<aop:pointcut id="bizLog" expression="execution(* *..biz.impl.*.*(..))"/>
+        	<aop:around pointcut-ref="bizLog" method="doBiz"/>
+        </aop:aspect>
+    </aop:config>
+	-->
+	
+	<!-- =================================================================== -->
+	<!-- Property Configurations                                             -->
+	<!-- =================================================================== -->
+	<bean id="propertySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<prop key="hibernate.autoReconnect">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>  
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="databasePropertyLoaderStrategy" class="com.ibs.common.module.frameworkimpl.config.DatabasePropertyLoaderStrategy">
+		<property name="propertiesDao" ref="propertiesDao"/>
+	</bean>
+
+	<bean id="databasePlaceholderConfigurer" class="com.ibs.common.module.frameworkimpl.config.DatabasePlaceholderConfigurer">
+		<constructor-arg index="0" value="classpath:resource/application.properties"/>
+		<constructor-arg index="1" ref="databasePropertyLoaderStrategy"/>
+	</bean>
+
+	<bean id="propertiesDao" class="com.ibs.common.module.frameworkimpl.config.dao.impl.PropertiesDaoImpl">
+		<property name="sessionFactory" ref="propertySessionFactory" />
+	</bean>
+	
+	<bean id="propertiesEntityDao" class="com.ibs.common.module.frameworkimpl.config.dao.impl.PropertiesEntityDaoImpl" parent="baseEntityDao">
+	</bean>
+	
+	<bean id="propertiesService" class="com.ibs.common.module.frameworkimpl.config.service.impl.PropertiesServiceImpl">
+	</bean>
+	
+	<!-- =================================================================== -->
+	<!-- Redis Configurations                                                -->
+	<!-- =================================================================== -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxActive" value="100" />
+		<property name="maxIdle" value="20" />
+		<property name="maxWait" value="1000" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${pbl.redis.server1}" />
+		<constructor-arg index="2" value="${pbl.redis.port1}" />
+	</bean>
+	
+	
+	<bean id="permissionService" class="com.ibs.common.module.frameworkimpl.security.service.impl.PermissionServiceImpl">
+		<property name="applicationName">
+			<value>${application.name}</value>
+		</property>
+		<property name="userDao" ref="userDao" />
+		<property name="roleDao" ref="roleDao" />
+		<property name="menuDao" ref="menuDao" />
+		<property name="applicationDao" ref="applicationDao" />
+	</bean>
+	
+    <bean id="JqGridManagerAction" class="com.ibs.common.module.frameworkimpl.grid.action.JqGridManagerAction" scope="prototype">
+		<property name="jqGridBiz" ref="jqGridBiz" />
+	</bean>
+	
+	
+	<!-- Security -->
+	<bean id="urlSecurityChecker" class="com.ibs.common.module.frameworkimpl.security.biz.impl.UrlSecurityCheckerImpl">
+		<property name="menuDao" ref="menuDao"></property>
+		<property name="permissionService" ref="permissionService"/>
+	</bean>
+	
+	<bean id="formSecurityChecker" class="com.ibs.common.module.frameworkimpl.security.biz.impl.FormSecurityCheckerImpl">
+		<property name="menuDao" ref="menuDao"></property>
+		<property name="permissionService" ref="permissionService"/>
+	</bean>
+	
+	<bean id="macDao" class="com.ibs.common.module.frameworkimpl.security.dao.impl.MacDaoImpl" parent="baseEntityDao"></bean>
+	<bean id="macMenuDao" class="com.ibs.common.module.frameworkimpl.security.dao.impl.MacMenuDao" parent="baseEntityDao"></bean>
+	<bean id="macUserDao" class="com.ibs.common.module.frameworkimpl.security.dao.impl.MacUserDao" parent="baseEntityDao"></bean>
+	
+	<!-- Log -->
+	<bean id="logMetaData" class="com.ibs.common.module.frameworkimpl.log.LogMetaData">
+		<property name="entityInfoDao" ref="entityInfoDao"/>
+		<property name="bizInfoDao" ref="bizInfoDao"/>
+	</bean>
+	
+	<bean id="logAspect" class="com.ibs.common.module.frameworkimpl.log.LogAspect">
+		<property name="logMetaData" ref="logMetaData"/>
+		<property name="domainDao" ref="domainDao"/>
+	</bean>
+	
+	<bean id="logBiz" class="com.ibs.common.module.frameworkimpl.log.biz.impl.LogBizImpl">
+		<property name="actionLogDao" ref="actionLogDao" />
+		<property name="bizLogDao" ref="bizLogDao" />
+	</bean>
+    
+	<bean id="logListener" class="com.ibs.common.module.frameworkimpl.log.LogListener">
+		<!-- 提前注入property会出错 -->
+		<!--<property name="logMetaData" ref="logMetaData" />-->
+	</bean>
+	
+	<bean id="actionLogDao"
+		class="com.ibs.common.module.frameworkimpl.log.dao.impl.ActionLogDaoImpl" parent="baseEntityDao">
+	</bean>
+	<bean id="bizLogDao"
+		class="com.ibs.common.module.frameworkimpl.log.dao.impl.BizLogDaoImpl" parent="baseEntityDao">
+	</bean>
+	<bean id="bizInfoDao"
+		class="com.ibs.common.module.frameworkimpl.log.dao.impl.BizInfoDaoImpl" parent="baseEntityDao">
+	</bean>
+	<bean id="entityInfoDao"
+		class="com.ibs.common.module.frameworkimpl.log.dao.impl.EntityInfoDaoImpl" parent="baseEntityDao">
+	</bean>
+	<bean id="domainDao"
+		class="com.ibs.common.module.frameworkimpl.log.dao.impl.DomainDaoImpl" parent="baseDao">
+	</bean>
+
+
+	<!-- 缓存 -->
+	<!--
+		ttl: 缓存数据过期时间（30分钟）
+		sleepTime：缓存更新线程睡眠时间（5分钟）
+		maxSize：缓存保存数目上限
+		threshHold：缓存数据数目预警线
+		initialCapacity: 初始容量。该实现执行内部大小调整，以容纳这些元素。
+		loadFactor: 加载因子阈值，用来控制重新调整大小。在每 bin 中的平均元素数大于此阈值时，可能要重新调整大小。
+		concurrencyLevel:当前更新线程的估计数。该实现将执行内部大小调整，以尽量容纳这些线程。
+	-->
+	<bean id="userCache" class="com.ibs.common.module.frameworkimpl.cache.UserCacheProvider">
+		<property name="applicationName">
+			<value>${application.name}</value>
+		</property>
+		<property name="userDao" ref="userDao" />
+		<property name="roleDao" ref="roleDao" />
+		<property name="menuDao" ref="menuDao" />
+		<property name="applicationDao" ref="applicationDao" />
+	    <property name="permissionService" ref="permissionService"/>
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.USER_CACHE"/>
+		</property>
+		<property name="ttl" value="30" /><!-- 暂时设置为5分钟，SIT稳定后改回30分钟 -->
+		<property name="sleepTime" value="10" />
+		<property name="maxSize" value="10000" />
+		<property name="threshHold" value="5000" />
+		<property name="initialCapacity" value="100" />
+		<property name="concurrencyLevel" value="100" />
+	</bean>
+	<bean id="applicationCache" class="com.ibs.common.module.frameworkimpl.cache.ApplicationCacheProvider">
+		<property name="applicationDao" ref="applicationDao" />
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.APPLICATION_CACHE"/>
+		</property>
+		<!-- 缓存数据过期时间（30分钟） -->
+		<property name="ttl" value="30" />
+		<!-- 缓存更新线程睡眠时间 -->
+		<property name="sleepTime" value="10" />
+		<property name="maxSize" value="10000" />
+		<property name="threshHold" value="5000" />
+		<property name="initialCapacity" value="100" />
+		<property name="concurrencyLevel" value="100" />
+	</bean>
+		<bean id="urlResourceCache" class="com.ibs.common.module.frameworkimpl.cache.UrlResourceCacheProvider">
+		<property name="menuDao" ref="menuDao" />
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.URL_RESOURCE_CACHE"/>
+		</property>
+		<property name="ttl" value="60" />
+	</bean>
+	<bean id="buttonResourceCache" class="com.ibs.common.module.frameworkimpl.cache.ButtonResourceCacheProvider">
+		<property name="menuDao" ref="menuDao" />
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.BUTTON_RESOURCE_CACHE"/>
+		</property>
+		<property name="ttl" value="60" />
+	</bean>
+	<bean id="macCache" class="com.ibs.common.module.frameworkimpl.cache.MacCacheProvider">
+		<property name="macDao" ref="macDao" />
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.MAC_CACHE"/>
+		</property>
+		<property name="ttl" value="1440" />
+	</bean>
+	<bean id="propertiesCache" class="com.ibs.common.module.frameworkimpl.cache.PropertiesCacheProvider">
+		<property name="propertiesEntityDao" ref="propertiesEntityDao" />
+		<property name="cacheName">
+			<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.PROPERTY_CACHE"/>
+		</property>
+		<property name="ttl" value="1440" />
+	</bean>
+	<!--
+	<bean id="menuNameCache" class="com.ibs.common.module.frameworkimpl.cache.MenuNameCacheProvider">
+		<property name="menuDao" ref="menuDao" />
+		<property name="cacheName" value="_menuname_cache_region" />
+		<property name="ttl" value="60" />
+		<property name="maxSize" value="1000" />
+	</bean>
+	
+	<bean id="menuService" class="com.ibs.common.module.frameworkimpl.security.service.impl.MenuServiceImpl">
+		<property name="menuNameCacheRegion" value="_menuname_cache_region" />
+	</bean>
+	-->
+	<!-- DAO -->
+	<!-- 抽象的BaseDao 不能直接使用，需要使用parent属性 -->
+	<bean id="baseDao"
+		class="com.ibs.portal.framework.server.dao.hibernate.BaseDaoHibernateImpl" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 抽象的BaseEntityDao 不能直接使用，需要使用parent属性 -->
+	<bean id="baseEntityDao"
+		class="com.ibs.portal.framework.server.dao.hibernate.BaseEntityDao" abstract="true" parent="baseDao">
+	</bean>
+	
+	<!-- 抽象的BaseGenericDao 不能直接使用，需要使用parent属性 -->
+	<bean id="baseGenericDao"
+		class="com.ibs.portal.framework.server.dao.hibernate.BaseGenericDao" abstract="true" parent="baseDao">
+	</bean>
+	
+	<!-- 抽象的BaseJdbcDao 不能直接使用，需要使用parent属性 -->
+	<bean id="baseJdbcDao" class="com.ibs.portal.framework.server.dao.jdbc.BaseJdbcDao" abstract="true">
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+<!-- 	
+	<bean id="employeeDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.EmployeeDao" parent="baseEntityDao">
+	</bean>
+ -->
+	<bean id="menuDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.MenuDao" parent="baseEntityDao">
+	</bean>
+
+	<bean id="roleDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.RoleDao" parent="baseEntityDao">
+	</bean>
+
+	<bean id="userDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.UserDao" parent="baseEntityDao">
+	</bean>
+	
+	<bean id="applicationDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.ApplicationDao" parent="baseEntityDao">
+	</bean>
+	
+	<bean id="userDelegationDao"
+		class="com.ibs.common.module.frameworkimpl.security.dao.impl.UserDelegationDao" parent="baseEntityDao">
+	</bean>	
+	
+	<bean id="jqGridBiz" class="com.ibs.common.module.frameworkimpl.grid.biz.impl.JqGridBizImpl">
+		<property name="jqGridDao" ref="jqGridDao" />
+	</bean>
+    <bean id="jqGridDao" class="com.ibs.common.module.frameworkimpl.grid.dao.impl.JqGridDaoImpl" parent="baseEntityDao">
+	</bean>
+	
+	<!-- 下载Action -->
+	<bean id="downloadAction" class="com.ibs.common.module.frameworkimpl.file.action.DownloadAction" scope="prototype">
+		<property name="filePersistenceService" ref="filePersistenceService" />
+	</bean>
+	<!-- 文档上传 下载 -->
+	<bean id="filePersistenceDao" class="com.ibs.common.module.frameworkimpl.file.dao.impl.FilePersistenceDaoImpl" parent="baseEntityDao"></bean>
+	<bean id="filePersistenceService" class="com.ibs.common.module.frameworkimpl.file.service.impl.FilePersistenceServiceImpl">
+		<property name="root">
+			<value>${file.service.root}</value>
+		</property>
+		<property name="module">
+			<value>${application.name}</value>
+		</property>
+		<property name="filePersistenceDao" ref="filePersistenceDao"></property>
+	</bean>
+	
+	<bean id="excelService"
+        class="com.ibs.common.module.frameworkimpl.service.impl.ExcelServiceImpl">
+        <property name="tmpFileRoot">
+            <value>${tmp.file.folder}</value>
+        </property>
+    </bean>
+	
+	<bean id="exporterExecutorManager" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="5" />
+		<property name="queueCapacity" value="25" />
+	</bean>
+	<bean id="exporterExecutor" class="com.ibs.common.module.frameworkimpl.data.ExporterExecutor">
+		<property name="exporterExecutorManager" ref="exporterExecutorManager" />
+		<property name="exporterFactory" ref="exporterFactory" />
+		<property name="filePersistenceService" ref="filePersistenceService" />
+		<property name="exporterDirectory" value="${tmp.file.folder}" />
+		<property name="exporterModule" value="${application.name}" />
+		<!--<constructor-arg ref="exporterExecutorManager" />-->
+	</bean>
+	<bean id="exporterFactory" class="com.ibs.common.module.frameworkimpl.data.ExporterFactory">
+		<property name="excelExporter" ref="excelExporter" />
+	</bean>
+	
+	<bean id="excelExporter" class="com.ibs.common.module.frameworkimpl.data.excel.ExcelExporter">
+		<property name="exportSize" value="${export.size.excel}"></property>
+	</bean>
+	
+	<bean id="excelImporter" class="com.ibs.common.module.frameworkimpl.data.excel.ExcelImporter">
+		<property name="importerBiz" ref="importerBiz" />
+		<property name="importerDirectory" value="${tmp.file.folder}" />
+	</bean>
+	
+	<bean id="importerAction" class="com.ibs.common.module.frameworkimpl.data.action.ImporterAction" scope="prototype">
+		<property name="importerBiz" ref="importerBiz" />
+	</bean>
+	<bean id="importerBiz" class="com.ibs.common.module.frameworkimpl.data.biz.impl.ImporterBizImpl">
+		<property name="importInfoDao" ref="importInfoDao" />
+		<property name="importDataDao" ref="importDataDao" />
+		<property name="filePersistenceDao" ref="filePersistenceDao" />
+	</bean>
+	<bean id="importInfoDao" class="com.ibs.common.module.frameworkimpl.data.dao.impl.ImportInfoDaoImpl" parent="baseEntityDao"></bean>
+	<bean id="importDataDao" class="com.ibs.common.module.frameworkimpl.data.dao.impl.ImportDataJdbcDaoImpl" parent="baseJdbcDao"></bean>
+	<!-- <bean id="importDataDao" class="com.ibs.common.module.frameworkimpl.data.dao.impl.ImportDataDaoImpl" parent="baseEntityDao"></bean> -->
+	
+	<!-- end -->
+	<!-- Scheduler Begin -->
+	<bean id="scheduleJobDao" class="com.ibs.common.module.frameworkimpl.scheduler.dao.impl.ScheduleJobDaoImpl" parent="baseEntityDao" ></bean>
+	
+	<bean id="schedulerSettingDao" class="com.ibs.common.module.frameworkimpl.scheduler.dao.impl.SchedulerSettingDaoImpl" parent="baseEntityDao"></bean>
+	
+	<!-- 工作类基类--> 
+	<bean id="baseJob" class="com.ibs.common.module.frameworkimpl.scheduler.job.BaseJob" abstract="true">
+		<property name="scheduleJobDao"> 
+	        <ref bean="scheduleJobDao"/> 
+	    </property>  
+	</bean>   
+	<!-- Scheduler end -->
+	
+    <!-- =================================================================== -->
+    <!-- Mail: Sender and Velocity configuration                             -->
+    <!-- =================================================================== -->
+    <bean id="mailEngine" class="com.ibs.common.module.frameworkimpl.service.impl.MailEngine">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="from" value="${mail.default.from}"/>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- Uncomment if you need to authenticate with your SMTP Server -->
+        <property name="username" value="${mail.username}"/>
+        <property name="password" value="${mail.password}"/>
+        <property name="javaMailProperties">
+            <value>
+                mail.smtp.auth=true
+            </value>
+        </property>
+    </bean>
+
+	<!-- 默认的 Converter -->
+	<bean id="sgConverter" class="com.ibs.common.module.frameworkimpl.intergration.converter.JiBXConverter">
+	</bean>
+
+	<bean id="xsConverter" class="com.ibs.common.module.frameworkimpl.intergration.converter.XStreamConverter">
+	</bean>
+
+	<!-- Spring 提供的MessageConverter -->
+	<bean id="jmsConverter" class="org.springframework.jms.support.converter.SimpleMessageConverter">
+	</bean>
+	
+	<!-- 默认的ErrorHandler -->
+	<bean id="sgErrorHandler" class="com.ibs.common.module.frameworkimpl.intergration.listener.DefaultSGExceptionHandler">
+	</bean>
+	
+	<bean id="sgConfig" class="com.ibs.common.module.frameworkimpl.intergration.config.SGConfig">
+		<property name="rootPath" value="/share/interface/log" />
+		<property name="rootPackage" value="com.ibs.common.module.frameworkimpl.intergration" />
+		<property name="dateFormat" value="yyyyMMdd" />
+	</bean>
+	
+	<!-- mail Processor: start -->
+	<bean id="mailService" class="com.ibs.common.module.frameworkimpl.mail.service.impl.MailServiceImpl">
+		<property name="mailMessageDao" ref="mailMessageDao" />
+	</bean>
+	<bean id="mailMessageDao" class="com.ibs.common.module.frameworkimpl.mail.dao.impl.MailMessageDaoImpl"  parent="baseJdbcDao">
+	</bean>
+	<!-- end  -->
+</beans>

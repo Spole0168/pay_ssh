@@ -1,0 +1,29 @@
+<project name="ordcore" basedir="." default="default">
+	<!-- overridden properties (must be before the import!) -->
+
+	<!-- import base -->
+	<import file="build-common.xml"/>
+	<import file="${framework}/build/build-module.xml"/>
+	
+	<!-- overridden targets -->
+
+	<path id="classpath.share">
+		<fileset dir="${library}/mdm" includes="*.jar" />
+	</path>
+
+	<patternset id="module.share">
+		<include name="com/ibs/core/module/${module}/security/constant/**" />
+		<include name="com/ibs/core/module/${module}/security/domain/**" />
+		<include name="com/ibs/core/module/${module}/security/dto/**" />
+		<include name="com/ibs/core/module/${module}/security/exception/**" />
+	</patternset>
+	
+	<target name="clean">
+		<antcall target="clean-common"/>
+	</target>
+	
+	<target name="default">
+		<antcall target="finish"/>
+	</target>
+	
+</project>

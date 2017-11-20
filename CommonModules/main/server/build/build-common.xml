@@ -1,0 +1,19 @@
+<project name="common" basedir=".">
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	
+	<if>
+		<and>
+			<available file="../../../../Library" type="dir"/>
+			<available file="../../../../WebFramework" type="dir"/>
+		</and>
+		<then>
+			<property name="library" location="../../../../Library" />
+			<property name="framework" location="../../../../WebFramework" />
+		</then>
+		<else>
+			<property name="library" location="../../../../library" />
+			<property name="framework" location="../../../../framework/ServerFramework" />
+		</else>
+	</if>
+	
+</project>
