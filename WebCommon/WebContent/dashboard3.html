@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>IBS支付核心管理系统</title>
+
+<link rel="shortcut icon" href="images/icon/favicon.ico"/>
+<link rel="icon" href="images/icon/favicon.png" type="image/png"/>
+
+<link rel="stylesheet" type="text/css" href="css/framework/layout-all.css"/>
+<link rel="stylesheet" type="text/css" href="css/framework/dashboard.css"/>
+
+<script type="text/javascript" src="js/jquery-1.4.2/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.9/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="js/common/jquery.myext.js"></script>
+<style>
+.tab_m_r {margin-right:10px;}
+.box_orange {border:#e94609 dashed 1px; background:#fdf9e1; padding:5px; text-align:left;}
+
+body {margin:0;}
+#page {margin:0 auto; width:1000px;}
+#header {height:158px; background:url(test/images/header.gif);}
+#content {margin:0 10px;}
+#ctitle { font-size:14px; font-weight:bold; color:#000000; text-align:center; margin-top:24px;}
+</style>
+<script type="text/javascript">
+// Module ID & link definitions
+// Format:
+// moduleId:{l:"url_of_this_module",
+// 			 t:"title_for_this_module",
+// 			 c:"optional color definition for title bar"}
+var _modules={
+	m101:{l:"test/html/m107.html",	t:"本区业务量统计", c:"purple"},
+	m102:{l:"test/html/m107.html",	t:"本区问题件统计", c:"purple"},
+	m103:{l:"test/html/m107.html",	t:"业务量预测", c:"purple"},
+	m104:{l:"test/html/m107.html",	t:"区域流量流向统计", c:"purple"},
+	m105:{l:"test/html/m107.html",	t:"发车到车准点率", c:"purple"},
+	m106:{l:"test/html/m107.html",	t:"本区中转费用统计", c:"purple"}	
+};
+
+// Layout definitions for each tab, aka, which modules go to which columns under which tab
+// Format:
+//	{i:"id_of_the_module	(refer to _modules)",
+//	c:"column_it_belongs_to	(c1, c2, c3)"
+//	t:"tab_it_belongs_to	(t1, t2, ...)"}
+//必须有规律的使用，例如：全部都是1列，全部都是2列，全部都是3列，如果第1列是100%，第2列和第3列是50%，那么也是可以用的，但是不能在用了c2和c3之后再用c1，布局会混乱
+var _layout=[
+	{i:'m101',c:'c1',t:'t1'},{i:'m102',c:'c2',t:'t1'},{i:'m103',c:'c3',t:'t1'},{i:'m104',c:'c1',t:'t1'},{i:'m105',c:'c2',t:'t1'},{i:'m106',c:'c3',t:'t1'}
+];
+
+// Column width definitions for each tab
+// Valid values are pixel, % or auto
+// Currently, "auto" is only valid on column2
+// You can support more features by refining function HeaderTabClick()
+var _tabs={
+	t1:{c1:"33.33%",c2:"33.33%",c3:"33.33%",helper:false}
+};
+</script>
+</head>
+
+<body>
+<div id="page">
+	<div id="header"> 
+		<!-- 这部分必须定义，其中t1代表第一页，在js中会引用到，如果不隐藏的话，会出现换页的tab -->
+		<div id="header_tabs" style="display:none;">
+			<ul>
+				<li id="t1">区域管理驾驶舱</li>
+			</ul>
+		</div>
+		<!-- --> 
+	</div>
+	<div>
+		<div id="ctitle">区域驾驶舱（华东）</div>
+		<!-- 这部分必须定义，格式固定-->
+		<div>
+			<div id="c1" class="main_containers"></div>
+			<div id="c2" class="main_containers"></div>
+			<div id="c3" class="main_containers"></div>
+		</div>
+		<!-- --> 
+		
+		<!-- 这部分定义了每个module右上角的那些小图标以及loading的图标 -->
+		<div id="module_template" class="module" style="display:none">
+			<div class="moduleFrame">
+				<div class='moduleHeader'> <span class="moduleIcon"><img alt="icon" src="images/dashboard/icon.gif"/></span>
+					<div class='moduleTitle'></div>
+					<div class='moduleActions'>
+						<img src='images/dashboard/s.gif' alt="Refresh" class="action_refresh"/>
+						<img src='images/dashboard/s.gif' alt="Collapse" class="action_min"/>
+						<img src='images/dashboard/s.gif' alt="Expand" class="action_max"/>
+						<img src='images/dashboard/s.gif' alt="Close" class="action_close"/>
+					</div>
+				</div>
+				<div class='moduleContent'> <img src="images/dashboard/loading.gif" alt="Loading..."/> Loading... </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

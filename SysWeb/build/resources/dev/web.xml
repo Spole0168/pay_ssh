@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	id="IBS_COMMON" version="2.4" >
+	<display-name>IBS Common</display-name>
+	
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+			com.ibs.portal.framework.server.context.BeansContext
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>PROJECT_PACKAGE_NAME</param-name>
+		<param-value>com/ibs/core/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>PROJECT_COMMON_PACKAGE_NAME</param-name>
+		<param-value>com/ibs/common/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>PROJECT_MODULE_NAME</param-name>
+		<param-value>module/</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:resource/projectContext.xml</param-value>
+	</context-param>
+	
+	<!-- 需要使用Jmesa表格组件的时候才打开 -->
+	<context-param>  
+    	<param-name>jmesaPreferencesLocation</param-name>  
+    	<param-value>WEB-INF/classes/jmesa.properties</param-value>  
+	</context-param> 
+	
+	<listener>
+		<listener-class>
+			com.ibs.portal.framework.server.context.ApplicationListener
+		</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.ibs.portal.framework.server.context.TilesListener</listener-class>
+	</listener>
+	
+	<!-- SSO组件 -->
+
+	<servlet>
+		<servlet-name>tokenServlet</servlet-name>
+		<servlet-class>com.ibs.portal.integration.sso.access.TokenServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>tokenValidateServlet</servlet-name>
+		<servlet-class>com.ibs.portal.integration.sso.validate.TokenValidateServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- <servlet>
+		<servlet-name>AbstractServlet</servlet-name>
+		<servlet-class>com.ibs.core.module.mdminterface.action.AbstractServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet> -->
+	
+	
+	<servlet-mapping>
+		<servlet-name>tokenServlet</servlet-name>
+		<url-pattern>*.sso</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>tokenValidateServlet</servlet-name>
+		<url-pattern>/validate</url-pattern>
+	</servlet-mapping> 
+	
+	<!-- <servlet-mapping>
+		<servlet-name>AbstractServlet</servlet-name>
+		<url-pattern>/AbstractServlet/*</url-pattern>
+	</servlet-mapping> -->
+	
+	
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>
+			org.apache.struts2.dispatcher.FilterDispatcher
+		</filter-class>
+		<init-param>
+			<param-name>configProviders</param-name>
+			<param-value>
+				com.ibs.portal.framework.server.context.ActionConfigProvider
+			</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>*.json</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>	
+	<filter-mapping>   
+		<filter-name>struts2</filter-name>   
+		<url-pattern>/struts/*</url-pattern>   
+	</filter-mapping>
+	<filter-mapping>
+	    <filter-name>struts2</filter-name>
+	    <url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<session-config>    
+     	<session-timeout>30</session-timeout>      
+	</session-config> 
+</web-app>

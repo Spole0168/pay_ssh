@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53,sans-serif; background:#edf0dd}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,cite,dfn,em,var{font-style:normal;}
+code,kbd,pre,samp{font-family:courier new,courier,monospace;}
+small{font-size:12px;}ul,ol{list-style:none;}a{text-decoration:none;}
+a:hover{text-decoration:underline;}sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}legend{color:#000;}fieldset,img{border:0; vertical-align:middle;}button,input,select,textarea{font-size:100%;}
+
+a:link {color: #484d2f;text-decoration: none;}
+a:visited {	text-decoration: none;color: #484d2f;}
+a:hover {text-decoration: none;color: #484d2f;}
+a:active {text-decoration: none;color: #484d2f;}
+a.a1:link{ color:#666}
+a.a1:visited{ color:#666}
+a.a1:hover{ color:#8f44b4; text-decoration:underline}
+a.a2:link{ color:#393939; text-decoration:underline}
+a.a2:visited{ color:#393939; text-decoration:underline}
+a.a2:hover{ color:#393939; text-decoration:none}
+#header{ background: url(../../images/login/headbc.png) repeat-x; height:79px; border-bottom:8px solid #0083bd; margin-bottom:25px}
+#header ul{ background:url(../../images/framework/head_bg2.png) no-repeat; width:915px;height:79px; margin:0px auto}
+#header ul li{ text-align:right; line-height:35px; color:#000; padding-right:2em}
+
+#contenter{ width:914px; height: 430px; margin:60px auto; background:url(../../images/login/mid.png);}
+#contenter .contenttop{ background:url(../../images/login/midtop2.png) no-repeat; height:118px;}
+.contleft_left{ width:488px; height: 285px; margin-left:22px; margin-top:15px; float:left; margin-bottom:4px}
+.contleft_left ul li{ line-height:27px; font-size:13px}
+.contleft_left ul li img{ margin-bottom:5px}
+.contleft_left ul li a{ background:url(../../images/login/listicon.gif) 12px center no-repeat; padding-left:24px;}
+.contleft_left ul li.intro{ margin-top:15px;}
+.clear{ clear:both}
+.contleft_right{  margin-left:60px; float:left}
+.contleft_right ul li{ margin-bottom:10px}
+.loginform{ background: url(../../images/login/formbc.gif) repeat-x; height:27px; line-height:27px; width:186px; padding:0px 2px; font-size:14px; color:#6b6565; border:1px solid #6a736e;}
+.yzmloginform{ background:#f4f9f5; width:85px;height:27px; line-height:27px; padding:0px 2px; font-size:14px; color:#6b6565; border:1px solid #6a736e;_margin-left:3px; float:left}
+.contleft_right ul li span{ display:block; line-height:27px; width:58px; text-align:left; display:block; font-size:14px; float:left; color:#484d2f;}
+.login{ background:url(../../images/login/loginbc.gif) repeat-x; padding:1px; font-size:14px; font-weight:bold; color:#353536; width:86px; border:1px solid #727075; height:27px; margin-left:33px; float:left; margin-right:30px}
+.contleft_right .errorMessage{width:230px; color:#f00; padding:5px 0px; text-align:center}
+
+#contenter .contentbottom{ height:0px; overflow:hidden}
+
+#footer{ height:25px; background:#0083bd; border-top:2px solid #320057;}
+#footer ul{ width:915px; margin:0px auto; margin-bottom:25px}
+#footer ul li{ float:left; line-height:25px; color:#fff}
+#footer ul li.copyright{ float:right}
+
+#contenter .logintop{ background:url(../../images/login/logintop.png) no-repeat; height:118px;}
+.success_right{ width:310px; margin-left:60px; float:left; height:280px; background:url(../../images/login/loginrtbm.gif) 0px bottom no-repeat}
+.success_right .welcome{ margin-bottom:20px;color:#484d2f; padding-left:50px}
+.welcome li span{ font-size:16px; color:#68189c; margin-left:10px; font-weight:bold}
+.success_right .modify{ font-size:14px; font-weight:lighter}
+.modify li.navbutton{ font-size:12px; color:#b3b3b3; background: url(../../images/login/loginrticon.gif) 0px center no-repeat; width:75px; padding-left:50px}
+.modify li{ float:left; padding-left:35px;}
+.modify li a{ line-height:28px}
+
+
+.login_left{ width:488px; margin-left:22px; margin-top:38px; float:left; margin-bottom:4px}
+.login_left ul li{ width: 177px; float:left; margin-left:40px; margin-bottom:13px}
+.one a{ background:url(../../images/login/one.gif) no-repeat; width:177px; height:45px; display:block}
+.one a:hover{ background:url(../../images/login/hoverone.gif) no-repeat; width:177px; height:45px;}
+.two a{ background:url(../../images/login/two.gif) no-repeat; width:177px; height:45px; display:block}
+.two a:hover{ background:url(../../images/login/hovertwo.gif) no-repeat; width:177px; height:45px;}
+.three a{ background:url(../../images/login/three.gif) no-repeat; width:177px; height:45px; display:block}
+.three a:hover{ background:url(../../images/login/hoverthree.gif) no-repeat; width:177px; height:45px;}
+.four a{ background:url(../../images/login/four.gif) no-repeat; width:177px; height:45px; display:block}
+.four a:hover{ background:url(../../images/login/hoverfour.gif) no-repeat; width:177px; height:45px;}
+.five a{ background:url(../../images/login/five.gif) no-repeat; width:177px; height:45px; display:block}
+.five a:hover{ background:url(../../images/login/hoverfive.gif) no-repeat; width:177px; height:45px;}
+.six a{ background:url(../../images/login/six.gif) no-repeat; width:177px; height:45px; display:block}
+.six a:hover{ background:url(../../images/login/hoversix.gif) no-repeat; width:177px; height:45px;}
+.seven a{ background:url(../../images/login/seven.gif) no-repeat; width:177px; height:45px; display:block}
+.seven a:hover{ background:url(../../images/login/hoverseven.gif) no-repeat; width:177px; height:45px;}
+.eight a{ background:url(../../images/login/eight.gif) no-repeat; width:177px; height:45px; display:block}
+.eight a:hover{ background:url(../../images/login/login/hovereight.gif) no-repeat; width:177px; height:45px;}

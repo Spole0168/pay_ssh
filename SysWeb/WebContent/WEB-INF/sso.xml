@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sso currentApplication="tomcat55_demo" userIdManager="com.ibs.common.module.frameworkimpl.sso.UserIdManagerImpl">
+	<application id="tomcat55_demo" vaildateURL="http://127.0.0.1:8080/demo/validate;jsessionid=" />
+	<!-- 如果是Websphere服务器 -->
+	<!--
+	<application id="was61_demo" vaildateURL="http://127.0.0.1:8080/demo/validate;jsessionid=0000" />
+	-->
+	<!-- 假设需要和demo2做sso -->
+	<!--
+	<application id="tomcat55_demo2" vaildateURL="http://127.0.0.1:8080/demo2/validate;jsessionid=" />
+	-->
+</sso>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	
+	<import resource="classpath:resource/applicationContext.xml" ></import>
+	<import resource="classpath:resource/dataAccessContext.xml" ></import>
+	<import resource="classpath:resource/deployContext.xml" ></import>
+	
+	<bean id="mappingAutowiring"
+		class="com.ibs.portal.framework.server.deploy.MappingAutowiring">
+		<property name="mappingResources" ref="mappingResources" />
+	</bean>
+	<bean id="mappingResources"
+		class="com.ibs.portal.framework.server.deploy.MappingFactoryBean" />
+
+	<bean id="forwardAction"
+		class="com.ibs.portal.framework.server.action.ForwardAction" />
+
+	
+</beans>

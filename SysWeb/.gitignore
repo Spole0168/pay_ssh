@@ -1,0 +1,15 @@
+
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#classes
+*.class
+bin/
+classes/
+build/classes/
+
+#Subversion files
+.svn
+
+.settings

@@ -1,0 +1,242 @@
+<project name="web" basedir="." default="finish">
+
+	<!-- location setting -->
+	<property file="app.properties" />
+	<property name="src" location="../main" />
+	<property name="web" location="../WebContent" />
+	<property name="bin" location="bin" />
+	<property name="resources" location="resources" />
+	<property name="dist" location="dist" />
+	<!--
+	<property name="lib" location="../../Library" />
+	<property name="modules.root" location="../../Modules" />
+	-->
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+
+	<path id="classpath">
+		<fileset dir="${lib}" includes="*.jar" />
+		<pathelement location="${bin}" />
+	</path>
+
+	<fileset id="non.java.fileset" dir="${src}">
+		<include name="**/main/**" />
+		<exclude name="**/.svn/**" />
+		<exclude name="**/**.java" />
+	</fileset>
+
+	<target name="clean-common">
+		<mkdir dir="${dist}" />
+
+		<delete includeEmptyDirs="true">
+			<fileset dir="${dist}">
+				<include name="*.jar" />
+				<include name="*.bak" />
+			</fileset>
+		</delete>
+		<move file="${dist}/${app.name}-${phase}.war" tofile="${dist}/${app.name}-${phase}.bak" overwrite="true" failonerror="no" />
+		<delete quiet="true" dir="${bin}" />
+	</target>
+
+	<target name="init" depends="clean-common">
+		<mkdir dir="${bin}" />
+
+		<copy todir="${bin}" includeemptydirs="false">
+			<fileset refid="non.java.fileset" />
+			<mapper type="regexp" from="main\\(.*)" to="\1" />
+		</copy>
+
+		<!-- 拷贝配置 -->
+		<if>
+			<equals arg1="${phase}" arg2="release" />
+			<then>
+				<echo message="PHASE:${phase}..." />
+				<property name="this.phase">release</property>
+				<copy file="${resources}/release/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+				<copy file="${resources}/release/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+				<copy file="${resources}/release/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+				<copy file="${resources}/release/expws_query_ip.properties" tofile="${bin}/resultXmls/expws_query_ip.properties" overwrite="Yes" />
+			</then>
+			<elseif>
+				<equals arg1="${phase}" arg2="uat" />
+				<then>
+					<echo message="PHASE:${phase}..." />
+					<property name="this.phase">uat</property>
+					<copy file="${resources}/uat/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+					<copy file="${resources}/uat/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+					<copy file="${resources}/uat/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+					<copy file="${resources}/uat/expws_query_ip.properties" tofile="${bin}/resultXmls/expws_query_ip.properties" overwrite="Yes" />
+				</then>
+			</elseif>
+			<elseif>
+				<equals arg1="${phase}" arg2="ituat" />
+				<then>
+					<echo message="PHASE:${phase}..." />
+					<property name="this.phase">ituat</property>
+					<copy file="${resources}/ituat/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+					<copy file="${resources}/ituat/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+					<copy file="${resources}/ituat/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+				</then>
+			</elseif>			
+			<elseif>
+				<equals arg1="${phase}" arg2="train" />
+				<then>
+					<echo message="PHASE:${phase}..." />
+					<property name="this.phase">train</property>
+					<copy file="${resources}/train/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+					<copy file="${resources}/train/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+					<copy file="${resources}/train/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+				</then>
+			</elseif>			
+			<elseif>
+				<equals arg1="${phase}" arg2="sit" />
+				<then>
+					<echo message="PHASE:${phase}..." />
+					<property name="this.phase">sit</property>
+					<copy file="${resources}/sit/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+					<copy file="${resources}/sit/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+					<copy file="${resources}/sit/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+					<copy file="${resources}/sit/expws_query_ip.properties" tofile="${bin}/resultXmls/expws_query_ip.properties" overwrite="Yes" />
+				</then>
+			</elseif>
+			<else>
+				<echo message="PHASE:ft..." />
+				<property name="this.phase">ft</property>
+				<copy file="${resources}/ft/log4j.properties" tofile="${bin}/log4j.properties" overwrite="Yes" />
+				<copy file="${resources}/ft/application.properties" tofile="${bin}/resource/application.properties" overwrite="Yes" />
+				<copy file="${resources}/ft/deployContext.xml" tofile="${bin}/resource/deployContext.xml" overwrite="Yes" />
+			</else>
+		</if>
+
+	</target>
+
+	<!-- 编译 -->
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" source="1.5" target="1.5" encoding="UTF-8" debug="${debug}">
+			<classpath refid="classpath" />
+		</javac>
+
+		<copy todir="${bin}" includeEmptyDirs="no">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.tld" />
+				<include name="**/*.wsdl" />
+				<include name="**/*.schemas" />
+				<include name="**/*.dtd" />
+				<include name="**/*.xsd" />
+				<include name="**/*.vm" />
+				<include name="**/*.ftl" />
+			</fileset>
+		</copy>
+	</target>
+
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+	</tstamp>
+
+	<target name="initstamp">
+		<tstamp />
+	</target>
+
+	<!-- JAR -->
+	<target name="jar" depends="compile">
+		<jar jarfile="${dist}/${package}-${app.name}-${app.version}.jar">
+			<fileset dir="${bin}" />
+			<manifest>
+				<attribute name="Build-Time" value="${timestamp.datetime}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- 构建ref -->
+	<target name="refs" depends="clean-common">
+		<echo message="ref..." />
+		<foreach list="${refs}" target="jarref" param="ref" />
+	</target>
+
+	<target name="jarref">
+		<ant dir="${modules.root}/${ref}/server/build" antfile="build.xml" target="finish" inheritall="false" inheritrefs="false"/>
+
+		<copy todir="${dist}">
+			<fileset dir="${modules.root}/${ref}/server/build/dist/">
+				<include name="*.ref-*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- 构建module -->
+	<target name="modules" depends="clean-common">
+		<echo message="module..." />
+		<foreach list="${modules}" target="jarmodule" param="module" />
+	</target>
+
+	<target name="jarmodule">
+		<mkdir dir="${modules.root}/${module}/server/build" />
+		<ant dir="${modules.root}/${module}/server/build" antfile="build.xml" target="finish" inheritall="false" inheritrefs="false"/>
+
+		<copy todir="${dist}">
+			<fileset dir="${modules.root}/${module}/server/build/dist/">
+				<include name="*.jar" />
+				<exclude name="*.ref-*.jar" />
+				<exclude name="*.share-*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="war" depends="jar,refs,modules">
+		<if>
+			<equals arg1="${this.phase}" arg2="ft" />
+			<then>
+				<war destfile="${dist}/${app.name}.war" webxml="${resources}/${this.phase}/web.xml" encoding="utf-8">
+					<lib dir="${dist}" includes="*.jar" />
+					<lib dir="${lib}/common" includes="gbs.ai.portal-framework*.jar" />
+					<lib dir="${lib}/common" includes="sso.jar" />
+
+					<fileset dir="${web}">
+						<exclude name="**/WEB-INF/classes/**" />
+						<exclude name="**/WEB-INF/sso.xml" />
+						<exclude name="**/WEB-INF/lib/sso.jar" />
+						<exclude name="**/WEB-INF/lib/gbs.ai.portal-framework*.jar" />
+					</fileset>
+
+					<zipfileset file="${resources}/${this.phase}/sso.xml" prefix="WEB-INF" />
+
+					<manifest>
+						<attribute name="War-Version" value="${app.version}" />
+						<attribute name="Build-Time" value="${timestamp.datetime}" />
+						<attribute name="Modules" value="${modules}" />
+						<attribute name="Ref-Modules" value="${refs}" />
+					</manifest>
+				</war>
+			</then>
+			<else>
+				<war destfile="${dist}/${app.name}-${this.phase}.war" webxml="${resources}/${this.phase}/web.xml" encoding="utf-8">
+					<lib dir="${dist}" includes="*.jar" />
+					<lib dir="${lib}/common" includes="gbs.ai.portal-framework*.jar" />
+					<lib dir="${lib}/common" includes="sso.jar" />
+
+					<fileset dir="${web}">
+						<exclude name="**/WEB-INF/classes/**" />
+						<exclude name="**/WEB-INF/sso.xml" />
+						<exclude name="**/WEB-INF/lib/*.jar" />
+					</fileset>
+
+					<zipfileset file="${resources}/${this.phase}/sso.xml" prefix="WEB-INF" />
+
+					<manifest>
+						<attribute name="War-Version" value="${app.version}" />
+						<attribute name="Build-Time" value="${timestamp.datetime}" />
+						<attribute name="Modules" value="${modules}" />
+						<attribute name="Ref-Modules" value="${refs}" />
+					</manifest>
+				</war>
+			</else>
+		</if>
+	</target>
+
+	<target name="finish" depends="war">
+		<delete quiet="true" dir="${bin}" />
+		<echo message="done" />
+	</target>
+
+</project>

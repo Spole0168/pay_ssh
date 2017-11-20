@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 全局配置，跟平台和部署无关 -->
+	
+	<bean id="ldapShaPasswordEncoder" class="com.ibs.portal.framework.util.LdapShaPasswordEncoder">
+	</bean>
+	
+	<!-- WebSphere MQ Connection Factory -->
+	<bean id="mqConnectionFactory" class="com.ibm.mq.jms.MQQueueConnectionFactory">
+		<property name="hostName" value="${mq.hostName}" />
+		<property name="port" value="${mq.port}" />
+		<property name="queueManager" value="${mq.queueManager}" />
+		<property name="transportType" value="1" />
+		<property name="CCSID" value="${mq.CCSID}" />
+		<property name="channel" value="${mq.channel}" />
+	</bean>
+
+	<bean id="jmsConnectionFactory"
+		class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+		<property name="targetConnectionFactory" ref="mqConnectionFactory" />
+		<property name="username" value="${mq.username}" />
+		<property name="password" value="${mq.password}" />
+	</bean>
+
+	<!-- 申请补救单充值发送消息 -->
+	<bean id="pendingTransTraceProducer" class="com.ibs.core.module.account.mq.producer.impl.ProducerQueueImpl">
+		<property name="jmsTemplate" ref="pendingTransTraceJmsTemplate"></property>
+	</bean>
+	
+	<bean id="pendingTransTraceJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="defaultDestination" ref="pendingTransTraceResponseQueue" />
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	<bean id="pendingTransTraceResponseQueue" class="com.ibm.mq.jms.MQQueue">
+		<constructor-arg index="0" value="${mq.queueManager}" />
+		<constructor-arg index="1" value="${mq.queue.deposit.response}" />
+	</bean>
+	
+		<!-- 申请补提现发送消息 -->
+	<bean id="pendingDebitProducer" class="com.ibs.core.module.account.mq.producer.impl.ProducerQueueImpl">
+		<property name="jmsTemplate" ref="pendingDebitJmsTemplate"></property>
+	</bean>
+	
+	<bean id="pendingDebitJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="defaultDestination" ref="pendingDebitResponseQueue" />
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	<bean id="pendingDebitResponseQueue" class="com.ibm.mq.jms.MQQueue">
+		<constructor-arg index="0" value="${mq.queueManager}" />
+		<constructor-arg index="1" value="${mq.queue.withdraw.response}" />
+	</bean>
+
+	<!-- 充值-批量审核发送消息 -->
+	<bean id="topupProducer" class="com.ibs.core.module.topup.mq.producer.impl.ProducerQueueImpl">
+		<property name="jmsTemplate" ref="topupJmsTemplate"></property>
+	</bean>
+	
+	<bean id="topupJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="defaultDestination" ref="topupResponseQueue" />
+		<property name="pubSubDomain" value="false" />
+	</bean>
+	
+	<bean id="topupResponseQueue" class="com.ibm.mq.jms.MQQueue">
+		<constructor-arg index="0" value="${mq.queueManager}" />
+		<constructor-arg index="1" value="${mq.queue.deposit.response}" />
+	</bean>	
+
+</beans>

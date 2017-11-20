@@ -1,0 +1,2 @@
+jquery.ui.autocomplete.js在105行做了修改
+主要是由于autocomplete的ui在firefox下输入中文无法触发keyup事件

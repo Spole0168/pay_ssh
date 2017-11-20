@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>IBS支付核心管理系统</title>
+
+<link rel="shortcut icon" href="images/icon/favicon.ico"/>
+<link rel="icon" href="images/icon/favicon.png" type="image/png"/>
+
+<link rel="stylesheet" type="text/css" href="css/framework/layout-all.css"/>
+<link rel="stylesheet" type="text/css" href="css/framework/dashboard.css"/>
+<link rel="stylesheet" type="text/css" href="css/superfish-1.4.8/superfish-all.css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.9/jquery-ui-1.8.9.custom.min.js"></script>
+<script	type="text/javascript" src="js/jquery-plugins/jquery.all-plugin.min.js"></script>
+<script type="text/javascript" src="js/common/jquery.myext.js"></script>
+
+<style>
+body {margin:0;}
+#ctitle { font-size:14px; font-weight:bold; color:#000000; text-align:center; margin-top:24px;}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// superfish menu
+		$("ul.sf-menu").superfish({
+			pathClass: 'current'
+		}).find('ul').bgIframe({opacity:false});
+	});
+	
+// Module ID & link definitions
+// Format:
+// moduleId:{l:"url_of_this_module",
+// 			 t:"title_for_this_module",
+// 			 c:"optional color definition for title bar"}
+var _modules={	
+	m101:{l:"test/html/m101.html",	t:"本区业务量统计", c:"purple"},
+	m102:{l:"test/html/m105.html",	t:"发车到车准点率", c:"purple"},
+	m103:{l:"test/html/m106.html",	t:"本区中转费用统计", c:"purple"},
+	m104:{l:"test/html/m105.html",	t:"发车到车准点率", c:"purple"},
+	m105:{l:"test/html/m106.html",	t:"本区中转费用统计", c:"purple"},
+	
+	m106:{l:"test/html/m107.html",	t:"本区业务量统计", c:"purple"},
+	m107:{l:"test/html/m107.html",	t:"本区问题件统计", c:"purple"},
+	m108:{l:"test/html/m107.html",	t:"业务量预测", c:"purple"},
+	m109:{l:"test/html/m107.html",	t:"区域流量流向统计", c:"purple"},
+	m110:{l:"test/html/m107.html",	t:"发车到车准点率", c:"purple"},
+	m111:{l:"test/html/m107.html",	t:"本区中转费用统计", c:"purple"}	
+};
+
+// Layout definitions for each tab, aka, which modules go to which columns under which tab
+// Format:
+//	{i:"id_of_the_module	(refer to _modules)",
+//	c:"column_it_belongs_to	(c1, c2, c3)"
+//	t:"tab_it_belongs_to	(t1, t2, ...)"}
+var _layout=[
+	{i:'m101',c:'c1',t:'t1'},{i:'m102',c:'c2',t:'t1'},{i:'m103',c:'c3',t:'t1'},{i:'m104',c:'c2',t:'t1'},{i:'m105',c:'c3',t:'t1'},
+	{i:'m106',c:'c4',t:'t1'},{i:'m107',c:'c5',t:'t1'},{i:'m108',c:'c6',t:'t1'},{i:'m109',c:'c4',t:'t1'},{i:'m110',c:'c5',t:'t1'},{i:'m111',c:'c6',t:'t1'}
+];
+
+// Column width definitions for each tab
+// Valid values are pixel, % or auto
+// Currently, "auto" is only valid on column2
+// You can support more features by refining function HeaderTabClick()
+var _tabs={
+	t1:{c1:"100%",c2:"50%",c3:"50%",c4:"33.33%",c5:"33.33%",c6:"33.33%",helper:false}
+};
+</script>
+</head>
+
+<body>
+<div class="main">
+	
+	<div class="head">
+		<!-- 欢迎用户 -->
+		<div class="head_right">
+			<div class="floatleft"><a href="#" class="icon-out">注销</a></div>
+			<div class="dropdown-parent">
+				<div class="floatleft"><a class="a_btn_dropdown icon-dropdown-white" href="#">修改密码</a>
+                </div>
+                <div class="dropdown-menu" style="margin-top:18px!important; margin-top:0px;">
+                    <ul>
+                        <li><a href="#">subitem	1a</a></li>
+                        <li><a href="#">subitem	1b</a></li>
+                        <li><a href="#">subitem	1c</a></li>
+                        <li><a class="icon-out" href="#">注销</a></li>
+                    </ul>
+                </div>                             
+             </div>
+			<div class="floatleft"><span class="icon-user">管理员，您好</span></div>
+			<div class="floatleft"><a href="#" class="icon-help">系统帮助</a></div>
+		</div>
+		<!-- 欢迎用户 结束-->
+	</div>
+	<div class="menu">
+		<ul	id="sample-menu-4" class="sf-menu sf-navbar">
+			<li> <a	class="sf-with-ul" href="#">控制台<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	1a</a></li>
+					<li><a href="#">subitem	1b</a></li>
+					<li><a href="#">subitem	1c</a></li>
+					<li><a href="#">subitem	1d</a></li>
+				</ul>
+			</li>
+			<li	class="current"> <a	class="sf-with-ul" href="#">出口进口<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li style="z-index:60;"> <a	class="sf-with-ul" href="#">仓储管理<span class="sf-sub-indicator">	&#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu	item</a></li>
+							<li><a href="#abb">menu	item</a></li>
+							<li><a href="#abc">menu	item</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+					<li style="z-index:59;"	class="current"> <a	class="sf-with-ul" href="#">进销存<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu	item</a></li>
+							<li><a href="#abb">menu	item</a></li>
+							<li	class="current"><a href="#abc">current page</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+					<li style="z-index:58;"> <a	class="sf-with-ul" href="#">发票<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a class="sf-with-ul" href="#aba">menu	item<span class="sf-sub-indicator"> &#187;</span></a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#aba">menu	item</a></li>
+									<li><a href="#abb">menu	item</a></li>
+									<li><a href="#abc">menu	item</a></li>
+									<li><a href="#abd">menu	item</a></li>
+								</ul>
+							</li>
+							<li><a href="#abb">menu	item</a></li>
+							<li><a href="#abc">menu	item</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">进销存管理<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">if no subitems,	duplicate parent item href and use this
+						as descriptive label</a></li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">发票管理<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	4a</a></li>
+					<li><a href="#">subitem	4b</a></li>
+					<li><a href="#">subitem	4c</a></li>
+					<li><a href="#">subitem	4d</a></li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">在线打印<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	5a</a></li>
+					<li><a href="#">subitem	5b</a></li>
+					<li><a href="#">subitem	5c</a></li>
+					<li><a href="#">subitem	5d</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="navigation">
+		<a href="#">首页</a> <a href="#">出口进口</a> <span>进销存</span> <span>当前页</span>
+	</div>
+	<div class="container">
+		<div id="helper"></div> 
+		<!-- 这部分必须定义，其中t1代表第一页，在js中会引用到，如果不隐藏的话，会出现换页的tab -->
+		<div id="header_tabs" style="display:none;">
+			<ul>
+				<li id="t1">区域管理驾驶舱</li>
+			</ul>
+		</div>
+		<!-- -->
+		<div id="ctitle">区域驾驶舱（华东）</div>
+		<div>
+			<div id="c1" class="main_containers"></div>
+			<div id="c2" class="main_containers"></div>
+			<div id="c3" class="main_containers"></div>
+			<div id="c4" class="main_containers" style="width:33.33%;"></div>
+			<div id="c5" class="main_containers" style="width:33.33%;"></div>
+			<div id="c6" class="main_containers" style="width:33.33%;"></div>
+		</div>
+		
+		<!-- A hidden module template is carried within the page, which can be modified easily -->
+		<div id="module_template" class="module" style="display:none">
+			<div class="moduleFrame">
+				<div class='moduleHeader'> <span class="moduleIcon"><img alt="icon" src="images/dashboard/icon.gif"/></span>
+					<div class='moduleTitle'></div>
+					<div class='moduleActions'>
+						<img src='images/dashboard/s.gif' alt="Refresh" class="action_refresh"/>
+						<img src='images/dashboard/s.gif' alt="Collapse" class="action_min"/>
+						<img src='images/dashboard/s.gif' alt="Expand" class="action_max"/>
+						<img src='images/dashboard/s.gif' alt="Close" class="action_close"/>
+					</div>
+				</div>
+				<div class='moduleContent'> <img src="images/dashboard/loading.gif" alt="Loading..."/> Loading... </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

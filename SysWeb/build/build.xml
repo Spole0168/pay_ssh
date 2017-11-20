@@ -1,0 +1,39 @@
+<project name="SysWeb" basedir="." default="deploy">
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+
+	<if>
+		<available file="../../SysModules" type="dir"/>
+		<then>
+			<echo message="dev ..."/>
+			<property file="dev.properties" />
+			<property name="prop" location="dev.properties"/>
+		</then>
+		<else>
+			<echo message="test ..."/>
+			<property file="test.properties" />
+			<property name="prop" location="test.properties"/>
+		</else>
+	</if>
+	
+	<target name="clean">
+		<ant antfile="${modules.dir}/build/build-web.xml" target="clean">
+			<property name="library.dir" location="${library.dir}" />
+			<property name="framework.dir" location="${framework.dir}" />
+			<property name="modules.dir" location="${modules.dir}" />
+			<property file="war.properties" />
+			<property file="${prop}" />
+		</ant>
+	</target>
+	
+	<target name="deploy" depends="clean">
+		<ant antfile="${modules.dir}/build/build-web.xml" target="deploy">
+			<property name="library.dir" location="${library.dir}" />
+			<property name="modules.dir" location="${modules.dir}" />
+			<property name="framework.dir" location="${framework.dir}" />
+			<property file="war.properties" />
+			<property file="${prop}" />
+		</ant>
+	</target>
+
+</project>

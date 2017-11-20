@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>IBS支付核心管理系统</title>
+
+<link rel="shortcut icon" href="images/icon/favicon.ico"/>
+<link rel="icon" href="images/icon/favicon.png" type="image/png"/>
+
+<link rel="stylesheet" type="text/css" href="css/framework/layout-all.css"/>
+<link rel="stylesheet" type="text/css" href="css/framework/dashboard.css"/>
+
+<script type="text/javascript" src="js/jquery-1.4.2/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.9/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="js/common/jquery.myext.js"></script>
+<style>
+
+body {margin:0;}
+#page {margin:0 auto; width:1000px;}
+#header {height:158px; background:url(test/images/header.gif);}
+#ctitle { font-size:14px; font-weight:bold; color:#000000; text-align:center; margin-top:24px;}
+</style>
+<script type="text/javascript">
+// Module ID & link definitions
+// Format:
+// moduleId:{l:"url_of_this_module",
+// 			 t:"title_for_this_module",
+// 			 c:"optional color definition for title bar"}
+var _modules={	
+	m101:{l:"test/html/m101.html",	t:"本区业务量统计", c:"purple"},
+	m102:{l:"test/html/m105.html",	t:"发车到车准点率", c:"purple"},
+	m103:{l:"test/html/m106.html",	t:"本区中转费用统计", c:"purple"},
+	m104:{l:"test/html/m105.html",	t:"发车到车准点率", c:"purple"},
+	m105:{l:"test/html/m106.html",	t:"本区中转费用统计", c:"purple"}
+};
+
+// Layout definitions for each tab, aka, which modules go to which columns under which tab
+// Format:
+//	{i:"id_of_the_module	(refer to _modules)",
+//	c:"column_it_belongs_to	(c1, c2, c3)"
+//	t:"tab_it_belongs_to	(t1, t2, ...)"}
+var _layout=[
+	{i:'m101',c:'c1',t:'t1'},{i:'m102',c:'c2',t:'t1'},{i:'m103',c:'c3',t:'t1'},{i:'m104',c:'c2',t:'t1'},{i:'m105',c:'c3',t:'t1'}
+];
+
+// Column width definitions for each tab
+// Valid values are pixel, % or auto
+// Currently, "auto" is only valid on column2
+// You can support more features by refining function HeaderTabClick()
+var _tabs={
+	t1:{c1:"100%",c2:"50%",c3:"50%",helper:false}
+};
+</script>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<div id="header_tabs" style="display:none;">
+			<ul>
+				<li id="t1">区域管理驾驶舱</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<div id="ctitle">区域驾驶舱（华东）</div>
+		<div>
+			<div id="c1" class="main_containers"></div>
+			<div id="c2" class="main_containers"></div>
+			<div id="c3" class="main_containers"></div>
+		</div>
+		
+		<!-- A hidden module template is carried within the page, which can be modified easily -->
+		<div id="module_template" class="module" style="display:none">
+			<div class="moduleFrame">
+				<div class='moduleHeader'> <span class="moduleIcon"><img alt="icon" src="images/dashboard/icon.gif"/></span>
+					<div class='moduleTitle'></div>
+					<div class='moduleActions'>
+						<img src='images/dashboard/s.gif' alt="Refresh" class="action_refresh"/>
+						<img src='images/dashboard/s.gif' alt="Collapse" class="action_min"/>
+						<img src='images/dashboard/s.gif' alt="Expand" class="action_max"/>
+						<img src='images/dashboard/s.gif' alt="Close" class="action_close"/>
+					</div>
+				</div>
+				<div class='moduleContent'> <img src="images/dashboard/loading.gif" alt="Loading..."/> Loading... </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

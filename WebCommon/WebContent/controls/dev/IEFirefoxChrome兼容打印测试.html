@@ -1,0 +1,62 @@
+<html>
+    
+    <head>
+        <title>
+            jatoolsPrinter Firefox 插件.
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!-- Declare a jatoolsPrinter ActiveX Control here -->
+        <style>
+            .mycls {width:400px;height:400px;border:solid 2px #0000FF;margin:3;float:left;padding:7}
+        </style>
+        <script>
+            function doPrint(how) {
+                var sets = {
+                    documents: document,
+                    copyrights: "杰创软件拥有版权  www.jatools.com"
+                };
+
+                var jatoolsPrinter = navigator.userAgent.indexOf('MSIE') > -1 ? ojatoolsPrinter: ejatoolsPrinter; //determine IE or non-IE
+                if (how == '打印预览') jatoolsPrinter.printPreview(sets);
+                else if (how == '提示打印') jatoolsPrinter.print(sets, true);
+                else jatoolsPrinter.print(sets, false);
+            }
+        </script>
+    </head>
+
+    
+    <body>
+        <H1>
+            jatoolsPrinter Firefox 插件.
+        </H1>
+        <input type="button" value="打印预览" onClick='doPrint("打印预览")'>
+        <input type="button" value="提示打印" onClick='doPrint("提示打印")'>
+        <input type="button" value="直接打印" onClick='doPrint("直接打印")'>
+		<br>
+        <div id='page1' class='mycls'>
+
+            Invoice 1.
+        </div>
+        <div id='page2' class='mycls'>
+            Invoice 2.
+        </div>
+
+        <object name="ojatoolsPrinter" codebase="jatoolsPrinter.cab#version=5,4,0,0"
+        classid="clsid:B43D3361-D075-4BE2-87FE-057188254255" width="0" height="0">
+            <embed name="ejatoolsPrinter" type="application/x-vnd.jatoolsPrinter"
+            pluginspage="jatoolsPrinter_demo\jatoolsPrinter.xpi" width="0" height="0"
+            />
+        </object>
+
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+

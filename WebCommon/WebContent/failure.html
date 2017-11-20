@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>错误信息</title>
+
+<link rel="stylesheet" type="text/css" href="css/framework/layout-all.css" />
+<link rel="stylesheet" type="text/css" href="css/superfish-1.4.8/superfish-all.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.9/lightness/jquery-ui-1.8.9.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.9/lightness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jqgrid-3.8.2/ui.jqgrid.css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.9/jquery-ui-1.8.9.custom.min.js"></script>
+<script	type="text/javascript" src="js/jquery-plugins/jquery.all-plugin.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.qtip-1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.timeentry-1.4.8.min.js"></script>
+<script type="text/javascript" src="js/jqgrid-3.8.2/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="js/jqgrid-3.8.2/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="js/My97DatePicker-4.7PR2/WdatePicker.js"></script>
+
+<script type="text/javascript" src="js/common/jquery.gridUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.domUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.boxUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.validatorUtil.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("ul.sf-menu").superfish({
+			pathClass: 'current'
+		});
+	});
+
+</script>
+
+<!--<script type="text/javascript" src="js/debug/firebug-lite.js"></script>-->
+</head>
+<body>
+<div class="main">
+	<div class="head">
+		<!-- 欢迎用户 -->
+		<div class="head_right"><span class="user">管理员，您好</span> <a class="a_out" href="#">注销</a> <a href="#" class="a_help">系统帮助</a></div>
+		<!-- 欢迎用户 结束-->
+	</div>
+	<div class="menu">
+		<ul id="sample-menu-4" class="sf-menu sf-navbar">
+			<li> <a class="sf-with-ul" href="#">控制台<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">subitem 1a</a></li>
+					<li><a href="#">subitem 1b</a></li>
+					<li><a href="#">subitem 1c</a></li>
+					<li><a href="#">subitem 1d</a></li>
+				</ul>
+			</li>
+			<li class="current"> <a class="sf-with-ul" href="#">出口进口<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li> <a class="sf-with-ul" href="#">仓储管理<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu item</a></li>
+							<li><a href="#abb">menu item</a></li>
+							<li><a href="#abc">menu item</a></li>
+							<li><a href="#abd">menu item</a></li>
+						</ul>
+					</li>
+					<li class="current"> <a class="sf-with-ul" href="#">进销存<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu item</a></li>
+							<li><a href="#abb">menu item</a></li>
+							<li class="current"><a href="#abc">current page</a></li>
+							<li><a href="#abd">menu item</a></li>
+						</ul>
+					</li>
+					<li> <a class="sf-with-ul" href="#">发票<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu item</a></li>
+							<li><a href="#abb">menu item</a></li>
+							<li><a href="#abc">menu item</a></li>
+							<li><a href="#abd">menu item</a></li>
+						</ul>
+					</li>
+					<li><a href="#">海运提单</a></li>
+				</ul>
+			</li>
+			<li> <a class="sf-with-ul" href="#">进销存管理<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">if no subitems, duplicate parent item href and use this
+							as descriptive label</a></li>
+				</ul>
+			</li>
+			<li> <a class="sf-with-ul" href="#">发票管理<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">subitem 4a</a></li>
+					<li><a href="#">subitem 4b</a></li>
+					<li><a href="#">subitem 4c</a></li>
+					<li><a href="#">subitem 4d</a></li>
+				</ul>
+			</li>
+			<li> <a class="sf-with-ul" href="#">在线打印<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">subitem 5a</a></li>
+					<li><a href="#">subitem 5b</a></li>
+					<li><a href="#">subitem 5c</a></li>
+					<li><a href="#">subitem 5d</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="wrong_page">
+		<ul>
+			<li class="wrong_icon"></li> 
+			<li class="administrator">错误：此页面不存在，请联系管理员<p><a class="a1" href="#">返回</a></p></li>
+			</ul>
+		<div class="clear"></div>	
+	</div>					
+		
+<div class="footer">
+		<p></p>
+		<p>Copyright© 2000 &mdash; 2009 All Right Reserved </p>
+</div>
+</div>
+</body>
+</html>

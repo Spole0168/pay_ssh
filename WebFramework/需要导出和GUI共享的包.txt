@@ -1,0 +1,6 @@
+以下内容需要导出和GUI框架共享的包
+com.ibs.portal.framework.share
+com.ibs.portal.framework.util
+com.ibs.portal.framework.server.domain
+com.ibs.portal.framework.server.exception
+

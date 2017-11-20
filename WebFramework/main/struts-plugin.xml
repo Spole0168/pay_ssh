@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="framework-default" extends="struts-default" abstract="true">
+		<interceptors>
+			<interceptor-stack name="frameworkStack">
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">WARN</param>
+				</interceptor-ref>
+				<interceptor-ref name="alias"/>
+				<interceptor-ref name="servletConfig"/>
+				<interceptor-ref name="prepare"/>
+				<interceptor-ref name="chain"/>
+				<interceptor-ref name="scopedModelDriven"/>
+				<interceptor-ref name="modelDriven"/>
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">104857600</param>
+				</interceptor-ref>
+				<interceptor-ref name="staticParams"/>
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError"/>
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="i18n"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="frameworkStack"/>
+	</package>
+	<package name="json-rpc" extends="json-default">
+		<interceptors>
+			<interceptor name="security" class="com.ibs.portal.framework.server.interceptor.SecurityInterceptor"/>
+		</interceptors>
+		<action name="refreshCache" class="com.ibs.portal.framework.server.cache.CacheManager" method="smd">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<!-- <interceptor-ref name="security"></interceptor-ref> -->
+			<result type="json">
+				<param name="enableSMD">true</param>
+			</result>
+		</action>
+	</package>
+	<package name="web-base" extends="framework-default" abstract="true">
+		<result-types>
+			<result-type name="json" class="com.ibs.portal.framework.server.interceptor.JsonObjectResult"/>
+			<result-type name="jsonmessage" class="com.ibs.portal.framework.server.interceptor.JsonMessageResult"/>
+			<result-type name="jsonexception" class="com.ibs.portal.framework.server.interceptor.JsonErrorExceptionResult"/>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+			<result-type name="httpforward" class="com.ibs.portal.framework.server.interceptor.HttpForwardResult"/>
+		</result-types>
+		<interceptors>
+			<interceptor name="common" class="com.ibs.portal.framework.server.interceptor.CommonInterceptor"/>
+			<interceptor name="error" class="com.ibs.portal.framework.server.interceptor.ErrorInterceptor"/>
+			<interceptor name="security" class="com.ibs.portal.framework.server.interceptor.SecurityInterceptor"/>
+			<interceptor name="actionLog" class="com.ibs.common.module.frameworkimpl.log.LogInterceptor"/>
+			
+			<interceptor-stack name="webHtmlStack">
+				<interceptor-ref name="error" />
+				<interceptor-ref name="frameworkStack"/>
+				<interceptor-ref name="common" />
+				<interceptor-ref name="security"/>
+			</interceptor-stack>
+			<interceptor-stack name="webHtmlLogStack">
+				<interceptor-ref name="webHtmlStack"/>
+				<interceptor-ref name="actionLog"/>
+			</interceptor-stack>
+			<interceptor-stack name="webAjaxHtmlStack">
+				<interceptor-ref name="error" />
+				<interceptor-ref name="frameworkStack"/>
+				<interceptor-ref name="common" />
+				<interceptor-ref name="security"/>
+			</interceptor-stack>
+			<interceptor-stack name="webAjaxHtmlLogStack">
+				<interceptor-ref name="webAjaxHtmlStack"/>
+				<interceptor-ref name="actionLog"/>
+			</interceptor-stack>
+			<interceptor-stack name="webAjaxJsonStack">
+				<interceptor-ref name="frameworkStack"/>
+				<interceptor-ref name="common" />
+				<interceptor-ref name="security"/>
+			</interceptor-stack>
+			<interceptor-stack name="webAjaxJsonLogStack">
+				<interceptor-ref name="webAjaxJsonStack" />
+				<interceptor-ref name="actionLog"/>
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	<!-- tiles html package -->
+	<package name="web-default" extends="web-base">
+		<default-interceptor-ref name="webHtmlStack"/>
+		<global-results>
+			<result name="login" type="httpforward">/logout.action</result>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden" type="tiles">main.forbidden</result>
+			<result name="error" type="tiles">main.error</result>
+			<result name="exception" type="tiles">main.exception</result>
+			<result name="done" type="tiles">main.done</result>
+			<result name="initPassword" type="httpforward">/initPassword.action</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="login" exception="com.ibs.portal.framework.server.exception.NotLoginException">
+			</exception-mapping>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+	</package>
+	<!-- tiles html (include log) package -->
+	<package name="web-log-default" extends="web-base">
+		<default-interceptor-ref name="webHtmlLogStack"/>
+		<global-results>
+			<result name="login" type="httpforward">/logout.action</result>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden" type="tiles">main.forbidden</result>
+			<result name="error" type="tiles">main.error</result>
+			<result name="exception" type="tiles">main.exception</result>
+			<result name="done" type="tiles">main.done</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="login" exception="com.ibs.portal.framework.server.exception.NotLoginException">
+			</exception-mapping>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+	</package>
+	<!-- no tiles html package -->
+	<package name="web-ajaxhtml" extends="web-base">
+		<default-interceptor-ref name="webAjaxHtmlStack"/>
+		<global-results>
+			<result name="login" type="httpforward">/logout.action</result>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden">/WEB-INF/pages/main/forbidden.jsp</result>
+			<result name="error">/WEB-INF/pages/main/error.jsp</result>
+			<result name="exception">/WEB-INF/pages/main/exception.jsp</result>
+			<!--<result name="done">/WEB-INF/pages/main/done.jsp</result>-->
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="login" exception="com.ibs.portal.framework.server.exception.NotLoginException">
+			</exception-mapping>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+	</package>
+	<!-- no tiles html (include log) package -->
+	<package name="web-log-ajaxhtml" extends="web-log-default">
+		<default-interceptor-ref name="webAjaxHtmlLogStack"/>
+		<global-results>
+			<result name="login" type="httpforward">/logout.action</result>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden">/WEB-INF/pages/main/forbidden.jsp</result>
+			<result name="error">/WEB-INF/pages/main/error.jsp</result>
+			<result name="exception">/WEB-INF/pages/main/exception.jsp</result>
+			<!--<result name="done">/WEB-INF/pages/main/done.jsp</result>-->
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="login" exception="com.ibs.portal.framework.server.exception.NotLoginException">
+			</exception-mapping>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+	</package>
+	<!-- ajax json data package -->
+	<package name="web-ajaxjson" extends="web-base">
+		<default-interceptor-ref name="webAjaxJsonStack"/>
+		<global-results>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden">/WEB-INF/pages/main/forbidden.jsp</result>
+			<result name="error">/WEB-INF/pages/main/error.jsp</result>
+			<result name="exception">/WEB-INF/pages/main/exception.jsp</result>
+		</global-results>
+	</package>
+	<!-- ajax json data (include log) package -->
+	<package name="web-log-ajaxjson" extends="web-log-default">
+		<default-interceptor-ref name="webAjaxJsonLogStack"/>
+		<global-results>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden">/WEB-INF/pages/main/forbidden.jsp</result>
+			<result name="error">/WEB-INF/pages/main/error.jsp</result>
+			<result name="exception">/WEB-INF/pages/main/exception.jsp</result>
+		</global-results>
+	</package>
+	<!-- web dashboard package -->
+	<package name="web-dashboard" extends="web-base">
+		<default-interceptor-ref name="webAjaxHtmlStack"/>
+		<global-results>
+			<result name="login" type="httpforward">/logout.action</result>
+			<result name="jsonlogin" type="jsonexception"></result>
+			<result name="forbidden">/WEB-INF/pages/main/forbidden_portlet.jsp</result>
+			<result name="error">/WEB-INF/pages/main/error_portlet.jsp</result>
+			<result name="exception">/WEB-INF/pages/main/exception_portlet.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="forbidden" exception="com.ibs.portal.framework.server.exception.PermissionNotAssignedException">
+			</exception-mapping>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+	</package>
+
+
+	<!-- GUI相关的 -->
+	<package name="gui-default" extends="struts-default">
+		<result-types>
+			<result-type default="true" name="data"
+				class="com.ibs.portal.framework.server.interceptor.DataResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="security"
+				class="com.ibs.portal.framework.server.interceptor.GuiSecurityInterceptor" />
+			<interceptor name="data"
+				class="com.ibs.portal.framework.server.interceptor.DataInterceptor" />
+			<interceptor name="error"
+				class="com.ibs.portal.framework.server.interceptor.GUIExceptionInterceptor" />
+			<interceptor-stack name="guiStack">
+				<interceptor-ref name="error" />
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">20480000</param>
+				</interceptor-ref>
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="security" />
+				<interceptor-ref name="data" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="guiStack" />
+
+	</package>
+	
+
+</struts>

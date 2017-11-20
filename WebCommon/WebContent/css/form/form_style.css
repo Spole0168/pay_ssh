@@ -1,0 +1,11 @@
+.layout .block .block_container .jmesa .form_style{ line-height:30px; clear:both}
+.layout .block .block_container .jmesa .form_style li{ float:left}
+.layout .block .block_container .jmesa .form_style li.company_name{ font-size:20px;}
+.layout .block .block_container .jmesa .form_style li.date_time{ background:#e4e4e4; padding:5px 10px; float:right; color:#000; margin-bottom:10px}
+.layout .block .block_container .jmesa .form_style li p{ line-height:20px}
+.layout .block .block_container .jmesa .form_style li p span{ width:60px; display:block; float:left; text-align:right; margin-right:5px}
+
+
+.data_time_area{ float:left}
+.company_name{ font-size:20px;}
+.date_time{ background:#e4e4e4; padding:5px 10px; float:right; color:#000; margin-bottom:10px;font-size:12px;}

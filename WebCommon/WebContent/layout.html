@@ -1,0 +1,2159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type"	content="text/html;	charset=utf-8" />
+<!--<meta http-equiv="x-ua-compatible" content="ie=7" />-->
+
+<title>IBS支付核心管理系统界面框架</title>
+
+<link rel="shortcut icon" href="images/icon/favicon.ico"/>
+<!-- <link rel="icon" href="images/icon/favicon.png" type="image/png"/> -->
+
+<!--<link rel="stylesheet" type="text/css" href="css/framework/reset-min.css" />
+<link rel="stylesheet" type="text/css" href="css/framework/layout.css" />
+<link rel="stylesheet" type="text/css" href="css/framework/icon.css" />-->
+<link rel="stylesheet" type="text/css" href="css/framework/layout-all.css" />
+<!--<link rel="stylesheet" type="text/css" href="css/superfish-1.4.8/superfish.css"	media="screen" />
+<link rel="stylesheet" type="text/css" href="css/superfish-1.4.8/superfish-navbar.css" media="screen" />-->
+<link rel="stylesheet" type="text/css" href="css/superfish-1.4.8/superfish-all.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.9/lightness/jquery-ui-1.8.9.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.9/lightness/jquery-ui.css" />
+<!--
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4/lightness/jquery-ui-1.8.4.custom.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4/lightness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4/lightness/jquery-ui-1.8.4.custom.taojin.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-plugins/jquery.tooltip-1.3.css" />
+-->
+<link rel="stylesheet" type="text/css" href="css/jqgrid-3.8.2/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/jmesa-2.5.3/jmesa.css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2/jquery-1.4.2.min.js"></script>
+<!--
+<script type="text/javascript" src="js/jquery-ui-1.8.4/jquery-ui-1.8.4.custom.min.js"></script>
+-->
+<script type="text/javascript" src="js/jquery-ui-1.8.9/jquery-ui-1.8.9.custom.min.js"></script>
+<script	type="text/javascript" src="js/jquery-plugins/jquery.all-plugin.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.qtip-1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.timeentry-1.4.8.min.js"></script>
+<script type="text/javascript" src="js/jqgrid-3.8.2/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="js/jqgrid-3.8.2/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="js/My97DatePicker-4.7PR2/WdatePicker.js"></script>
+<!--
+<link rel="stylesheet" type="text/css" href="css/jqgrid-3.7.2/ui.jqgrid.css" />
+<script src="js/jqgrid-3.7.2/i18n/grid.locale-cn.js" type="text/javascript"></script>
+<script src="js/jqgrid-3.7.2/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="js/jqgrid-3.7.2/grid.jqueryui.js" type="text/javascript"></script>
+-->
+
+<!--<script src="js/jemsa-2.5.3/jquery.jmesa.js" type="text/javascript"></script>
+<script src="js/jemsa-2.5.3/jmesa.js" type="text/javascript"></script>-->
+
+<!--
+<script type="text/javascript" src="js/superfish-1.4.8/superfish.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/json2.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/hoverIntent.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.metadata.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.maxlength.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.labelify.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.validate-1.7.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.blockUI-2.33.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.growl-1.0.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.maskedinput-1.2.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.autoNumeric-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.localisation-1.0.5.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/jquery.fixedtableheader-1.0.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/scrolltopcontrol-1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-plugins/ui.multiselect.min.js"></script>
+<script	type="text/javascript" src="js/jquery-plugins/i18/jquery.validate.messages-zh-CN.js"></script>
+-->
+
+<script type="text/javascript" src="js/common/jquery.gridUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.domUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.boxUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.validatorUtil.js"></script>
+<script type="text/javascript" src="js/common/jquery.IBSUtil.js"></script>
+
+<script	type="text/javascript">
+
+	$(document).ready(function(){
+		// validation localiztion
+		//$.localise('jquery.validate.messages', {path:	'js/jquery-1.4.2/i18n/'});
+		$.localise('jquery.validate.messages', {path: 'js/jquery-1.4.2/i18n/', language: 'zh-CN'});
+
+		// superfish menu
+		$("ul.sf-menu").superfish({
+			pathClass: 'current'
+		}).find('ul').bgIframe({opacity:false});
+		
+		var ht = $(".sf-menu > li.sfHover > ul").height() - 30;
+		if (ht > 0)
+			$(".navigation").css("margin-top", ht + 10);
+	});
+
+</script>
+<!-- Demo -->
+<script	src="grid.js" type="text/javascript"></script>
+<script	type="text/javascript">
+
+	function testFunc() {
+		//console.log($("#enter_ajaxsubmit input").val());
+		alert('testFunc');
+		return false;
+	}
+
+	$(function(){
+		// scroll to top
+		scrolltotop.init({title: '回顶部'});
+		
+		// growl
+		$.growl.settings.displayTimeout = 0;
+		$.growl.settings.dockCss.width = '300px';
+		$.growl.settings.noticeCss = {opacity: 1};
+		$.growl.settings.noticeTemplate = '' + 
+			'<div class="growl_body">' +
+			'	<div class="growl_title">' +
+			'	<div class="growl_title_content">' +
+			'		<h3 class="%priority%">%title%</h3>' +
+			'		<a class="close" title="关闭" href="###" onclick="return false;" rel="close">X</a>' +
+			'	</div>' +
+			'	</div>' +
+			'	<div class="growl_container">' +
+			'		<div class="growl_container_content">%message%</div>' +
+			'	</div>' +
+			'</div>';
+		$.growl("错误信息", "<ul><li>欢迎您使用layout.html</li><li>jQuery Growl Demo</li><li>谢谢！</li></ul>", "", "high");
+		$.growl("告警信息", "<ul><li>message1</li>message2<li></li><li>message3</li></ul>", "", "medium");
+		$.growl("提示信息", "<ul><li>message1</li>message2<li></li><li>message3</li></ul>", "", "low");
+
+		// Accordion
+		$("#accordion").accordion({	header:	"h3" });
+
+		// Tabs
+		$('#tabs').tabs();
+		// Tabs
+		$('#tabs2').tabs({collapsible: true});
+
+		// Dialog
+		$('#dialog').dialog({
+			autoOpen: false,
+			//bgiframe:true,
+			width: 600,
+			buttons: {
+				"确定": function() {
+					$(this).dialog("close");
+				},
+				"取消": function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+
+		// Click Dialog	Link
+		$('#dialog_link').click(function(){
+			$('#dialog').dialog('open');
+			return false;
+		});
+
+		$("#dialog-form-form").validate({
+			rules: {
+				dialog_user: {required:	true, minlength: 4,	maxlength: 4},
+				dialog_dept: {required:	true, minlength: 4,	maxlength: 4},
+				dialog_level: {required: true}
+			},
+			debug:false
+		});
+
+		// Dialog Modal
+		$("#dialog-form").dialog({
+			autoOpen: false,
+			bgiframe:true,
+			height:	350,
+			width: 300,
+			modal: true,
+			buttons: {
+				"确定": function() {
+					if ($("#dialog-form-form").validate().form() ) {
+						$(this).dialog("close");
+					}
+				},
+				"取消": function() {
+					$(this).dialog("close");
+				}
+			},
+			close: function() {
+				$("#dialog-form-form")[0].reset();
+				$("#dialog-form-form").validate().resetForm();
+			}
+		});
+
+		// Click Dialog	Modal
+		$('#dialog_modal').click(function()	{
+			$('#dialog-form').dialog('open');
+			return false;
+		});
+
+		// Dialog
+		$('#dialog-ajax').dialog({
+			autoOpen: false,
+			bgiframe:true,
+			width: 600,
+			buttons: {
+				"确定": function() {
+					$(this).dialog("close");
+				},
+				"取消": function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+
+		// Click Dialog	Ajax
+		$('#dialog_ajax').click(function() {
+			$dlg = $.IBSUtil.getOrCreateDialog("dialog-ajax", {
+				title: "AJAX层标题",
+				width: 600,
+				buttons: {
+					"确定": function() {
+						$(this).dialog("close");
+					},
+					"取消": function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+			$dlg.dialog('open');
+			$dlg.load("jmesa.html");
+			return false;
+		});
+		// Click Dialog	Ajax
+		$('#dialog_ajax_nocache').click(function() {
+			$dlg = $.IBSUtil.getOrCreateDialog("dialog-ajax", {
+				title: "AJAX层标题",
+				width: 600,
+				buttons: {
+					"确定": function() {
+						$(this).dialog("close");
+					},
+					"取消": function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+			$dlg.dialog('open');
+			$dlg.load("jmesa.html", {rand: Math.random()});
+			return false;
+		});
+
+		// Click Block Page
+		$('#block_page').click(function() {
+			$.blockUI({
+				message: $('#loading').html(),
+				css: {padding: '20px'}
+			});
+			setTimeout($.unblockUI,	2000);
+		});
+
+		// Click Block Retion
+		$('#block_region').click(function()	{
+			$('#accordion').block({
+				message: $('#loading').html(),
+				css: {padding: '15px'}
+			});
+		});
+
+		// Click UnBlock Retion
+		$('#unblock_region').click(function() {
+			$('#accordion').unblock();
+		});
+
+		// Click success box
+		$('#box_success').click(function() {
+			$.boxUtil.success('成功内容');
+		});
+
+		// Click info box
+		$('#box_info').click(function() {
+			$.boxUtil.info('信息内容', {title: '自定义信息标题'});
+		});
+
+		// Click warn box
+		$('#box_warn').click(function() {
+			$.boxUtil.warn('警告内容', {title: '自定义警告标题'}, function(){
+				alert('11');
+			});
+		});
+
+		// Click error box
+		$('#box_error').click(function() {
+			$.boxUtil.error('失败内容');
+		});
+
+		// Click alert box
+		$('#box_alert').click(function() {
+			$.boxUtil.alert('中国的历法与纪年采用阴阳干支三合历；上古时期，根据不同的农业牧业生产情况需要，分别产生过太阳历法和太阴历法。农历作为中国传统历法，最早源自何时无从考究，<b>据出土的甲骨文和古代中国典籍多有记载</b>，现时阴阳合一的历法规则一般认为源自殷商时期。从黄帝纪年到清朝末期启用西历（格里历），中国历史上一共产生过102部历法，这些历法对中国文化与文明产生过重大影响，比如夏历、商历、周历、西汉太初历、隋皇极历、唐大衍历等，有的历法虽然没有正式使用过，但对养生、医学、思想学术、天文、数学等有所作用，如西汉末期的三统历和隋朝的皇极历法等。');
+		});
+
+		// Click confirm box
+		$('#box_confirm').click(function() {
+			$.boxUtil.confirm('请确认？', null, function(){alert('ok');}, function(){alert('cancel');});
+		});
+		
+		$("#search_ajaxSubmit").click(testFunc);
+		
+		// input enter event
+		$("#enter_ajaxsubmit input").input().enter(testFunc);
+		
+		// input tab event
+		$("#enter_ajaxsubmit input").input().tab(function(){
+			alert('aaaabbb');
+		});
+		
+		// input blur event for trimming
+		$("#enter_ajaxsubmit input").input().trim();
+		$("#enter_ajaxsubmit input").input().upperCase();
+		
+		// pass jquery recursion test
+		//$("#enter_ajaxsubmit input").input().trim().enter(testFunc);
+		//$("#enter_ajaxsubmit input").input().trim().upperCase();
+
+		// set input readonly
+		$("input[readonly]").addClass("read_only");
+		$("input[readonly]").input().disableBackSpace();
+		//$("input:disabled").input().disableBackSpace();	//disable不能够捕获任何事件
+		
+		// Slider
+		$('#slider').slider({
+			range: true,
+			values:	[17, 67]
+		});
+
+		// Progressbar
+		$("#progressbar").progressbar({
+			value: 20
+		});
+
+		//hover states on the static widgets
+		$('#dialog_link, #dialog_modal').hover(
+			function() { $(this).addClass('ui-state-hover'); },
+			function() { $(this).removeClass('ui-state-hover');	}
+		);
+
+		// Tooltip
+		$('input').tooltip();
+		$('#a_help').tooltip();
+		
+		// qtip
+		$("#ajax_tip").qtip({
+			content: {
+				text: "<div class='loading_text'>加载中，请稍后...</div>",
+				url: "jmesa.html"
+			},
+			position: {
+				corner: {
+					tooltip: 'bottomMiddle',
+					target: 'topMiddle'
+				},
+				adjust: {
+					screen: true,
+					scroll: false
+				}
+			},
+			show: {
+				when: { event: 'mouseover' },
+				solo: true // Only show one tooltip at a time
+			},
+			hide: {
+				fixed: true // Make it fixed so it can be hovered over
+			},
+			style:	{
+				width: 700,
+				name: 'cream' // Use the default light	style
+			}
+		});
+
+		$("[name='ajax_tip']").qtip({
+			content: {
+				text: "<div class='loading_text'>加载中，请稍后...</div>",
+				url: "jmesa.html",
+				data: {id: null},
+				once: false
+			},
+			position: {
+				corner: {
+					tooltip: 'bottomMiddle',
+					target: 'topMiddle'
+				}
+			},
+			show: { 
+				when: 'click',
+				solo: true // Only show one tooltip at a time
+			},
+			hide: {
+				when: {
+					target: $(document.body).children().not( $(self) ),
+					event : 'mousedown'
+				}
+			},
+			style:	{
+				width: 700,
+				name: 'cream' // Use the default light	style
+			},
+			api: {
+				beforeRender: function(self) {
+					this.options.content.data.id = this.elements.target.html();
+					//console.log(this.options.content.data);
+					//console.log(this.elements.target.html());
+				}
+			}
+		});
+
+
+		// Autocomplete
+		var	available =	["ActionScript", "AppleScript",	"Asp", "BASIC",	"C", "C++",	"Clojure", "COBOL",	"ColdFusion", "Erlang",	"Fortran", "Groovy", "Haskell",	"Java",	"JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala",	"Scheme", "中文1", "中文2",	"上海", "上海 - 上海 - 上海 - 上海 - 上海"];
+		$("#autocomplete").autocomplete({
+			source:	available/*,
+			selectFirst: true*/
+		});
+		$("#autocomplete").input().enter(testFunc);
+
+		// in-filed	label
+		$("#autocomplete").labelify({ text:	function(input)	{ return "请输入..."; }, labelledClass: "a labelinside"});
+		$("#infield_label").labelify({ text: function(input) { return "请输入..."; }, labelledClass: "a labelinside"});
+
+		// textarea maxlength
+		$('textarea.limited').maxlength({
+            'feedback' : '.charsLeft', 
+			'useInput' : true
+        });
+
+		// entry time
+		$.timeEntry.setDefaults({show24Hours: true});
+		$('#time_input').timeEntry();
+
+		// form toggle
+		$(".block_title > .block_show").parent().collapseBlock({collapsed:false});
+		
+		// sub form	toggle
+		$(".legend_title a").collapseContainer({collapsed:false});
+
+		// masked input
+		$.extend($.mask.definitions, {'1': "[0-1]", 'n': "[0-9][0-9]"});
+		$("#shift").mask("1/1/1/1/1/1/1");
+		$("#postalcode").mask("999999");
+		
+		// money mask
+		$("#fee1").autoNumeric({aSep: ''});
+		$("#fee2").autoNumeric({aSign: '¥ ', mNum: 5, mDec: 3});
+		$("#fee2").blur(function(){
+			$("#fee2_strip").val($.fn.autoNumeric.Strip(this.id));
+		});
+
+		// form	validate
+		//$.validator.messages.required	= "";	 //	field message not show behind
+		$("#validate_form").validate({
+			rules: {
+				user: {required: true, minlength: 4, maxlength:	4},
+				idcard: {required: true, isIdCardNo: true},
+				level: {required: true},
+				status:	{required: true},
+				shift:	{required: true},
+				postalcode:	{required: true},
+				fee1:	{required: true},
+				fee2:	{required: true},
+				scan_code: {required: true, isEnNum: true},
+				cn_name: {required: true, isChinese: true},
+				en_name: {required: true, isEnglish: true},
+				no_special: {required: true, isLegal: true, stringMinLength: 2, stringMaxLength: 4},
+				ajax_v:	{required: true//, remote:'true'
+					}
+			},
+			invalidHandler:	function(e,	validator) {
+				var	errors = validator.numberOfInvalids();
+				if (errors)	{
+					var	message	= "请正确填写简单验证表单信息！";
+					$("div.warning span").html(message);
+					$("div.warning").show();
+				} else {
+					$("div.warning").hide();
+				}
+			},
+			onkeyup: false,
+			// if use ajax submit, please override this function
+			// if use struts2 action submit, please remove this function
+			submitHandler: function() {
+				$("div.warning").hide();
+				//alert("提交成功");
+
+				$("#dialog-message").dialog({
+					resizable: false,
+					//height: 140,
+					modal: true,
+					title: '信息',
+					buttons: {
+						"确定":	function() {
+							$(this).dialog('close');
+						}
+					}
+				});
+			},
+			messages: {
+				// 自定义错误描述，可以忽略
+				level: "请选择紧急程度"
+			},
+			debug:false
+		});
+
+		$('#validate_cancel').bind('click', function() {
+			$("#validate_form").validate().resetForm();
+			$("div.warning").hide();
+			return false;
+		});
+
+		$('#form_reset').bind('click', function() {
+			$('#validate_form')[0].reset();
+			$("#validate_form").validate().resetForm();
+			$("div.warning").hide();
+			return false;
+		});
+
+		$('#ajax_submit').bind('click', function(){
+			$.blockUI({
+				message: $('#loading').html(),
+				css: {padding: '20px'}
+			});
+
+			setTimeout(function(){
+				$.unblockUI();
+				$.growlUI('成功信息！', '保存xxx信息成功！');
+			}, 2000);
+		});
+
+		// fix table head
+		$('.tabframe1').fixedtableheader({
+			headerrowsize:2
+		});
+		
+		$('.tabframe1 tbody tr').not('.tab_page').not('.tab_head').bind('mouseenter mouseleave', function(e){
+			$(this).toggleClass("selected");
+		});
+		
+		
+		$(".dropdown-parent").dropdownMenu();
+		
+	});
+
+</script>
+<style type="text/css">
+/* ie6 bug for div scroll*/
+#tabs-6{position: relative;	width: 960px;overflow-x:scroll;}
+#gridPager1{width:960px	!important;}
+#info_dialog{top:3500px !important;left:600px !important;}
+
+/*demo page	css*/
+.demoHeaders { margin-top: 2em;	}
+#dialog_link, #dialog_modal { padding: .4em 1em .4em 20px; text-decoration: none;	position: relative;	}
+#dialog_link span.ui-icon, #dialog_modal span.ui-icon, #dialog_ajax	span.ui-icon{ margin: 0	5px	0 0; position: absolute; left: .2em; top: 50%; margin-top: -8px; _top:14px;}
+/*ul#icons { margin: 0; padding: 0; }
+ul#icons li	{ margin: 2px; position: relative; padding:	4px	0; cursor: pointer;	float: left; list-style: none; }
+ul#icons span.ui-icon {	float: left; margin: 0 4px;	}*/
+
+</style>
+<!--<script	type="text/javascript" src="js/debug/firebug-lite.js"></script>-->
+</head>
+<body>
+<div class="main">
+	<div class="head">
+		<!-- 欢迎用户 -->
+		<div class="head_right">
+			<div class="floatleft"><a href="#" class="icon-out">注销</a></div>
+			<div class="dropdown-parent" style="line-height:18px;">
+				<div class="floatleft">
+					<a class="a_btn_dropdown icon-dropdown-white" href="#" style="line-height:18px;">修改密码</a>
+                </div>
+                <div class="dropdown-menu" style="margin-top:18px;*margin-top:0px;_margin-top:0px; line-height:18px;">
+                    <ul>
+                        <li><a href="#">subitem	1a</a></li>
+                        <li><a href="#">subitem	1b</a></li>
+                        <li><a href="#">subitem	1c</a></li>
+                        <li><a class="icon-out" href="#">注销</a></li>
+                    </ul>
+                </div>                             
+             </div>
+			<div class="floatleft"><span class="icon-user">管理员，您好</span></div>
+			<div class="floatleft"><a href="#" class="icon-help">系统帮助</a></div>
+		</div>
+		<!--
+		<div class="marquee_layout">
+			<marquee>欢迎使用IBS支付管理核心系统</marquee>
+		</div>
+		-->
+		<!-- 欢迎用户 结束-->
+	</div>
+	<div class="menu">
+		<ul	id="sample-menu-4" class="sf-menu sf-navbar">
+			<li> <a	class="sf-with-ul" href="#">控制台<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	1a</a></li>
+					<li><a href="#">subitem	1b</a></li>
+					<li><a href="#">subitem	1c</a></li>
+					<li><a href="#">subitem	1d</a></li>
+				</ul>
+			</li>
+			<li	class="current"> <a	class="sf-with-ul" href="#">出口进口<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li style="z-index:60;"> <a	class="sf-with-ul" href="#">仓储管理<span class="sf-sub-indicator">	&#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu	item</a></li>
+							<li><a href="#abb">menu	item</a></li>
+							<li><a href="#abc">menu	item</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+					<li style="z-index:59;"	class="current"> <a	class="sf-with-ul" href="#">进销存<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#aba">menu	item</a></li>
+							<li><a href="#abb">menu	item</a></li>
+							<li	class="current"><a href="#abc">current page</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+					<li style="z-index:58;"> <a	class="sf-with-ul" href="#">发票<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a class="sf-with-ul" href="#aba">menu	item<span class="sf-sub-indicator"> &#187;</span></a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#aba">menu	item</a></li>
+									<li><a href="#abb">menu	item</a></li>
+									<li><a href="#abc">menu	item</a></li>
+									<li><a href="#abd">menu	item</a></li>
+								</ul>
+							</li>
+							<li><a href="#abb">menu	item</a></li>
+							<li><a href="#abc">menu	item</a></li>
+							<li><a href="#abd">menu	item</a></li>
+						</ul>
+					</li>
+					<li style="z-index:57;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:56;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:55;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:54;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:53;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:52;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:51;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:50;"><a href="#">海运提单管理</a></li>
+					<li style="z-index:49;"><a href="#">海运提单管理</a></li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">进销存管理<span class="sf-sub-indicator"> &#187;</span></a>
+				<ul>
+					<li><a href="#">if no subitems,	duplicate parent item href and use this
+						as descriptive label</a></li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">发票管理<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	4a</a></li>
+					<li><a href="#">subitem	4b</a></li>
+					<li><a href="#">subitem	4c</a></li>
+					<li><a href="#">subitem	4d</a></li>
+				</ul>
+			</li>
+			<li> <a	class="sf-with-ul" href="#">在线打印<span class="sf-sub-indicator">	&#187;</span></a>
+				<ul>
+					<li><a href="#">subitem	5a</a></li>
+					<li><a href="#">subitem	5b</a></li>
+					<li><a href="#">subitem	5c</a></li>
+					<li><a href="#">subitem	5d</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="navigation">
+		<a href="#">首页</a> <a href="#">出口进口</a> <span>进销存</span> <span>当前页</span>
+	</div>
+	<div class="container">
+		<!--中间内容-->
+		<!-- 单栏 -->
+		<div class="layout">
+			<div class="block m-b">
+				<div id="accordion">
+					<div>
+						<h3><a href="#">海运</a></h3>
+						<div>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-ok">确 定</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-cancel">取 消</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-search">搜 索</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-print">打 印</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-help">帮	助</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-redo">重复啊重复啊重复啊</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-error">错 误</span></span></a>
+							<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-print">打印啊打印</span></span></a> </div>
+					</div>
+					<div>
+						<h3><a href="#">空运</a></h3>
+						<div><select><option>IE6遮盖问题</option></select></div>
+					</div>
+					<div>
+						<h3><a href="#">铁路</a></h3>
+						<div>Nam dui erat, auctor a, dignissim quis.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<div id="tabs" class="tabs">
+					<ul>
+						<li><a href="#tabs-1">海运</a></li>
+						<li><a href="#tabs-2">空运</a></li>
+						<li><a href="#tabs-3">铁路</a></li>
+						<li><a href="#tabs-4">车辆</a></li>
+					</ul>
+					<div id="tabs-1">
+						<a href="#" class="a_btn icon-ok m-r"><em>确定</em></a>
+						<a href="#" class="a_btn icon-remove m-r"><em>删除</em></a>
+						<a href="#" class="a_btn2 m-r"><em>确 定</em></a>
+						<a href="#" class="a_btn2 m-r"><em>取 消</em></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-add2">添 加</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-add">新 增</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-edit">修 改</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-remove">删 除</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-audit">审 核</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-app-undo">撤 销</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-submit">提 交</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-save">保 存</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-cut">剪 切</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-undo">返 回</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-refresh">刷 新</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-reset">重 置</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-delete">删 除</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-select">全 选</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-deselect">反 选</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-left">左 移</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-right">右 移</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-up">上 移</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-down">下 移</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-view">查 看</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-excel">导 出</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-logout">注 销</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-exec">执 行</span></span></a>
+						<a	onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text	icon-find">查 询</span></span></a>
+					</div>
+					<div id="tabs-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed	do eiusmod tempor incididunt ut	labore et dolore magna aliqua. Ut enim
+						ad minim veniam, quis nostrud exercitation ullamco laboris nisi	ut aliquip
+						ex ea commodo consequat.</div>
+					<div id="tabs-3">Phasellus mattis tincidunt	nibh. Cras orci	urna, blandit
+						id,	pretium	vel, aliquet ornare, felis.	Maecenas scelerisque sem non nisl.
+						Fusce sed lorem	in enim	dictum bibendum.</div>
+					<div id="tabs-4">Nam dui erat, auctor a, dignissim quis, sollicitudin eu,
+						felis. Pellentesque	nisi urna, interdum	eget, sagittis et, consequat vestibulum,
+						lacus. Mauris porttitor	ullamcorper	augue.</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<p>
+					<a href="#"	id="dialog_link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>弹出层</a>
+					<a href="#"	id="dialog_modal" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>遮盖&验证层</a>
+					<a href="#"	id="dialog_ajax">AJAX层</a>
+					<a href="#"	id="dialog_ajax_nocache">AJAX(NOCACHE)层</a>
+					<label for="autocomplete">Autocomplete: </label>
+					<input id="autocomplete" size="10" />
+					<label for="infield_label">输入提示: </label>
+					<input id="infield_label" size="10"/>
+					<label for="time_input">时钟输入: </label>
+					<input id="time_input" size="6" class="ime_disable" />
+				</p>
+			</div>
+			<div class="block m-b">
+				<p>
+					<a href="#"	id="block_page">block页面</a>
+					<a href="#"	id="block_region">block区域</a>
+					<a href="#"	id="unblock_region">unblock区域</a>
+					<a href="javascript:void(0)" id="ajax_tip">tip区域</a>
+					<a href="javascript:void(0)" name="ajax_tip">sticky tip1</a>
+					<a href="javascript:void(0)" name="ajax_tip">sticky tip2</a>
+				</p>
+			</div>
+			<div class="block m-b">
+				<p>
+					<a href="####" id="box_success">成功提示</a>
+					<a href="####" id="box_info">信息提示</a>
+					<a href="####" id="box_warn">告警提示</a>
+					<a href="####" id="box_error">错误提示</a>
+					<a href="####" id="box_alert">提示</a>
+					<a href="####" id="box_confirm">确认</a>
+				</p>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<div id="tabs2"	class="tabs">
+					<ul>
+						<li><a href="#tabs-8">grid分组</a></li>
+						<li><a href="#tabs-5">table滚动grid</a></li>
+						<li><a href="#tabs-6">整体滚动grid</a></li>
+						<li><a href="#tabs-7">预警grid</a></li>
+						<li><a href="#tabs-9">subgrid</a></li>
+					</ul>
+					<div id="tabs-8">
+						<table id="gridTable_group"></table>
+						<div id="gridPager_group"></div>
+					</div>
+					<div id="tabs-5">
+						<table id="gridTable_scroll"></table>
+						<div id="gridPager_scroll"></div>
+					</div>
+					<div id="tabs-6">
+						<table id="gridTable1"></table>
+						<div id="gridPager1"></div>
+					</div>
+					<div id="tabs-7">
+						<table id="gridTable_warn"></table>
+						<div id="gridPager_warn"></div>
+					</div>
+					<div id="tabs-9">
+						<table id="gridTable_subgrid"></table>
+						<div id="gridPager_subgrid"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<div class="block_title">
+					<h3>复杂表单填写</h3>
+					<p class="block_show"></p>
+				</div>
+				<div class="block_container">
+					<div class="fieldset_border	fieldset_bg	m-b" id="enter_ajaxsubmit">
+						<div class="legend_title"><a href="#" class="container_show">查询</a></div>
+						<div class="fieldset_container">
+							<table cellpadding="0" cellspacing="0" class="table_form">
+								<thead>
+								</thead>
+								<tfoot>
+								</tfoot>
+								<tbody>
+									<tr>
+										<th><em>*</em>ToolTip测试：</th>
+										<td	style="width:220px;"><input	class="width_c"	title="Note	that the tooltip disappears	when clicking the input	element" /></td>
+										<th>发起部门：</th>
+										<td><input class="width_c" /></td>
+										<th>发起日期：</th>
+										<td><input class="Wdate	width_time1" onfocus="WdatePicker()" title="tootip日期测试"/></td>
+										<th>结束日期：</th>
+										<td><input class="Wdate	width_time1" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/></td>
+									</tr>
+									<tr>
+										<th>发起日期：</th>
+										<td><input class="width_b" readonly="readonly" value="readonly后退问题"/></td>
+										<th>结束日期：</th>
+										<td><input class="width_a" disabled="disabled" value="disabled后退问题"/></td>
+										<th>固定select宽度：</th>
+										<td><select name="select" class="width_a">
+												<option>高高高高高高高高高高高高高高高高高高高高高高高高</option>
+											</select></td>
+										<th	width="70"><em>*</em>ToolTip：</th>
+										<td	colspan="3"><input class="width_a" title="发起人测试tootip，Note that	the	tooltip	disappears when	clicking the input element"	/></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="btn_layout">
+							<span class="form_tips">支持回车键做ajax提交</span></td>
+							<a id="search_ajaxSubmit" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text	icon-find">查 询</span></span></a>
+							</div>
+						</div>
+					</div>
+					<div class="fieldset_border	fieldset_bg	m-b">
+						<div class="legend_title"><a href="#" class="container_show">航班信息</a></div>
+						<div class="fieldset_container">
+							<table cellpadding="0" cellspacing="0" class="table_form">
+								<thead>
+								</thead>
+								<tfoot>
+								</tfoot>
+								<tbody>
+									<tr>
+										<th	width="70"><em>*</em>发起人：</th>
+										<td	colspan="3"><input class="width_b" />
+											<span class="form_tips">发起人为公司部门重要人物，填写时注意职位从大到小</span></td>
+										<th>发起日期：</th>
+										<td><input id="begin_date" class="Wdate width_time1" onclick="WdatePicker()"/></td>
+										<th>结束日期：</th>
+										<td><input id="end_date" class="Wdate width_time1" onfocus="WdatePicker({minDate:$('#begin_date').val()})"/></td>
+									</tr>
+									<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+									<tr>
+										<th><em>*</em>发起部门：</th>
+										<td	style="width:220px;"><input	class="width_b"	/><a href="javascript:void(0)" style="vertical-align:middle;" class="l-btn-plain l-btn m-l4"><span class="l-btn-left"><span class="l-btn-text icon-search"></span></span></a></td>
+										<th>readonly样式</th>
+										<td><input class="width_c" value="readonly样式" readonly/></td>
+										<th>发起日期：</th>
+										<td><input class="Wdate	width_time1" onclick="WdatePicker()"/></td>
+										<th>结束日期：</th>
+										<td><input class="Wdate	width_time1" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/></td>
+									</tr>
+									<tr>
+										<th>发起日期：</th>
+										<td><input class="width_a" maxlength="10"/><a id="a_help" class="a_help" title="帮助说明，发起日期是xxxxx"></a></td>
+										<th>结束日期：</th>
+										<td><input class="width_a" /></td>
+										<th>紧急程度：</th>
+										<td><select	name="select">
+												<option>高</option>
+											</select></td>
+										<th	width="70"><em>*</em>发起人：</th>
+										<td	colspan="3"><input class="width_a" /></td>
+									</tr>
+									<tr>
+										<th>紧急程度：</th>
+										<td><select	name="select">
+												<option>高</option>
+											</select></td>
+										<th>限制时分秒：</th>
+										<td><input value="2010-12-16" class="Wdate	width_time2" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd 00:00:00',minDate:'2010-12-15'})"/></td>
+										<th>时分秒：</th>
+										<td	colspan="3"><input class="Wdate	width_time2" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></td>
+									</tr>
+									<tr>
+										<th>通知内容：</th>
+										<td	colspan="3"><textarea class="textarea" name="" cols="100" rows="6" onkeyup="this.value = this.value.slice(0, 80)"></textarea></td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="fieldset_border	fieldset_bg2 clearfix haslayout">
+						<div class="legend_title"><a href="#" class="container_show">航班信息</a></div>
+						<div class="fieldset_container clearfix">
+							<div class="fieldset_container">
+								<table cellpadding="0" cellspacing="0" class="table_form">
+									<thead>
+									</thead>
+									<tfoot>
+									</tfoot>
+									<tbody>
+										<tr>
+											<th	width="70"><em>*</em>发起人：</th>
+											<td	colspan="3"><input class="width_b" />
+												<span class="form_tips">发起人为公司部门重要人物，填写时注意职位从大到小</span></td>
+											<th>发起日期：</th>
+											<td><input class="width_a" /></td>
+											<th>结束日期：</th>
+											<td><input class="width_a" /></td>
+										</tr>
+										<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+										<tr>
+											<th><em>*</em>发起部门：</th>
+											<td	style="width:220px;"><input	class="width_c"	/></td>
+											<th>发起部门：</th>
+											<td><input class="width_c" /></td>
+											<th>发起日期：</th>
+											<td><input class="width_a" /></td>
+											<th>结束日期：</th>
+											<td><input class="width_a" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="fieldset_border	fieldset_bg	layout_third m-r">
+								<div class="legend_title"><span>通知提货登记</span></div>
+								<div class="fieldset_container">
+									<table cellpadding="0" cellspacing="0" class="table_form">
+										<thead>
+										</thead>
+										<tfoot>
+										</tfoot>
+										<tbody>
+											<tr>
+												<th	width="70">发起人：</th>
+												<td><input class="width_b" /></td>
+											</tr>
+											<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+											<tr>
+												<th>发起部门：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th><em>*</em>发起日期：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th>紧急程度：</th>
+												<td><select	name="select">
+														<option>高</option>
+													</select></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="fieldset_border	fieldset_bg	layout_third m-r">
+								<div class="legend_title"><span>通知提货登记</span></div>
+								<div class="fieldset_container">
+									<table cellpadding="0" cellspacing="0" class="table_form">
+										<thead>
+										</thead>
+										<tfoot>
+										</tfoot>
+										<tbody>
+											<tr>
+												<th	width="70">发起人：</th>
+												<td><input class="width_b" /></td>
+											</tr>
+											<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+											<tr>
+												<th>发起部门：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th><em>*</em>发起日期：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th>紧急程度：</th>
+												<td><select	name="select">
+														<option>高</option>
+													</select></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="fieldset_border	fieldset_bg	layout_help">
+								<div class="legend_title"><span>通知提货登记</span></div>
+								<div class="fieldset_container">
+									<table cellpadding="0" cellspacing="0" class="table_form">
+										<thead>
+										</thead>
+										<tfoot>
+										</tfoot>
+										<tbody>
+											<tr>
+												<th	width="70">发起人：</th>
+												<td><input class="width_b" /></td>
+											</tr>
+											<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+											<tr>
+												<th>发起部门：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th><em>*</em>发起日期：</th>
+												<td><input class="width_a" /></td>
+											</tr>
+											<tr>
+												<th>紧急程度：</th>
+												<td><select	name="select">
+														<option>高</option>
+													</select></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="btn_layout">
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-save">保	存</span></span></a>
+						<a onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span	class="l-btn-left"><span class="l-btn-text icon-undo">返	回</span></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<div class="block_title">
+					<h3>简单验证表单</h3>
+					<p class="block_show"></p>
+				</div>
+				<div class="block_container">
+				<form id="validate_form" action="jmesa.html" method="get">
+					<div class="warning" style="display:none;">
+						<span></span>
+					</div>
+					<div class="successful"	style="display:none;">
+						<span>成功信息xxx</span>
+					</div>
+					<div class="wrong" style="display:none;">
+						<span>失败信息xxx</span>
+					</div>
+					<table cellpadding="0" cellspacing="0" class="table_form">
+						<thead>
+						</thead>
+						<tfoot>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th	width="120"><em>*</em>发起人：</th>
+								<td	colspan="3"><input name="user" id="user" class="width_b" />
+									<span class="form_tips">发起人为公司部门重要人物，填写时注意职位从大到小</span></td>
+							</tr>
+							<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+							<tr>
+								<th><em>*</em>身份证：</th>
+								<td	style="width:250px;"><input	name="idcard" id="idcard" class="width_d" title="请输入部门信息" /></td>
+								<th>AJAX验证：</th>
+								<td><input name="ajax_v" id="ajax_v" class="width_c" title="远程验证" /></td>
+							</tr>
+							<tr>
+								<th>发起日期：</th>
+								<td><input class="width_a" /></td>
+								<th>结束日期：</th>
+								<td><input class="width_a" /></td>
+							</tr>
+							<tr>
+								<th><em>*</em>班期（mask）：</th>
+								<td><input name="shift" id="shift" class="width_a" /></td>
+								<th><em>*</em>邮编（mask）：</th>
+								<td><input name="postalcode" id="postalcode" class="width_a" /></td>
+							</tr>
+							<tr>
+								<th><em>*</em>金额（easy）：</th>
+								<td><input name="fee1" id="fee1" class="width_a" /></td>
+								<th><em>*</em>金额（mask）：</th>
+								<td><input name="fee2" id="fee2" class="width_a" value="12345.123" />&nbsp;&nbsp;strip值&nbsp;&nbsp;<input id="fee2_strip" readonly="readonly" /></td>
+							</tr>
+							<tr>
+								<th><em>*</em>扫描编号：</th>
+								<td><input name="scan_code" id="scan_code" class="width_a" /></td>
+								<th><em>*</em>中文名称：</th>
+								<td><input name="cn_name" id="cn_name" class="width_a" /></td>
+							</tr>
+							<tr>
+								<th><em>*</em>英文名称：</th>
+								<td><input name="en_name" id="en_name" class="width_a" /></td>
+								<th><em>*</em>非特殊字符：</th>
+								<td><input name="no_special" id="no_special" class="width_a" /></td>
+							</tr>
+							<tr>
+								<th><em>*</em>紧急程度：</th>
+								<td><select	name="level" id="level" class="width_b">
+										<option	value="">请选择...</option>
+										<option	value="1">高</option>
+										<option	value="2">低</option>
+									</select></td>
+								<th><em>*</em>状态：</th>
+								<td>
+									<fieldset class="radioField">
+										<label><input type="radio" id="status_yes" value="1" name="status" />启用</label>
+										<label><input type="radio" id="status_no" value="0"	name="status" />不启用</label>
+										<label for="status"	class="error">请填写状态</label>
+									</fieldset>
+								</td>
+							</tr>
+							<tr>
+								<th>职能：</th>
+								<td colspan="3">
+									<fieldset class="checkboxField">
+										<label for="func_motor">
+										<input type="checkbox" id="func_motor" name="func" />
+											汽运职能
+										</label>
+										<label for="func_flight">
+											<input type="checkbox" id="func_flight" name="func" />
+											航空职能
+										</label>
+										<label for="func_delivery">
+											<input type="checkbox" id="func_delivery" name="func" />
+											收派职能
+										</label>
+									</fieldset>
+								</td>
+							</tr>
+							<tr>
+								<th>网点组：</th>
+								<td colspan="3">
+									<fieldset class="fieldsetLegend" style="width: 300px;">
+										<legend>
+										<input class="width_b"/>
+										<a title="维护网点组" class="l-btn-plain l-btn m-l4" style="vertical-align:middle;" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-search"></span></span></a>
+										<a title="保存为默认" class="l-btn-plain l-btn m-l4" style="vertical-align:middle;" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-save"></span></span></a>
+										</legend>
+										<label class="form_tips">请选择网点组</label>
+									</fieldset>
+								</td>
+							</tr>
+							<tr>
+								<th>网点组：</th>
+								<td colspan="3">
+									<fieldset class="fieldsetLegend" style="width: 300px;" id="orgGroups">
+										<legend >
+											<div class="floatleft">
+												<input class="width_b"/>
+											</div>
+											<div class="dropdown-parent floatleft m-l">
+												<div class="floatleft">												
+													<a href="#" class="a_btn_dropdown icon-dropdown m-r"><em>操作</em></a>
+												</div>
+												<div class="dropdown-menu">
+													<ul>
+														<li><a href="javascript:void(0)" class="a_btn icon-search">管理组</a></li>
+														<li><a href="javascript:void(0)" class="a_btn icon-save">保存组信息</a></li>
+														<li><a href="javascript:$('#orgGroups').check().clearAll();" class="a_btn icon-delete">清除</a></li>
+														<li><a href="javascript:$('#orgGroups').check().selectAllValues();" class="a_btn icon-select">全选</a></li>
+														<li><a href="javascript:$('#orgGroups').check().deselectAllValues();" class="a_btn icon-deselect">反选</a></li>
+													</ul>
+												</div>
+											</div>
+										</legend>
+										<label><input type="checkbox" name="func2" value="0" /><a> 汽运职能</a></label>
+										<label><input type="checkbox" name="func2" value="1" /> 网点组1</label>
+										<label><input type="checkbox" name="func2" value="2"  /> 网点组2</label>
+										<label><input type="checkbox" name="func2" value="3"  /> 网点组3</label>
+										<label><input type="checkbox" name="func2" value="4"  /> 网点组4</label>
+										<label><input type="checkbox" name="func2" value="5"  /> 网点组5</label>
+										<label><input type="checkbox" name="func2" value="6"  /> 网点组6</label>
+										<label><input type="checkbox" name="func2" value="7"  /> 网点组7</label>
+										<label><input type="checkbox" name="func2" value="8"  /> 网点组8</label>
+										<label><input type="checkbox" name="func2" value="9"  /> 网点组9</label>
+										<label><input type="checkbox" name="func2" value="10"  /> 网点组10</label>
+									</fieldset>
+								</td>
+							</tr>
+							<tr>
+								<th>通知内容：</th>
+								<td	colspan="3">
+									<textarea class="textarea limited" name="" cols="100" rows="6"></textarea>
+									<p class="form_tips">可以输入<span class="charsLeft"></span>个字符</p>
+									<input type="hidden" name="maxlength" value="50" />
+								</td>
+							</tr>
+							<tr>
+								<td	colspan="5">
+									<a onclick="javascript:$('#validate_form').submit()" href="javascript:void(0)" class="easyui-linkbutton l-btn"><span class="l-btn-left"><span	class="l-btn-text icon-ok">确 定</span></span></a>
+									<a id="validate_cancel"	class="easyui-linkbutton l-btn cancel" href="#"><span class="l-btn-left"><span class="l-btn-text icon-cancel">取	消</span></span></a>
+									<a id="form_reset" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text icon-reset">重 置</span></span></a>
+									<a onclick="alert($('#validate_form').serialize())" class="easyui-linkbutton l-btn" href="###"><span class="l-btn-left"><span	class="l-btn-text icon-left">表单字符串</span></span></a>
+									<a onclick="console.log($.commonUtil.unparam($('#validate_form').serialize()))" class="easyui-linkbutton l-btn" href="###"><span class="l-btn-left"><span	class="l-btn-text icon-left">字符串转对象</span></span></a>
+									<a onclick="console.log($('#validate_form').serializeObject())" class="easyui-linkbutton l-btn" href="###"><span class="l-btn-left"><span	class="l-btn-text icon-right">表单对象</span></span></a>
+									<a id="ajax_submit"	class="easyui-linkbutton l-btn"	href="###"><span class="l-btn-left"><span class="l-btn-text	icon-save">AJAX成功提示</span></span></a>
+									<a onclick="$('.successful').toggle()" class="easyui-linkbutton	l-btn" href="###"><span	class="l-btn-left"><span class="l-btn-text icon-save">成功提示</span></span></a>
+									<a onclick="$('.wrong').toggle()" class="easyui-linkbutton l-btn" href="###"><span class="l-btn-left"><span	class="l-btn-text icon-save">失败提示</span></span></a>
+								</td>
+							</tr>
+							<tr>
+								<th>&nbsp;</th>
+								<td	colspan="3"><a href="#"	class="a_btn2 m-r"><em>确	定</em></a> <a href="#" class="a_btn2 m-r"><em>已
+									阅</em></a> <a href="#">取 消</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				</div>
+			</div>
+		</div>
+		<!-- 左右布局 -->
+		<div class="layout">
+			<div class="layout_half	m-r">
+				<div class="block m-b">
+					<div class="block_title">
+						<h3>简单表单</h3>
+						<em><a href="#">更多</a></em></div>
+					<div class="block_container">
+						<table cellpadding="0" cellspacing="0" class="table_form">
+							<thead>
+							</thead>
+							<tfoot>
+							</tfoot>
+							<tbody>
+								<tr>
+									<th	width="120">发起人：</th>
+									<td><input class="width_b" /></td>
+								</tr>
+								<!-- 表格使用斑马线背景色做间隔 tr 上添加class="blue" -->
+								<tr>
+									<th>发起部门：</th>
+									<td><input class="width_d" /></td>
+								</tr>
+								<tr>
+									<th><em>*</em>发起日期：</th>
+									<td><input class="width_a" /></td>
+								</tr>
+								<tr>
+									<th>紧急程度：</th>
+									<td><select	name="select">
+											<option>高</option>
+										</select></td>
+								</tr>
+								<tr>
+									<th>通知对象：</th>
+									<td><select	 name="select" size="10">
+											<option>中心</option>
+											<option>部门</option>
+											<option>系统部</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>&nbsp;</th>
+									<td><a href="#"	class="a_btn2 m-r"><em>确 定</em></a> <a href="#" class="a_btn m-r"><em>已
+										阅</em></a> <a href="#">取 消</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="layout_half">
+				<div class="block m-b">
+					<div class="block_title">
+						<h3>列表</h3>
+						<em><a href="#">更多</a></em></div>
+					<div class="block_container">
+						<div class="ul_list_show">
+							<ul>
+								<li>收入分析树采公司总收入逐层分...</li>
+								<li>属地分公司数据集市是在在企业在企...</li>
+								<li>经营分析管理平台是公司是...</li>
+								<li>核心客户保有应用是公司在南用是公...</li>
+								<li>营业厅经理经理日常工理日...</li>
+								<li>核心客户保有应用是公司在南用是公...</li>
+								<li>营业厅经理助手为厅经理日常工理日...</li>
+								<li>营业厅经理为厅经理日常工理日...</li>
+								<li>核心客户保有应用是公司在南用是公...</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 左中右布局 -->
+		<div class="layout">
+			<div class="layout_third m-r  m-b">
+				<div class="block_title">
+					<h3>文字描述</h3>
+					<em><a href="#">更多</a></em></div>
+				<div class="block_container">
+					<div class="container_txt">
+						<p>“伴侣不是结婚时非你不娶或非你不嫁的那人,而是发现你身上有许多缺点仍选你的那人;伴侣不是你爱吃黄瓜ta也爱吃黄瓜的那人,而是你吃蛋清ta吃蛋黄的那人;伴侣不是和你大谈爱情的那人,而是和你平淡唠叨柴米油盐的那人;伴侣是几十年的积淀,是一份默契、一份温情、一份平淡、一份理解、一份宽容。” </p>
+					</div>
+				</div>
+			</div>
+			<div class="layout_third m-r  m-b">
+				<div class="block_title">
+					<h3>文字描述</h3>
+					<em><a href="#">更多</a></em></div>
+				<div class="block_container">
+					<div class="container_txt">
+						<p>【心理成熟标志】：1.不再盲目跟风；2.不再犹豫不定；3.合理安排时间；4开始关注新闻国事；5.开始养生；6.在爱情、友情、亲情之间，首先想到亲情；7.不再用哭闹来解决问题；8.重视身边的朋友；9.让周围的人快乐；10.在得失方面变得大度；11.学着尊重每个人；12.自信地生活；13.淡忘仇恨 </p>
+					</div>
+				</div>
+			</div>
+			<div class="layout_third  m-b">
+				<div class="block_title">
+					<h3>文字描述</h3>
+					<em><a href="#">更多</a></em></div>
+				<div class="block_container">
+					<div class="container_txt">
+						<p>1.诺基亚是桑塔纳，虽然很丑但确实耐用。2.黑莓是沃尔沃，又宽又大但确实安全。3.苹果是奥迪，没缺点也没变化。4.摩托罗拉是本田，有经典但总出烂车。5.三星是红旗，不实用不好看还以为自己很牛逼。6.西门子是悍马，是传奇，但已关闭。7.HTC是吉利，带几个字母就以为自己是国际品牌。	</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 左小右大布局	-->
+		<div class="layout">
+			<div class="layout_left	m-r">
+				<div class="block m-b">
+					<div class="block_title">
+						<h3>双行链接列表</h3>
+						<em><a href="#">更多</a></em></div>
+					<div class="block_container">
+						<div class="ul_list_show_nodot">
+							<ul>
+								<li><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常...</a></li>
+								<li><a href="#">常办理用户的时间跨度选择从最近6个月一直到最近1个月...</a></li>
+								<li><a href="#">最近1个月。此外，厅经理助手还提供本厅完成的KPI指标明细、营营业厅...</a></li>
+								<li><a href="#">查询功能，可以查询本属地且在本营业厅经常办理业务的老用户，可提取...</a></li>
+								<li><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常...</a></li>
+								<li><a href="#">可以查询本属地且在本营业厅经常办理业务的老用户</a></li>
+								<li><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常...</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layout_right">
+				<div class="block m-b">
+					<div class="block_title">
+						<h3>带时间链接列表</h3>
+						<em><a href="#">更多</a></em></div>
+					<div class="block_container">
+						<div class="ul_list_show">
+							<ul>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">常办理用户的时间跨度选择从最近6个月一直到最近1个月</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">最近1个月。此外，厅经理助手还提供本厅完成的KPI指标明细、营营业厅...</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">查询功能，可以查询本属地且在本营业厅经常办理业务的老用户，可提取...</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">可以查询本属地且在本营业厅经常办理业务的老用户</a></span><span class="ul_time_tips">2009-11-29</span></li>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span><span class="ul_time_tips">2009-11-29</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="block m-b">
+					<div class="block_title">
+						<h3>不带时间链接列表</h3>
+						<em><a href="#">更多</a></em></div>
+					<div class="block_container">
+						<div class="ul_list_show">
+							<ul>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span></li>
+								<li><span class="ul_title"><a href="#">常办理用户的时间跨度选择从最近6个月一直到最近1个月</a></span></li>
+								<li><span class="ul_title"><a href="#">最近1个月。此外，厅经理助手还提供本厅完成的KPI指标明细、营营业厅...</a></span></li>
+								<li><span class="ul_title"><a href="#">查询功能，可以查询本属地且在本营业厅经常办理业务的老用户，可提取...</a></span></li>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span></li>
+								<li><span class="ul_title"><a href="#">可以查询本属地且在本营业厅经常办理业务的老用户</a></span></li>
+								<li><span class="ul_title"><a href="#">营业厅经理助手为厅经理日常工作分析提经理日常工作分析提经理日常</a></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layout m-b">
+			<div class="fieldset_border	fieldset_bg	m-b">
+				<div class="legend_title"><a href="#" class="container_show">查询</a></div>
+				<div class="fieldset_container">
+					<table cellpadding="0" cellspacing="0" class="table_form">
+						<thead>
+						</thead>
+						<tfoot>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th><em>*</em>发起部门：</th>
+								<td	style="width:220px;"><input	class="width_c"	title="Note	that the tooltip disappears	when clicking the input	element" /></td>
+								<th>发起部门：</th>
+								<td><input class="width_c" /></td>
+								<th>发起日期：</th>
+								<td><input class="Wdate	width_time1" onclick="WdatePicker()" title="tootip日期测试"/></td>
+								<th>结束日期：</th>
+								<td><input class="Wdate	width_time1" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/></td>
+							</tr>
+							<tr>
+								<th>发起日期：</th>
+								<td><input class="width_a" /></td>
+								<th>结束日期：</th>
+								<td><input class="width_a" /></td>
+								<th>紧急程度：</th>
+								<td><select	name="select">
+										<option>高</option>
+									</select></td>
+								<th	width="70"><em>*</em>发起人：</th>
+								<td	colspan="3"><input class="width_a" title="发起人测试tootip，Note that	the	tooltip	disappears when	clicking the input element"	/></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn_layout"> <a	onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text	icon-find">查 询</span></span></a> </div>
+				</div>
+			</div>
+
+		</div>
+		<!-- jqgrid	-->
+		<div class="layout">
+			<div class="block m-b">
+				<div class="block_title">
+					<h3>个人信息管理1</h3>
+					<p class="block_show"></p>
+				</div>
+				<div class="block_container">
+					<div class="fieldset_border	fieldset_bg	m-b">
+						<div class="legend_title"><a href="#" class="container_show">查询</a></div>
+						<div class="fieldset_container">
+							<table cellpadding="0" cellspacing="0" class="table_form">
+								<thead>
+								</thead>
+								<tfoot>
+								</tfoot>
+								<tbody>
+									<tr>
+										<th><em>*</em>发起部门：</th>
+										<td	style="width:220px;"><input	class="width_c"	title="Note	that the tooltip disappears	when clicking the input	element" /></td>
+										<th>发起部门：</th>
+										<td><input class="width_c" /></td>
+										<th>发起日期：</th>
+										<td><input class="Wdate	width_time1" onclick="WdatePicker()" title="tootip日期测试"/></td>
+										<th>结束日期：</th>
+										<td><input class="Wdate	width_time1" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/></td>
+									</tr>
+									<tr>
+										<th>发起日期：</th>
+										<td><input class="width_a" /></td>
+										<th>结束日期：</th>
+										<td><input class="width_a" /></td>
+										<th>紧急程度：</th>
+										<td><select	name="select">
+												<option>高</option>
+											</select></td>
+										<th	width="70"><em>*</em>发起人：</th>
+										<td	colspan="3"><input class="width_a" title="发起人测试tootip，Note that	the	tooltip	disappears when	clicking the input element"	/></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="btn_layout"> <a	onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text	icon-find">查 询</span></span></a> </div>
+						</div>
+					</div>
+
+					<div class="block">
+						<table id="gridTable">
+						</table>
+						<div id="gridPager"></div>
+						<div id="gridToolbar">
+							<a class="l-btn-plain l-btn	m-l4" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-add">新增</span></span></a>
+							<a id="gridRowEdit"	class="l-btn-plain l-btn" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-edit">修改</span></span></a>
+							<a id="gridRowDelete" class="l-btn-plain l-btn"	href="javascript:void(0)"><span	class="l-btn-left"><span class="l-btn-text icon-remove">删除</span></span></a>
+							<a id="gridShowColumn" class="l-btn-plain l-btn" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-remove">获取显示列信息</span></span></a>
+						</div>
+					</div>
+					<!--
+					<div class="block">
+						<table id="gridTreeTable">
+						</table>
+						<div id="gridTreePager"></div>
+						<div id="gridTreeToolbar">
+							<a class="l-btn-plain l-btn	m-l4" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-add">新 增</span></span></a>
+						</div>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+		<div class="layout">
+			<div class="block m-b">
+				<div class="block_title">
+					<h3>个人信息管理1</h3>
+					<p class="block_show"></p>
+				</div>
+				<div class="block_container">
+					<div class="fieldset_border	fieldset_bg	m-b">
+						<div class="legend_title"><a href="#" class="container_show">查询</a></div>
+						<div class="fieldset_container">
+							<table cellpadding="0" cellspacing="0" class="table_form">
+								<thead>
+								</thead>
+								<tfoot>
+								</tfoot>
+								<tbody>
+									<tr>
+										<th><em>*</em>发起部门：</th>
+										<td	style="width:220px;"><input	class="width_c"	title="Note	that the tooltip disappears	when clicking the input	element" /></td>
+										<th>发起部门：</th>
+										<td><input class="width_c" /></td>
+										<th>发起日期：</th>
+										<td><input class="Wdate	width_time1" onclick="WdatePicker()" title="tootip日期测试"/></td>
+										<th>结束日期：</th>
+										<td><input class="Wdate	width_time1" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/></td>
+									</tr>
+									<tr>
+										<th>发起日期：</th>
+										<td><input class="width_a" /></td>
+										<th>结束日期：</th>
+										<td><input class="width_a" /></td>
+										<th>紧急程度：</th>
+										<td><select	name="select">
+												<option>高</option>
+											</select></td>
+										<th	width="70"><em>*</em>发起人：</th>
+										<td	colspan="3"><input class="width_a" title="发起人测试tootip，Note that	the	tooltip	disappears when	clicking the input element"	/></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="btn_layout"> <a	onclick="javascript:alert('ttt')" class="easyui-linkbutton l-btn" href="#"><span class="l-btn-left"><span class="l-btn-text	icon-find">查 询</span></span></a> </div>
+						</div>
+					</div>
+					<div class="jmesa">
+				<table id="jmesaSampleItemList"	class="table" border="0" cellpadding="0" cellspacing="0" width="100%">
+					<thead>
+						<tr	class="toolbar">
+							<td	colspan="6"><table border="0" cellpadding="0" cellspacing="1">
+									<tbody>
+										<tr>
+											<td><img src="images/jmesa/firstPageDisabled.gif" alt="首页"/></td>
+											<td><img src="images/jmesa/prevPageDisabled.gif" alt="上一页"/></td>
+											<td><img src="images/jmesa/nextPageDisabled.gif" alt="下一页"/></td>
+											<td><img src="images/jmesa/lastPageDisabled.gif" alt="尾页"/></td>
+											<td><img src="images/jmesa/separator.gif" alt="Separator"/></td>
+											<td><select	name="maxRows" onchange="jQuery.jmesa.setMaxRowsToLimit('jmesaSampleItemList', this.options[this.selectedIndex].value);onInvokeAction('jmesaSampleItemList','max_rows')">
+													<option	value="10" selected="selected">10 </option>
+													<option	value="50">50 </option>
+													<option	value="100">100	</option>
+												</select></td>
+											<td><img src="images/jmesa/separator.gif" alt="Separator"/></td>
+											<td><a href="javascript:jQuery.jmesa.setExportToLimit('jmesaSampleItemList','jexcel');onInvokeExportAction('jmesaSampleItemList','export')"><img src="images/jmesa/excel.gif" title="导出为 XLS" alt="jexcel"/></a></td>
+										</tr>
+									</tbody>
+								</table></td>
+						</tr>
+						<tr	class="header">
+							<td	width="5%"><div>
+									<input onclick="setAllCheckboxState('selectIds',this.checked)" type="checkbox"/>
+								</div></td>
+							<td><div style="cursor:	default;" onmouseover="this.style.cursor='pointer'"	onmouseout="this.style.cursor='default'" onclick="jQuery.jmesa.addSortToLimit('jmesaSampleItemList','1','id','asc');onInvokeAction('jmesaSampleItemList', 'sort')">Id</div></td>
+							<td><div onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'"	onclick="jQuery.jmesa.addSortToLimit('jmesaSampleItemList','2','name','asc');onInvokeAction('jmesaSampleItemList', 'sort')">Name</div></td>
+							<td><div onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'"	onclick="jQuery.jmesa.addSortToLimit('jmesaSampleItemList','3','description','asc');onInvokeAction('jmesaSampleItemList', 'sort')">Description</div></td>
+							<td><div onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'"	onclick="jQuery.jmesa.addSortToLimit('jmesaSampleItemList','4','logDate','asc');onInvokeAction('jmesaSampleItemList', 'sort')">Log Date</div></td>
+							<td><div>Operation</div></td>
+						</tr>
+					</thead>
+					<tbody class="tbody">
+						<tr	id="jmesaSampleItemList_row1" class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
+							<td	width="5%"><input name="selectIds" value="89fdcee02a7e1b3d012a7e1ec38a0001"	type="checkbox"/>
+							</td>
+							<td>89fdcee02a7e1b3d012a7e1ec38a0001</td>
+							<td>adf</td>
+							<td>测试</td>
+							<td>&nbsp;</td>
+							<td><input value=""	onclick="onModifyAction('89fdcee02a7e1b3d012a7e1ec38a0001');" type="button"/>
+							</td>
+						</tr>
+						<tr	id="jmesaSampleItemList_row2" class="even" onmouseover="this.className='highlight'"	onmouseout="this.className='even'">
+							<td	width="5%"><input name="selectIds" value="89fdcee02a7e1b3d012a7e1ef51a0002"	type="checkbox"/>
+							</td>
+							<td>89fdcee02a7e1b3d012a7e1ef51a0002</td>
+							<td>测试1</td>
+							<td>测试1</td>
+							<td>&nbsp;</td>
+							<td><input value=""	onclick="onModifyAction('89fdcee02a7e1b3d012a7e1ef51a0002');" type="button"/>
+							</td>
+						</tr>
+						<tr	id="jmesaSampleItemList_row3" class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
+							<td	width="5%"><input name="selectIds" value="89fdcee02a7e1b3d012a7e2034020003"	type="checkbox"/>
+							</td>
+							<td>89fdcee02a7e1b3d012a7e2034020003</td>
+							<td>测试2</td>
+							<td>测试2</td>
+							<td>&nbsp;</td>
+							<td><input value=""	onclick="onModifyAction('89fdcee02a7e1b3d012a7e2034020003');" type="button"/>
+							</td>
+						</tr>
+						<tr	id="jmesaSampleItemList_row4" class="even" onmouseover="this.className='highlight'"	onmouseout="this.className='even'">
+							<td	width="5%"><input name="selectIds" value="89fdce482a64cee9012a64d57c6c0001"	type="checkbox"/>
+							</td>
+							<td>89fdce482a64cee9012a64d57c6c0001</td>
+							<td>测试名称</td>
+							<td>测试描述</td>
+							<td>&nbsp;</td>
+							<td><input value=""	onclick="onModifyAction('89fdce482a64cee9012a64d57c6c0001');" type="button"/>
+							</td>
+						</tr>
+						<tr	class="statusBar">
+							<td	colspan="6"	align="left">共 4 条记录，当前第 1 条到第 4 条。</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="loading_background">
+			<div class="loading_img">
+				<span class="loading_span">正在读取，请稍候...</span>
+			</div>
+		</div>
+
+		<table cellspacing="2" cellpadding="0" class="tabframe1">
+			<thead>
+				<tr	class="tab_page">
+					<td	colspan="20">
+						<ul>
+							<li	style="float:left; padding-left:4px"> 显示1-51页&nbsp;&nbsp;总共1000条记录&nbsp;&nbsp;每页
+								<select	name="select3">
+									<option	selected=""	value="0">20</option>
+									<option	value="1">40页</option>
+								</select>
+								条 </li>
+							<li	style="float:right">
+								<a class="tab_page_label" name="firstPage">第一页</a>
+								<a class="tab_page_label" name="previousPage">上一页</a>
+								<a class="tab_page_link" name="nextPage" href="javascript:void(0)">下一页</a>
+								<a class="tab_page_link" onclick="javascript:alert('ttt')" name="lastPage" href="javascript:void(0)">最后一页</a> 第
+								<input class="input_font" name="" type="text" value="1"	/>页/共20页
+								<a class="l-btn-plain l-btn	m-l4" href="javascript:void(0)"><span class="l-btn-left"><span class="l-btn-text icon-redo">跳转</span></span></a>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr	class="tab_head">
+					<td	width="40" align="center">选择</td>
+					<td	width="40" align="center">行号</td>
+					<td	width="110"><a class="tab_headup" href="#"><p>发货人信息</p><p class="sort_asc"></p></a></td>
+					<td	width="160"><a class="tab_headup" href="#"><p>发货人信息</p><p class="sort_desc"></p></a></td>
+					<td	width="160"><a class="tab_headup" href="#"><p>发货人信息</p><p class="sort_none"></p></a></td>
+					<td	width="90">物品信息</td>
+					<td	width="90">物品信息</td>
+					<td	width="90">物品信息</td>
+					<td	width="90">物品信息</td>
+					<td	width="130"	align="center">操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>
+						<div class="dropdown-parent">
+                            <div class="floatleft">
+                                <a class="a_btn_dropdown icon-dropdown m-r" href="#"><em>修改</em></a>
+                            </div>
+                            <div class="dropdown-menu">
+								<ul>
+									<li><a href="#">subitem	1a dropdown-parent dropdown-parent</a></li>
+									<li><a href="#">subitem	1b</a></li>
+									<li><a href="#">subitem	1c</a></li>
+									<li><a class="icon-out" href="#">注销</a></li>
+								</ul>
+                            </div>
+                        </div>
+                        <div class="floatleft"><a class="a_btn icon-remove m-r" href="#"><em>删除</em></a></div>
+					</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息物品信物品信物品信物品信物品信物品信物品信物品信</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td><a class="a_btn icon-edit m-r" href="#"><em>修改</em></a><a class="a_btn icon-remove m-r" href="#"><em>删除</em></a></td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even	selected">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="odd">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="even">
+					<td	align="center"><input type="checkbox" name="checkbox" id="checkbox"	/></td>
+					<td	align="center">2</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="bg-l1">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="bg-l2">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="bg-l3">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr	class="bg-l4">
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td>发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="bg-c1">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="bg-c2">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="bg-c3">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="bg-c4">发货人信息</td>
+					<td><ul>
+					  <li class="green size-common">客户下单时间：2010-9-8	20:04:28</li>
+					  <li>发货人姓名：方冰</li>
+					  <li>邮编：230011</li>
+					  <li>电话：0551-4215288</li>
+					  <li>手机：13966794743</li>
+					  <li class="green size-common">发货人地址：安徽省 合肥市 瑶海区 安徽大市场诚品书店</li>
+				  </ul></td>
+					<td> <ul>
+					  <li>商品名：点击查看</li>
+					  <li>商品数量：1</li>
+					  <li class="red size-common">物流号：LP10090812055349</li>
+					  <li class="red size-common">运单号：<a class="a1"	href="#">1393050499</a></li>
+					  <li class="red size-common">上门取货段：2010-9-9 8:30:00 至 2010-9-9	17:30:00</li>
+					  <li>备注：</li>
+				  </ul></td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="font-c1">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="font-c2">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="font-c3">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+				<tr>
+					<td	align="center"><input name="" type="checkbox" value="" /></td>
+					<td	align="center">1</td>
+					<td	class="font-c4">发货人信息</td>
+					<td>物品信息</td>
+					<td>收货人地址</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+					<td>物品信息</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="footer">
+		<p></p>
+		<p>Copyright© 2000 &mdash; 2009	All	Right Reserved </p>
+	</div>
+</div>
+<!-- ui-dialog -->
+<div id="dialog" title="弹出层标题">
+	<p></p>
+</div>
+<!-- ui-dialog message -->
+<div id="dialog-message" style="display:none">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 0px 0;"></span>
+		Your files have	downloaded successfully	into the My	Downloads folder.
+		Your files have	downloaded successfully	into the My	Downloads folder.
+		Your files have	downloaded successfully	into the My	Downloads folder.
+		Your files have	downloaded successfully	into the My	Downloads folder.
+		Your files have	downloaded successfully	into the My	Downloads folder.
+	</p>
+</div>
+
+<!-- ui-dialog form	-->
+<div id="dialog-form" title="Create	new	user">
+	<form id="dialog-form-form">
+		<table cellpadding="0" cellspacing="0" class="table_form">
+			<thead>
+			</thead>
+			<tfoot>
+			</tfoot>
+			<tbody>
+				<tr>
+					<th	width="70"><em>*</em>发起人：</th>
+					<td><input name="dialog_user" id="dialog_user" class="width_b" /></td>
+				</tr>
+
+				<tr>
+					<th><em>*</em>发起部门：</th>
+					<td><input name="dialog_dept" id="dialog_dept" class="width_a" /></td>
+				</tr>
+				<tr>
+					<th>发起日期：</th>
+					<td><input class="width_a" /></td>
+				</tr>
+				<tr>
+					<th><em>*</em>紧急程度：</th>
+					<td><select	name="dialog_level"	id="dialog_level">
+							<option	value="">请选择...</option>
+							<option	value="1">高</option>
+						</select></td>
+				</tr>
+				<tr>
+					<th	width="70">发起人：</th>
+					<td><input class="width_b" /></td>
+				</tr>
+				<tr>
+					<th>发起日期：</th>
+					<td><input class="width_b" /></td>
+				</tr>
+				<tr>
+					<th>紧急程度：</th>
+					<td><select	name="select">
+							<option>高</option>
+						</select></td>
+				</tr>
+				<tr>
+					<th>发起日期：</th>
+					<td><input class="width_b" /></td>
+				</tr>
+				<tr>
+					<th>&nbsp;</th><td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+<!-- loading
+<div class="popup popup_height">
+	<div id="loading" class="loading" style="display:none;">
+		<span>系统运行中，请稍候...</span>
+		<img src="images/framework/ajax-loader.gif"	/>
+	</div>
+	<div class="popup_iframe popup_height"><iframe frameborder="0" class="popup_iframe_frame popup_height"></iframe></div>
+</div>
+-->
+<!-- loading -->
+<div id="loading" style="display:none">
+	<div class="loading_img">
+		<span class="loading_span">正在保存，请稍候...</span>
+	</div>
+</div>
+
+<!-- growl -->
+<div class="growl_body" style="display:none">
+	<div class="growl_title">
+	<div class="growl_title_content">
+		<h3 class="high">title</h3>
+		<a class="close" title="关闭" href="javascript:void(0)">X</a>	</div>
+	</div>
+	<div class="growl_container">
+		<div class="growl_container_content">		
+			<ul>
+				<li>messages</li>
+				<li>messagesmessasmessa</li>
+				<li>messages</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

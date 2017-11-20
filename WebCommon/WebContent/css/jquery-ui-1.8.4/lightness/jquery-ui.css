@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* jquery ui override*/
+.ui-widget { font:12px/1.5 tahoma, arial, 宋体, sans-serif; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #c1b4d4; background: none; color: #000; }
+.ui-widget-header { border: 1px solid #b8b2db; background: #f6a828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x; color: #330570; font-weight: bold; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #b8b2db; background: #f6f6f6 url(images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #330570; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #654a8d; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #fbcb09; background: #fdf5ce url(images/ui-bg_glass_100_fdf5ce_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #e94609; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #e94609; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #b8b2db; background: #ffffff url(images/accordion_title.png) left top repeat-x; font-weight: bold; color: #eb8f00; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #330570; text-decoration: none; }
+.tabs .ui-state-active, #tabs .ui-widget-content .ui-state-active, #tabs .ui-widget-header .ui-state-active { border: 1px solid #b8b2db; background-image:none !important; font-weight: bold; color: #eb8f00; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight { border: 1px solid #fed22f; background: #fdf5ce url(images/ui-bg_glass_100_fdf5ce_1x400.png) 50% 50% repeat-x; color: #e94609; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a { color: #e94609; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 14px; line-height:28px; padding:0px 0px 0px 2.2em }
+.ui-menu { background-color:#fff; }
+.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; background-color:#fff; }
+.ui-dialog .ui-dialog-title { float: left; margin:0px; font-size:14px; color:#330570; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 0px 0px; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-progressbar { height:2em; text-align: left; }
+.ui-progressbar .ui-progressbar-value { margin: -1px; height:100%; }
+.ui-multiselect { border:1px solid #ccc; }
+.ui-multiselect ul { -moz-user-select:none; }
+.ui-multiselect li { cursor:default; height:20px; line-height:20px; list-style:none outside none; margin:0; padding:0; }
+.ui-multiselect li a { color:#999999; cursor:pointer; display:block; float:left; padding:0; text-decoration:none; }
+.ui-multiselect li.ui-draggable-dragging { padding-left:10px; }
+.ui-multiselect div.selected { border:0 none; float:left; margin:0; padding:0; position:relative; }
+.ui-multiselect ul.selected { background:none repeat scroll 0 0 #FFFFFF; border:0 none; list-style:none outside none; margin:0; overflow-x:hidden; overflow-y:auto; padding:0; position:relative; width:100%; }
+.ui-multiselect ul.selected li { border-bottom:1px solid #ddd; }
+.ui-multiselect div.available { border-color:-moz-use-text-color; border-style:none none none solid; border-left:1px solid #ccc; float:left; margin:0; padding:0; position:relative; }
+.ui-multiselect ul.available { background:none repeat scroll 0 0 #FFFFFF; border:0 none; list-style:none outside none; margin:0; overflow-x:hidden; overflow-y:auto; padding:0; position:relative; width:100%; }
+.ui-multiselect ul.available li { padding-left:10px; }
+.ui-multiselect .ui-state-default { border:medium none; margin-bottom:1px; padding-left:20px; position:relative; }
+.ui-multiselect .ui-state-hover { border:medium none; }
+.ui-multiselect .ui-widget-header { border:medium none; margin-bottom:1px; }
+.ui-multiselect .add-all { float:right; padding:7px; }
+.ui-multiselect .remove-all { float:right; padding:7px; }
+.ui-multiselect .search { float:left; padding:4px; }
+.ui-multiselect .count { float:left; padding:7px; }
+.ui-multiselect li span.ui-icon-arrowthick-2-n-s { left:2px; position:absolute; }
+.ui-multiselect li a.action { position:absolute; right:2px; top:2px; }
+.ui-multiselect input.search { height:14px; margin:4px; opacity:0.5; padding:1px; width:85px; }
+.ui-autocomplete {/*word-spacing:30px;*/ }
+.ui-autocomplete-loading { background: white url(../../../images/framework/ajax-loader4.gif) right center no-repeat; }

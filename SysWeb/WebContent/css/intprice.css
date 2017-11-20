@@ -1,0 +1,60 @@
+#startgroup,#destgroup {
+	width: 172px;
+}
+
+#pricedetail {
+	width: 636px;
+}
+
+.mini-grid-container .ui-jqgrid .ui-jqgrid-bdiv {
+	overflow-y: scroll;
+}
+
+.fieldset_container {
+	padding-left: 5px;
+	padding-right: 2px;
+}
+
+div.field-cell {
+	float: left;
+	height: 27px;
+	overflow: hidden;
+}
+
+div.field-cell .label {
+	float: left;
+	width: 72px;
+	margin-right: 4px;
+	text-align: right;
+}
+
+div.field-cell .field {
+	float: left;
+	width: 130px;
+}
+
+div.field-cell .field select {
+	width: 90px;
+}
+
+div.field-cell .field .short {
+	width: 70px;
+}
+
+div.field-cell .long_field {
+	float: left;
+	width: 158px;
+}
+
+div.field-cell .long_field select {
+	width: 140px;
+}
+
+div.field-cell .long_field .short {
+	width: 130px;
+}
+
+#priceSettingsFormInDlg {
+	width: 570px;
+	padding: 10px 5px;
+}

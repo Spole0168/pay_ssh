@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="main"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/SSO"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/WebFramework"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/SysModules"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/CommonModules"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WebCommon"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

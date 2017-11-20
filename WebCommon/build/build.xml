@@ -1,0 +1,44 @@
+<project name="exp" basedir="." default="finish">
+
+	<!-- location setting -->
+	<property file="app.properties" />
+	<property name="web" location="../WebContent" />
+	<property name="dist" location="dist" />
+
+	<target name="clean">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${dist}">
+				<include name="*.bak" />
+			</fileset>
+		</delete>
+		<move file="${dist}/${app.name}.war" tofile="${dist}/${app.name}.bak" overwrite="true" failonerror="no" />
+	</target>
+
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+	</tstamp>
+
+	<target name="initstamp">
+		<tstamp />
+	</target>
+
+	<target name="war" depends="clean">
+		<war destfile="${dist}/${app.name}.war" webxml="${web}/WEB-INF/web.xml" encoding="utf-8">
+			<fileset dir="${web}">
+				<exclude name="**/.svn/**" />
+			</fileset>
+
+			<manifest>
+				<attribute name="War-Version" value="${app.version}" />
+				<attribute name="Build-Time" value="${timestamp.datetime}" />
+				<attribute name="Modules" value="${modules}" />
+				<attribute name="Ref-Modules" value="${refs}" />
+			</manifest>
+		</war>
+	</target>
+
+	<target name="finish" depends="war">
+		<echo message="done" />
+	</target>
+
+</project>
