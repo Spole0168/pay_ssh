@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.cnlmgr.domain" schema="CNL">
+    
+       <class name="CnlCnlCfg" table="T_CNL_CNL_CFG" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlDesc" column="CNL_DESC" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="cnlSysName" column="CNL_SYS_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="cnlStatus" column="CNL_STATUS" type="java.lang.String" not-null="false" length="6"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="2"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="contractEffectDate" column="CONTRACT_EFFECT_DATE" type="java.util.Date" not-null="false" length="11"/>
+		<property name="contractExpireDate" column="CONTRACT_EXPIRE_DATE" type="java.util.Date" not-null="false" length="11"/>
+
+
+    </class>
+    
+    
+<class name="CnlSysIntf" table="T_CNL_SYS_INTF" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="true" length="32"/>
+		<property name="cnlIntfCode" column="CNL_INTF_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="accessCode" column="ACCESS_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="accessKey" column="ACCESS_KEY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="verificationType" column="VERIFICATION_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="accessType" column="ACCESS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="sendEmail" column="SEND_EMAIL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="sendSms" column="SEND_SMS" type="java.lang.String" not-null="false" length="6"/>
+		<property name="retrunType" column="RETRUN_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="perTransLimit" column="PER_TRANS_LIMIT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="dayLimit" column="DAY_LIMIT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="weekLimit" column="WEEK_LIMIT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="monthLimit" column="MONTH_LIMIT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="yearLimit" column="YEAR_LIMIT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="currency" column="CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="supportSdk" column="SUPPORT_SDK" type="java.lang.String" not-null="false" length="6"/>
+		<property name="showLogo" column="SHOW_LOGO" type="java.lang.String" not-null="false" length="6"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="direction" column="DIRECTION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="serviceUrl" column="SERVICE_URL" type="java.lang.String" not-null="false" length="100"/>
+		<property name="serviceUrlFormat" column="SERVICE_URL_FORMAT" type="java.lang.String" not-null="false" length="100"/>
+		<property name="techSupportName" column="TECH_SUPPORT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="techSupportPhonenum" column="TECH_SUPPORT_PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="techSupportEmail" column="TECH_SUPPORT_EMAIL" type="java.lang.String" not-null="false" length="100"/>
+		<property name="businessSupportName" column="BUSINESS_SUPPORT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="businessSupportPhonenum" column="BUSINESS_SUPPORT_PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="businessSupportEmail" column="BUSINESS_SUPPORT_EMAIL" type="java.lang.String" not-null="false" length="100"/>
+		<property name="ipRangeFrom" column="IP_RANGE_FROM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="ipRangeTo" column="IP_RANGE_TO" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		
+		<property name="ipOpt" column="IP_OPT" type="java.lang.String" not-null="false" length="31"/>
+		<property name="ipOptTime" column="IP_OPT_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="lmtOpt" column="LMT_OPT" type="java.lang.String" not-null="false" length="31"/>
+		<property name="lmtOptTime" column="LMT_OPT_TIME" type="java.util.Date" not-null="false" length="11"/>
+    </class>
+
+     
+     
+</hibernate-mapping>
+

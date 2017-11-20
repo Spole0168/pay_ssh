@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+     
+    <definition name="topupTransTraceChecks" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceList.jsp" />
+    </definition> 
+    <definition name="topupTransTraceList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceList.jsp" />
+    </definition> 
+    <definition name="topupTransTraceEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceEdit.jsp" />
+    </definition> 
+    <definition name="topupTransTraceInfo" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceInfo.jsp" />
+    </definition> 
+    
+    <definition name="topupTransTraceHandle" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceHandle.jsp" />
+    </definition> 
+    <definition name="topupTransTraceReview" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/topupTransTraceReview.jsp" />
+    </definition> 
+</tiles-definitions>

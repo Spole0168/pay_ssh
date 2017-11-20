@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="demoManagerAction"
+		class="com.ibs.core.module.demo.action.DemoManagerAction"
+		scope="prototype">
+		<property name="demoBiz" ref="demoBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="demoBiz"
+		class="com.ibs.core.module.demo.biz.impl.DemoBizImpl">
+		<property name="demoDao" ref="demoDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="demoDao"
+		class="com.ibs.core.module.demo.dao.impl.DemoDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+</beans>

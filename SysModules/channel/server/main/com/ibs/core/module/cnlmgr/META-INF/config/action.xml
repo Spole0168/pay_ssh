@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="cnlCnlCfg" namespace="/channel" extends="web-default">
+
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="cnlCnlCfgList" class="cnlCnlCfgManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCnlCfglist</result>
+		</action>
+		<action name="cnlCnlCfgSearch" class="cnlCnlCfgManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlCnlCfgCreate" class="cnlCnlCfgManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCnlCfgEdit</result>
+		</action>
+		<action name="cnlCnlCfgModify" class="cnlCnlCfgManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCnlCfgModify</result>
+		</action> 
+
+		 
+
+ 
+		<action name="saveOrUpdate" class="cnlCnlCfgManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/channel/cnlCnlCfgList.action?loadPageCache=true</result>
+		</action> 
+ 
+		
+		<action name="cnlCnlCfgDelete" class="cnlCnlCfgManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCnlCfgExport" class="cnlCnlCfgManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+		<!-- 渠道信息管理中 list 清空session -->
+		<action name="cnlCnlCfgSetSession" class="cnlCnlCfgManagerAction"
+			method="setSession">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">data</param>
+			</result>
+		</action>
+		<!-- 渠道信息管理 查看 -->
+		<action name="cnlCnlCfgView" class="cnlCnlCfgManagerAction"
+			method="view">
+			<result>/WEB-INF/pages/cnl/cnlCommentView.jsp</result>
+		</action>
+		<!-- 渠道信息管理 新增  判断渠道是否存在 -->
+		<action name="cnlCnlCfgIsSame" class="cnlCnlCfgManagerAction" method="checkSame">
+			<result></result>
+		</action>
+	 
+		
+		<!-- 渠道信息管理 根据选择的渠道客户编号获取对应的数据 -->
+		<action name="cnlCnlCfgfindByCnlCustCode" class="cnlCnlCfgManagerAction"
+			method="findByCnlCustCode">
+			<result name="ajax" type="jsonmessage">
+				<param name="message">cnlComment</param>
+			</result>
+		</action>
+		
+		
+		<!-- 渠道信息管理判断渠道客户编码是否存在 -->
+		<action name="checkCnlCustCode" class="cnlCnlCfgManagerAction" method="checkCnlCustCode">
+			<result></result>
+		</action>
+		
+		
+		<!-- xbh start -->
+		<action name="cnlSysIntfList" class="cnlSysIntfManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlSysIntflist</result>
+		</action>
+		<action name="cnlSysIntfSearch" class="cnlSysIntfManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="isExitAccessCode" class="cnlSysIntfManagerAction"
+			method="isExitAccessCode">
+		</action>
+		<action name="cnlSysIntfCreate" class="cnlSysIntfManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlSysIntfCreate</result>
+		</action>
+		<action name="cnlSysIntfModify" class="cnlSysIntfManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlSysIntfEdit</result>
+		</action>
+		<action name="saveOrUpdateSysIntf" class="cnlSysIntfManagerAction"
+			method="saveOrUp">
+		</action>
+		<action name="cnlSysIntfDelete" class="cnlSysIntfManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="redirect">/channel/cnlSysIntfList.action?loadPageCache=true</result>
+		</action>
+		<action name="cnlSysIntfExport" class="cnlSysIntfManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+		<!-- xbh end -->
+
+
+		<!-- 商户ip地址限制管理 by zhao 
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="cnlSysIntfIpLimitList" class="cnlSysIntfIpLimitManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlSysIntfIpLimitList</result>
+		</action>
+		<action name="cnlSysIntfIpLimitSearch" class="cnlSysIntfIpLimitManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlSysIntfIpLimitCreate" class="cnlSysIntfIpLimitManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlSysIntfIpLimitEdit</result>
+		</action>
+		<action name="cnlSysIntfIpLimitModify" class="cnlSysIntfIpLimitManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlSysIntfIpLimitEdit</result>
+		</action>
+		<action name="cnlSysIntfIpLimitSaveOrUpdate" class="cnlSysIntfIpLimitManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/channel/cnlSysIntfIpLimitList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlSysIntfIpLimitDelete" class="cnlSysIntfIpLimitManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">deleteResult</param>
+			</result>
+		</action>
+		<action name="cnlSysIntfIpLimitCheck" class="cnlSysIntfIpLimitManagerAction" method="check">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">checkResult</param>
+			</result>
+		</action>
+
+
+	</package>
+
+</struts>

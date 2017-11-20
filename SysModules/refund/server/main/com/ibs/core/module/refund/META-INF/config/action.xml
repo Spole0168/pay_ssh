@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="refundTransRefund" namespace="/refundTransRefund" extends="web-default">
+
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="refundTransList" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="list">
+			<result name="success" type="tiles">refundTranslist</result>
+		</action>
+		<action name="refundTransSearch" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="refundTransRefundCreate" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="create">
+			<result name="success" type="tiles">refundTransRefundAdd</result>
+		</action>
+		<action name="refundTransRefundModify" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="modify">
+			<result name="success" type="tiles">refundTransRefundEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/refundTransRefund/refundTransList.action?loadPageCache=true</result>
+		</action>
+		<action name="refundTransRefundDelete" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		
+		<!-- 退款管理查看 -->
+		<action name="refundTransRefundInfo" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction" method="detail">
+			<result name="success" type="tiles">refundTransRefundInfo</result>
+		</action>
+		
+		<!-- 退款申请导出 -->
+		<action name="refundTransRefundExport" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+		
+		<!-- 退款申请审核 -->
+		<action name="refundTransRefundVerify" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="verify">
+			<result name="success" type="tiles">refundTransRefundVerify</result>
+		</action>
+		<!-- 退款申请结果更新 -->
+		<action name="refundTransRefundUpdateResult" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+			method="updateResult">
+			<result name="success" type="tiles">refundTransRefundUpdateResult</result>
+		</action>
+		<!-- 审核成功 -->
+	    <action name="verifyStatusSuccess" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+		    method="verifyStatusSuccess">
+		    <result name="success" type="redirect">/refundTransRefund/refundTransList.action?loadPageCache=true</result>
+	    </action>
+	    <!-- 审核不通过 -->
+	    <action name="verifyStatusFail" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+		    method="verifyStatusFail">
+		    <result name="success" type="redirect">/refundTransRefund/refundTransList.action?loadPageCache=true</result>
+	    </action>
+	    <!-- 审核不通过 -->
+	    <action name="updateResultAndUpload" class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+		    method="updateAndUpload">
+		    <result name="success" type="redirect">/refundTransRefund/refundTransList.action?loadPageCache=true</result>
+	    </action>	    
+	</package>
+
+</struts>

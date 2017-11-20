@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="refundTransRefundManagerAction"
+		class="com.ibs.core.module.refund.action.RefundTransRefundManagerAction"
+		scope="prototype">
+		<property name="refundTransRefundBiz" ref="refundTransRefundBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="refundTransRefundBiz"
+		class="com.ibs.core.module.refund.biz.impl.RefundTransRefundBizImpl">
+		<property name="refundTransRefundDao" ref="refundTransRefundDao" />
+		<property name="refundTransTraceOptDao" ref="refundTransTraceOptDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="refundTransRefundDao"
+		class="com.ibs.core.module.refund.dao.impl.RefundTransRefundDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="refundTransTraceOptDao"
+		class="com.ibs.core.module.refund.dao.impl.RefundTransTraceOptDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+</beans>

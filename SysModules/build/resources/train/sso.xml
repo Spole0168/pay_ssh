@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sso currentApplication="was_train_@sys@" userIdManager="com.ibs.common.module.frameworkimpl.sso.UserIdManagerImpl">
+	<application id="was_train_mdm" vaildateURL="http://localhost/mdm/validate;jsessionid=0000" />
+	<application id="was_train_exp" vaildateURL="http://localhost/exp/validate;jsessionid=0000" />
+	<application id="was_train_mot" vaildateURL="http://localhost/mot/validate;jsessionid=0000" />
+	<application id="was_train_flt" vaildateURL="http://localhost/flt/validate;jsessionid=0000" />
+	<application id="was_train_mat" vaildateURL="http://localhost/mat/validate;jsessionid=0000" />
+	<application id="was_train_ord" vaildateURL="http://localhost/ord/validate;jsessionid=0000" />
+	<application id="was_train_stl" vaildateURL="http://localhost/stl/validate;jsessionid=0000" />
+	<application id="was_train_rut" vaildateURL="http://localhost/rut/validate;jsessionid=0000" />
+</sso>

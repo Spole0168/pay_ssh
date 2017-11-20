@@ -1,0 +1,108 @@
+<project basedir="." default="finish">
+
+	<property file="module.properties" />
+	<property name="debug" value="on" />
+	<property name="root" location="${basedir}/.." />
+	<property name="src" location="${root}/main" />
+	<property name="ssolib" location="${root}/lib" />
+	<property name="dist" location="${root}/build/dist" />
+	<property name="bin" location="${root}/build/dist/bin" />
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	<if>
+		<and>
+			<available file="../../Library" type="dir"/>
+		</and>
+		<then>
+			<property name="library" location="../../Library" />
+		</then>
+		<else>
+			<property name="library" location="../../../library" />
+		</else>
+	</if>
+	
+	<path id="classpath">
+		<fileset dir="${library}/share" includes="*.jar" />
+		<fileset dir="${library}/dev" includes="*.jar" />
+		<fileset dir="${ssolib}" includes="*.jar" />
+		<pathelement location="${bin}" />
+	</path>
+
+	<fileset id="non.java.fileset" dir="${root}">
+		<include name="**/main/**" />
+		<exclude name="**/.svn/**" />
+		<exclude name="**/**.java" />
+	</fileset>
+
+	<target name="clean">
+		<delete quiet="true" dir="${bin}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${bin}" />
+
+		<copy todir="${bin}" includeemptydirs="false">
+			<fileset refid="non.java.fileset" />
+			<mapper type="regexp" from="main\\(.*)" to="\1" />
+		</copy>
+
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" source="1.5" target="1.5" encoding="UTF-8" debug="${debug}">
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="${bin}" includeEmptyDirs="no">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.tld" />
+				<include name="**/*.wsdl" />
+				<include name="**/*.schemas"/>
+				<include name="**/*.dtd"/>
+				<include name="**/*.xsd"/>
+				<include name="**/*.vm"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+	</tstamp>
+	
+	<target name="initstamp">
+	    <tstamp />
+	</target>
+
+	<target name="jar" depends="compile">
+		<delete>
+			<fileset dir="${dist}">
+				<include name="*.jar"/>
+			</fileset>
+		</delete>		
+		
+		<jar jarfile="${dist}/${package}.jar">
+			<fileset dir="${bin}">
+			</fileset>
+			<manifest>
+				<attribute name="Build-Time" value="${timestamp.datetime}" />
+			</manifest>
+		</jar>
+				
+	</target>
+	
+	<!-- TODO 拷贝到指定目录 -->
+	<target name="copy" depends="jar">
+		<copy todir="${library}/common">
+			<fileset dir="${dist}">
+				<include name="${package}.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="finish" depends="copy">
+		<delete quiet="true" dir="${bin}" />
+		<echo message="done"/>
+	</target>
+</project>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="cnlCust" namespace="/cnl" extends="web-default">
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="cnlCustList" class="cnlCustManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustlist</result>
+		</action>
+		<action name="cnlCustSearch" class="cnlCustManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlCustCreate" class="cnlCustManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCustEdit</result>
+		</action>
+		<action name="cnlCustModify" class="cnlCustManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCustEdit</result>
+		</action>
+		 
+		<action name="saveOrUpdate" class="cnlCustManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnl/cnlCustList.action?loadPageCache=true</result>
+		</action>
+		<action name="cnlCustDelete" class="cnlCustManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCustExport" class="cnlCustManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+	</package>
+	
+	
+	<package name="cnlCustPersonal" namespace="/cnl" extends="web-default">
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="cnlCustPersonalList" class="cnlCustPersonalManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustPersonallist</result>
+		</action>
+		<action name="cnlCustPersonalSearch" class="cnlCustPersonalManagerAction"
+			method="search">
+			<result>/WEB-INF/pages/cnl/cnlCustPersonalInfo.jsp</result>
+		</action>
+		<action name="cnlCustPersonalCreate" class="cnlCustPersonalManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCustPersonalEdit</result>
+		</action>
+		<action name="cnlCustPersonalModify" class="cnlCustPersonalManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCustPersonalEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlCustPersonalManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlCustPersonal/cnlCustPersonalList.action?loadPageCache=true</result>
+		</action>
+		<action name="cnlCustPersonalDelete" class="cnlCustPersonalManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCustPersonalExport" class="cnlCustPersonalManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+	</package>
+	<package name="cnlCustPersonalInfo" namespace="/cnl" extends="web-default">
+		<action name="findCustInfo" class="custPersonalInfoAction" method="findByCustid">
+			<result name="success">/WEB-INF/pages/cnl/cnlCustPersonalInfo.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="cnlCustCompany" namespace="/cnlCustCompany" extends="web-default">
+		<!-- 明细页面 -->
+		<action name="cnlCustCompanyDetail" class="cnlCustCompanyManagerAction"
+			method="detail">
+			<result name="ajax" type="json">
+				<param name="result">result</param>
+			</result>
+			<result name="cnlCustCompanyAndOther">/WEB-INF/pages/cnl/cnlCustCompanyInfo.jsp</result>
+		</action>
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="cnlCustCompanyList" class="cnlCustCompanyManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustCompanylist</result>
+		</action>
+		<action name="cnlCustCompanySearch" class="cnlCustCompanyManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlCustCompanyCreate" class="cnlCustCompanyManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCustCompanyEdit</result>
+		</action>
+		<action name="cnlCustCompanyModify" class="cnlCustCompanyManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCustCompanyEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlCustCompanyManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlCustCompany/cnlCustCompanyList.action?loadPageCache=true</result>
+		</action>
+		<action name="cnlCustCompanyDelete" class="cnlCustCompanyManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCustCompanyExport" class="cnlCustCompanyManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+	</package>
+</struts>

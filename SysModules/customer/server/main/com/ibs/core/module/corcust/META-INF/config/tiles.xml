@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+     
+    <definition name="corCustPersonallist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustPersonalList.jsp" />
+    </definition> 
+    <definition name="corCustPersonalEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustPersonalEdit.jsp" />
+    </definition> 
+    <definition name="corCustPersonalVerify" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustPersonalVerify.jsp" />
+    </definition> 
+    <definition name="corCustPersonalDetail" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustPersonalDetail.jsp" />
+    </definition> 
+   
+       
+    <definition name="corReservedFundAcntlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corReservedFundAcntList.jsp" />
+    </definition> 
+    <definition name="corReservedFundAcntEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corReservedFundAcntEdit.jsp" />
+    </definition> 
+     
+     
+      
+    <definition name="corBankAcntTranslist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corBankAcntTransList.jsp" />
+    </definition> 
+    <definition name="corBankAcntTransEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corBankAcntTransEdit.jsp" />
+    </definition> 
+     
+     
+     
+     <definition name="corCustlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustList.jsp" />
+    </definition> 
+    <definition name="corCustEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustEdit.jsp" />
+    </definition>
+    <definition name="corCustEdit1" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustEdit1.jsp" />
+    </definition> 
+    <definition name="corCustexamine" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corCustexamine.jsp" />
+    </definition>
+    
+     <definition name="corBankAcntTransDtllist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corBankAcntTransDtlList.jsp" />
+    </definition> 
+    <definition name="corBankAcntTransDtlEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cor/corBankAcntTransDtlEdit.jsp" />
+    </definition> 
+     
+</tiles-definitions>

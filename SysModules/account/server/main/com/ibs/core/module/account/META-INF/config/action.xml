@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="cnlCustAcnt" namespace="/cnlCustAcnt" extends="web-default">
+
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 /cnlCustAcntDtl/cnlCustAcntDtLlist.action -->
+		<!-- 总帐户页面显示 -->
+		<action name="cnlCustAcntList" class="cnlCustAcntManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustAcntlist</result>
+		</action>
+		<!-- 分帐户页面显示 -->
+		<action name="cnlCustOperatingAcntList" class="cnlCustAcntManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustOperatingAcntlist</result>
+		</action>
+
+		<!-- 总帐户查询入口方法 -->
+		<action name="cnlCustAcntSearch" class="cnlCustAcntManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+		<!-- 分帐户查询入口方法 -->
+		<action name="cnlCustOperatingAcntSearch" class="cnlCustAcntManagerAction"
+			method="query">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+
+
+		<action name="cnlCustAcntCreate" class="cnlCustAcntManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCustAcntEdit</result>
+		</action>
+		<action name="cnlCustAcntModify" class="cnlCustAcntManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCustAcntEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlCustAcntManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlCustAcnt/cnlCustAcntList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlCustAcntDelete" class="cnlCustAcntManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCustAcntExport" class="cnlCustAcntManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="account" namespace="/cnl" extends="web-default">
+
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="cnlTransList" class="cnlTransManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTranslist</result>
+		</action>
+		<action name="cnlTransSearch" class="cnlTransManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlTransExport" class="cnlTransManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+		<action name="cnlTrans3mList" class="cnlTrans3mManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTrans3mlist</result>
+		</action>
+		<action name="cnlTrans3mSearch" class="cnlTrans3mManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlTrans3mExport" class="cnlTrans3mManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- <package name="cnlCustPersonalInfo" namespace="/cnl" extends="web-default"> 
+		<action name="findCustInfo" class="custPersonalInfoAction" method="findByCustid"> 
+		<result name="success">/WEB-INF/pages/cnl/cnlCustPersonalInfo.jsp</result> 
+		</action> </package> -->
+
+
+	<!-- zzl============================================================================= -->
+	<package name="cnlTransErr" namespace="/cnl" extends="web-default">
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="cnlTransErrList" class="cnlTransErrManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTransErrlist</result>
+		</action>
+		<action name="cnlTransErrSearch" class="cnlTransErrManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlTransErrCreate" class="cnlTransErrManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlTransErrEdit</result>
+		</action>
+		<action name="cnlTransErrModify" class="cnlTransErrManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlTransErrEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlTransErrManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlTransErr/cnlTransErrList.action?loadPageCache=true</result>
+		</action>
+		<action name="cnlTransErrDelete" class="cnlTransErrManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlTransErrExport" class="cnlTransErrManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+		
+		<!-- 人工处理 -->
+		<action name="handleAuditErr" class="cnlTransErrManagerAction"
+			method="modify">
+			<result name="success">/WEB-INF/pages/cnl/cnlTransErrEdit.jsp
+			</result>
+		</action>
+
+		<action name="saveHandleStatusErr" class="cnlTransErrManagerAction"
+			method="saveHandleStatusErr">
+			<result name="success" type="redirectAction">cnlTransErrList
+			</result>
+		</action>
+	</package>
+	
+	<package name="cnlTransTrace" namespace="/cnl" extends="web-default">
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="cnlTransTraceList" class="cnlTransTraceManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTransTracelist</result>
+		</action>
+
+
+		<action name="cnlTransTraceExceptionList" class="cnlTransTraceManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTransTraceExceptionList
+			</result>
+		</action>
+		<action name="cnlTransTraceTransFailedList" class="cnlTransTraceManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTransTraceTransFailedList
+			</result>
+		</action>
+
+
+		<action name="cnlTransTraceSearch" class="cnlTransTraceManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlTransTraceCreate" class="cnlTransTraceManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlTransTraceEdit</result>
+		</action>
+		<action name="cnlTransTraceModify" class="cnlTransTraceManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlTransTraceEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlTransTraceManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlTransTrace/cnlTransTraceExceptionList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlTransTraceDelete" class="cnlTransTraceManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlTransTraceExport" class="cnlTransTraceManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+
+		<!-- 人工处理 -->
+		<action name="handleAuditTransFailed" class="cnlTransTraceManagerAction" method="modify">
+			<result name="success">/WEB-INF/pages/cnl/cnlTransTraceTransFailedEdit.jsp</result>
+		</action>
+		<action name="saveHandleStatusTransFailed" class="cnlTransTraceManagerAction" method="saveHandleStatusTransFailed">
+			<result name="success" type="redirectAction">cnlTransTraceTransFailedList</result>
+		</action>
+		
+		<!-- 人工处理 -->
+		<action name="handleAudit" class="cnlTransTraceManagerAction"
+			method="modify">
+			<result name="success">/WEB-INF/pages/cnl/cnlTransTraceExceptionEdit.jsp
+			</result>
+		</action>
+
+		<action name="saveHandleStatus" class="cnlTransTraceManagerAction"
+			method="saveHandleStatus">
+			<result name="success" type="redirectAction">cnlTransTraceExceptionList
+			</result>
+		</action>
+
+		<!-- ===============cnlMsgAction========== -->
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="corBankMsgSearchByMsgCode" class="corBankMsgManagerAction"
+			method="searchByMsgCode">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+		<action name="cnlMsgList" class="cnlMsgManagerAction" method="list">
+			<result name="success" type="tiles">cnlMsglist</result>
+		</action>
+		<action name="cnlMsgSearch" class="cnlMsgManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlMsgCreate" class="cnlMsgManagerAction" method="create">
+			<result name="success" type="tiles">cnlMsgEdit</result>
+		</action>
+		<action name="cnlMsgModify" class="cnlMsgManagerAction" method="modify">
+			<result name="success" type="tiles">cnlMsgEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlMsgManagerAction" method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlMsg/cnlMsgList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlMsgDelete" class="cnlMsgManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlMsgExport" class="cnlMsgManagerAction" method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+		<!-- dxl===================== -->
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+		<action name="cnlTransTracePendingList" class="cnlTransTracePendingManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlTransTracePendinglist</result>
+		</action>
+		
+		
+		<action name="cnlTransTracePendingSearch" class="cnlTransTracePendingManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		
+<!-- start====================================================================================== -->	
+<!-- jicheng -->
+	<!-- 银行异常补救申请单管理 -->		
+		
+		   <!-- 明细查询 -->
+	<action name="cnlTransTracePendingDetail" class="cnlTransTracePendingManagerAction"
+			method="detail">
+			<result>/WEB-INF/pages/cnl/cnlTransTracePendingDetail.jsp</result>
+		</action>
+	<!-- 修改 -->	
+	<action name="cnlTransTracePendingModify" class="cnlTransTracePendingManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlTransTracePendingEdit</result>
+		</action>
+	<!-- 审核 -->	
+		<action name="cnlTransTracePendingVerify" class="cnlTransTracePendingManagerAction"
+			method="verify">
+			<result name="success" type="tiles">cnlTransTracePendingVerify</result>
+		</action>
+		
+		
+	<!-- 修改操作 -->
+    <action name="cnlTransTracePendingUpdate" class="cnlTransTracePendingManagerAction"
+    method="updateCnlTransTrace">
+    		<result name="success" type="chain">cnlTransTracePendingList
+			</result>
+    </action>
+    
+    <!-- 审核成功 -->
+    <action name="verifyStatusSuccess" class="cnlTransTracePendingManagerAction"
+    method="verifyStatusSuccess">
+    <result name="success" type="chain">cnlTransTracePendingList
+			</result>
+    </action>
+    
+    <!-- 审核不通过 -->
+    <action name="verifyStatusFail" class="cnlTransTracePendingManagerAction"
+    method="verifyStatusFail">
+    <result name="success"  type="chain">cnlTransTracePendingList
+			</result>
+    </action>
+    
+    <!-- 下载文件 -->
+    <action name="downloadFile" class="downloadAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType},charset=ISO8859-1</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">${bufferSize}</param>
+			</result>
+		</action>
+    
+<!-- end========================================================================================================================= -->	
+			
+		
+
+		<action name="cnlTransTraceExport" class="cnlTransTracePendingManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+		<action name="addHelp" class="cnlTransTracePendingManagerAction"
+			method="addHelp">
+			<result name="success" type="tiles">addHelpEdit</result>
+			<result name="error" type="chain">cnlTransTracePendingList
+			</result>
+		</action>
+		<action name="modifyAddHelp" class="cnlTransTracePendingManagerAction"
+			method="modifyAddHelp">
+			<result name="success" type="redirectAction">cnlTransTracePendingList
+			</result>
+		</action>
+	</package>
+	<!-- zzl============================================================================= -->
+
+	<package name="cnlCustAcntDtl" namespace="/cnlCustAcntDtl"
+		extends="web-default">
+
+
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 /cnlCustAcntDtl/cnlCustAcntDtLlist.action -->
+
+		<action name="cnlCustAcntDtlList" class="cnlCustAcntDtlManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlCustAcntDtllist</result>
+		</action>
+		<action name="cnlCustAcntDtlSearch" class="cnlCustAcntDtlManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlCustAcntDtlCreate" class="cnlCustAcntDtlManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlCustAcntDtlEdit</result>
+		</action>
+		<action name="cnlCustAcntDtlModify" class="cnlCustAcntDtlManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlCustAcntDtlEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlCustAcntDtlManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlCustAcntDtl/cnlCustAcntDtlList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlCustAcntDtlDelete" class="cnlCustAcntDtlManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlCustAcntDtlExport" class="cnlCustAcntDtlManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="cnlReqTrans" namespace="/cnlReqTrans" extends="web-default">
+		<!-- 明细页面 -->
+		<action name="cnlReqTransDetail" class="cnlReqTransManagerAction"
+			method="detail">
+			<result name="personal">/WEB-INF/pages/cnl/cnlReqTransDtlAboutPersonal.jsp</result>
+			<result name="bank">/WEB-INF/pages/cnl/cnlReqTransDtlAboutBank.jsp</result>
+			<result name="company">/WEB-INF/pages/cnl/cnlReqTransDtlAboutCompany.jsp</result>
+			<result name="balance">/WEB-INF/pages/cnl/cnlReqTransDtlAboutBalance.jsp</result>
+		</action>
+		
+		<!-- 清结算明细 -->
+		<action name="query" class="cnlReqTransManagerAction"
+			method="query">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+		<!-- 列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格 -->
+
+		<action name="cnlReqTransList" class="cnlReqTransManagerAction"
+			method="list">
+			<result name="success" type="tiles">cnlReqTranslist</result>
+		</action>
+		<action name="cnlReqTransSearch" class="cnlReqTransManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="cnlReqTransCreate" class="cnlReqTransManagerAction"
+			method="create">
+			<result name="success" type="tiles">cnlReqTransEdit</result>
+		</action>
+		<action name="cnlReqTransModify" class="cnlReqTransManagerAction"
+			method="modify">
+			<result name="success" type="tiles">cnlReqTransEdit</result>
+		</action>
+		<action name="saveOrUpdate" class="cnlReqTransManagerAction"
+			method="saveOrUpdate">
+			<result name="success" type="redirect">/cnlReqTrans/cnlReqTransList.action?loadPageCache=true
+			</result>
+		</action>
+		<action name="cnlReqTransDelete" class="cnlReqTransManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="cnlReqTransExport" class="cnlReqTransManagerAction"
+			method="export">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result>
+		</action>
+	</package>
+	
+
+
+
+
+
+</struts>

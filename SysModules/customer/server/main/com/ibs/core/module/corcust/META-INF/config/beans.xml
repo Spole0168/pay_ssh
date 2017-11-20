@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="corCustPersonalManagerAction"
+		class="com.ibs.core.module.corcust.action.CorCustPersonalManagerAction"
+		scope="prototype">
+		<property name="corCustPersonalBiz" ref="corCustPersonalBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corCustPersonalBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorCustPersonalBizImpl">
+		<property name="corCustPersonalDao" ref="corCustPersonalDao" />
+		<property name="corCustDao" ref="corCustDao" />
+		<property name="corCustAddrDao" ref="corCustAddrDao" />
+		<property name="corCustPhonesDao" ref="corCustPhonesDao" />
+	</bean>
+
+	<!-- Dao -->
+	<bean id="corCustPersonalDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorCustPersonalDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="corCustDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorCustDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="corCustAddrDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorCustAddrDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="corCustPhonesDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorCustPhonesDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+
+	
+	<!-- Biz -->
+	<bean id="corCustCompanyBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorCustCompanyBizImpl">
+		<property name="corCustCompanyDao" ref="corCustCompanyDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="corCustCompanyDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorCustCompanyDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- Action -->
+	<bean id="corCustManagerAction"
+		class="com.ibs.core.module.corcust.action.CorCustManagerAction"
+		scope="prototype">
+		<property name="corCustBiz" ref="corCustBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corCustBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorCustBizImpl">
+		<property name="corCustDao" ref="corCustDao" />
+	</bean>
+
+
+
+	<!-- Biz -->
+	<bean id="corCustPhonesBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorCustPhonesBizImpl">
+		<property name="corCustPhonesDao" ref="corCustPhonesDao" />
+	</bean>
+
+	
+
+	<!-- Biz -->
+	<bean id="corCustAddrBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorCustAddrBizImpl">
+		<property name="corCustAddrDao" ref="corCustAddrDao" />
+	</bean>
+	
+	
+	
+	<!-- Action -->
+	<bean id="corBankAcntTransDtlManagerAction"
+		class="com.ibs.core.module.corcust.action.CorBankAcntTransDtlManagerAction"
+		scope="prototype">
+		<property name="dataDictBiz" ref="dataDictBiz"/> 
+		<property name="corBankAcntTransDtlBiz" ref="corBankAcntTransDtlBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corBankAcntTransDtlBiz"
+		class="com.ibs.core.module.corcust.biz.impl.CorBankAcntTransDtlBizImpl">
+		<property name="corBankAcntTransDtlDao" ref="corBankAcntTransDtlDao" />
+	</bean>
+	
+	<!-- Dao -->
+	<bean id="corBankAcntTransDtlDao"
+		class="com.ibs.core.module.corcust.dao.impl.CorBankAcntTransDtlDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+</beans>

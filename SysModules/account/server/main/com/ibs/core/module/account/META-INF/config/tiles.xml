@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+      <!-- ************InfDataInquery***********熊武  START************************************ -->
+    <definition name="cnlReqTranslistInfDataInquery" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlReqTransListInfDataInquery.jsp" />
+    </definition> 
+    <definition name="cnlReqTransEditInfDataInquery" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlReqTransEditInfDataInquery.jsp" />
+    </definition> 
+      <!-- ************InfDataInquery***********熊武  END************************************ -->
+	<!-- <definition name="cnlTransTracelist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceList.jsp" />
+    </definition> 
+    <definition name="cnlTransTraceEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceEdit.jsp" />
+    </definition>  -->
+     <definition name="cnlTranslist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransList.jsp" />
+    </definition> 
+    <definition name="cnlTransEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransEdit.jsp" />
+    </definition> 
+    <definition name="cnlTrans3mlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTrans3mList.jsp" />
+    </definition>
+    <!-- xbh -->
+    <definition name="cnlCustlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustList.jsp" />
+    </definition> 
+    <definition name="cnlCustEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustEdit.jsp" />
+    </definition> 
+    
+    <definition name="cnlCustPersonallist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustPersonalList.jsp" />
+    </definition> 
+    <definition name="cnlCustPersonalEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustPersonalEdit.jsp" />
+    </definition> 
+    
+    <definition name="cnlCustAcntlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustAcntList.jsp" />
+    </definition> 
+    <definition name="cnlCustOperatingAcntlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustOperatingAcntList.jsp" />
+    </definition> 
+    
+    
+    <!-- zzl========================================================================= -->
+	    <definition name="cnlTransTracelist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceList.jsp" />
+    </definition> 
+    <definition name="cnlTransTraceEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceEdit.jsp" />
+    </definition> 
+    
+    <definition name="cnlTransTraceExceptionList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceExceptionList.jsp" />
+    </definition> 
+    <definition name="cnlTransTraceExceptionEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnlTransTraceExceptionEdit.jsp" />
+    </definition> 
+    
+    <definition name="cnlTransTraceTransFailedList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceTransFailedList.jsp" />
+    </definition> 
+    <definition name="cnlTransTraceTransFailedEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTraceTransFailedEdit.jsp" />
+    </definition> 
+    
+    <definition name="cnlTransErrlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransErrList.jsp" />
+    </definition> 
+    <definition name="cnlTransErrEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransErrEdit.jsp" />
+    </definition> 
+    <!-- zzl========================================================================= -->
+    
+    
+    <definition name="cnlCustAcntDtllist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustAcntDtlList.jsp" />
+    </definition> 
+    <definition name="cnlCustAcntDtlEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCustAcntDtlEdit.jsp" />
+    </definition> 
+          
+    <definition name="cnlReqTranslist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlReqTransList.jsp" />
+    </definition> 
+    <definition name="cnlReqTransEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlReqTransEdit.jsp" />
+    </definition>  
+    
+    <!-- dxl============================== -->
+    <definition name="cnlTransTracePendinglist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTracePendingList.jsp?loadPageCache=true" />
+    </definition> 
+    <definition name="addHelpEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/addHelpEdit.jsp" />
+    </definition> 
+    
+    
+    <!-- jicheng=============================== -->
+    <!-- 修改页面 -->
+    <definition name="cnlTransTracePendingEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTracePendingEdit.jsp" />
+    </definition> 
+    <!-- 明细页面 -->
+    <definition name="cnlTransTracePendingDetail" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTracePendingDetail.jsp" />
+    </definition> 
+    <!-- 审核页面 -->
+    <definition name="cnlTransTracePendingVerify" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlTransTracePendingVerify.jsp" />
+    </definition> 
+    
+    
+</tiles-definitions>

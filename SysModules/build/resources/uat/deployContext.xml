@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jaxws="http://cxf.apache.org/jaxws" 
+		xmlns:util="http://www.springframework.org/schema/util" 
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+	
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/@sys@" />
+		<property name="resourceRef" value="false" />
+	</bean>
+	<bean id="cacheManageConfiguration" class="com.ibs.portal.framework.server.cache.CacheManageConfiguration">
+		<property name="jsonRpcServiceMethodName" value="refreshSelf"></property>
+		<property name="endpoints">
+			<map>
+				<entry key="exp1" value="http://tappsvr1:9080/exp/refreshCache.action"></entry>
+				<entry key="exp2" value="http://tappsvr2:9080/exp/refreshCache.action"></entry>
+				
+				<!-- expws -->
+				<entry key="expws1" value="http://tappsvr1:9080/expws/refreshCache.action"></entry>
+				<entry key="expws2" value="http://tappsvr2:9080/expws/refreshCache.action"></entry>
+
+				<!-- expqr -->
+				<entry key="expqr1" value="http://tappsvr1:9080/expqr/refreshCache.action"></entry>
+				<entry key="expqr2" value="http://tappsvr2:9080/expqr/refreshCache.action"></entry>
+				
+				<entry key="mdm1" value="http://tappsvr1:9082/mdm/refreshCache.action"></entry>
+				<entry key="mdm2" value="http://tappsvr2:9082/mdm/refreshCache.action"></entry>
+				
+				<entry key="mdmws1" value="http://tappsvr1:9082/mdmws/refreshCache.action"></entry>
+				<entry key="mdmws2" value="http://tappsvr2:9082/mdmws/refreshCache.action"></entry>
+				
+				<entry key="flt1" value="http://tappsvr1:9082/flt/refreshCache.action"></entry>
+				<entry key="flt2" value="http://tappsvr2:9082/flt/refreshCache.action"></entry>
+				
+				<entry key="rut1" value="http://tappsvr1:9082/rut/refreshCache.action"></entry>
+				<entry key="rut2" value="http://tappsvr1:9082/rut/refreshCache.action"></entry>
+				
+				<entry key="rutstaticrutjob1" value="http://tappsvr1:9082/rutstaticrutjob/refreshCache.action"></entry>
+				<entry key="rutstaticrutjob2" value="http://tappsvr2:9082/rutstaticrutjob/refreshCache.action"></entry>
+				
+				<entry key="rutwaybilljob1" value="http://tappsvr1:9082/rutwaybilljob/refreshCache.action"></entry>
+				<entry key="rutwaybilljob2" value="http://tappsvr2:9082/rutwaybilljob/refreshCache.action"></entry>
+				
+				<entry key="ord1" value="http://tappsvr1:9082/ord/refreshCache.action"></entry>
+				<entry key="ord2" value="http://tappsvr2:9082/ord/refreshCache.action"></entry>
+				
+				<entry key="ordws1" value="http://tappsvr1:9082/ordws/refreshCache.action"></entry>
+				<entry key="ordws2" value="http://tappsvr2:9082/ordws/refreshCache.action"></entry>
+				
+				<entry key="ordjob1" value="http://tappsvr1:9082/ordjob/refreshCache.action"></entry>
+				<entry key="ordjob2" value="http://tappsvr2:9082/ordjob/refreshCache.action"></entry>
+				
+				<entry key="stl1" value="http://tappsvr1:9081/stl/refreshCache.action"></entry>
+				<entry key="stl2" value="http://tappsvr2:9081/stl/refreshCache.action"></entry>
+				
+				<entry key="stljob-cm" value="http://tappsvr2:9083/stljob-cm/refreshCache.action"></entry>
+				<entry key="stljob-fc" value="http://tappsvr2:9084/stljob-fc/refreshCache.action"></entry>
+				<entry key="stljob-gl" value="http://tappsvr2:9085/stljob-gl/refreshCache.action"></entry>
+				<entry key="stljob-tf" value="http://tappsvr2:9086/stljob-tf/refreshCache.action"></entry>
+				<entry key="stljob-tk" value="http://tappsvr2:9087/stljob-tk/refreshCache.action"></entry>
+				
+				<entry key="stljob1" value="http://tappsvr1:9081/stljob/refreshCache.action"></entry>
+				<entry key="stljob2" value="http://tappsvr2:9081/stljob/refreshCache.action"></entry>
+				
+				<entry key="pbl1" value="http://tappsvr1:9082/pbl/refreshCache.action"></entry>
+				<entry key="pbl2" value="http://tappsvr2:9082/pbl/refreshCache.action"></entry>
+
+				<!-- rpt -->
+				<entry key="rpt1" value="http://tappsvr1:9082/rpt/refreshCache.action"></entry>
+				<entry key="rpt2" value="http://tappsvr2:9082/rpt/refreshCache.action"></entry>
+
+				<entry key="mot1" value="http://tappsvr1:9082/mot/refreshCache.action"></entry>
+				<entry key="mot2" value="http://tappsvr2:9082/mot/refreshCache.action"></entry>
+
+				<entry key="mat1" value="http://tappsvr1:9082/mat/refreshCache.action"></entry>
+				<entry key="mat2" value="http://tappsvr2:9082/mat/refreshCache.action"></entry>
+
+				<entry key="matws1" value="http://tappsvr1:9082/matws/refreshCache.action"></entry>
+				<entry key="matws2" value="http://tappsvr2:9082/matws/refreshCache.action"></entry>
+			</map>
+		</property>
+		<property name="cacheManagerPeers">
+			<map>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.USER_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>rpt1</value>
+						<value>rpt2</value>
+						<value>pbl1</value>
+						<value>pbl2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.URL_RESOURCE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>rpt1</value>
+						<value>rpt2</value>
+						<value>pbl1</value>
+						<value>pbl2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.BUTTON_RESOURCE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>rpt1</value>
+						<value>rpt2</value>
+						<value>pbl1</value>
+						<value>pbl2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.DATA_DICT_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.DISTRICT_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_BUSINESS_RULE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_LAYER_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_GROUP_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.PRODUCT_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.FREIGHT_DETAIL_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+					</list>				
+				</entry>
+				<entry key="_ord_channel_cache_region">
+					<list>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+					</list>				
+				</entry>
+				<entry key="_ord_failure_reason_cache_region">
+					<list>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_2nd_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_sub_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_office_group_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_office_group_cache_region_for_web">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_spe_transit_dep_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_spe_transit_arr_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_int_export_rule_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_frequency_detail_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_frequency_detail_cache_region_for_web">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_org_hierachy_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_tansport_cache">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_static_rut_cache">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.PROPERTY_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>mdmws1</value>
+						<value>mdmws2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expws1</value>
+						<value>expws2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticjob1</value>
+						<value>rutstaticjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>ordjob1</value>
+						<value>ordjob2</value>
+						<value>ordws1</value>
+						<value>ordws2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>stljob1</value>
+						<value>stljob2</value>
+						<value>stljob-cm</value>
+						<value>stljob-fc</value>
+						<value>stljob-gl</value>
+						<value>stljob-tf</value>
+						<value>stljob-tk</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>matws1</value>
+						<value>matws2</value>
+					</list>
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.MAC_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+						<value>mdm2</value>
+						<value>exp1</value>
+						<value>exp2</value>
+						<value>expqr1</value>
+						<value>expqr2</value>
+						<value>flt1</value>
+						<value>flt2</value>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>ord1</value>
+						<value>ord2</value>
+						<value>stl1</value>
+						<value>stl2</value>
+						<value>mot1</value>
+						<value>mot2</value>
+						<value>mat1</value>
+						<value>mat2</value>
+						<value>pbl1</value>
+						<value>pbl2</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="cacheManager" class="com.ibs.portal.framework.server.cache.CacheManager"
+		factory-method="createInstance">
+		<constructor-arg>
+			<ref local="cacheManageConfiguration"/>
+		</constructor-arg>
+	</bean>
+	<!--
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:resource/application.properties</value>
+        </property>
+    </bean> 
+	-->
+</beans>

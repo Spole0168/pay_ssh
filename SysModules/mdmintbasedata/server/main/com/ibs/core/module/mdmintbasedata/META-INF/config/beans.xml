@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+
+	<!-- 承运商 Action -->
+	<bean id="carrierAction"
+		class="com.ibs.core.module.mdmintbasedata.action.CarrierAction"
+		scope="prototype">
+		<property name="carrierBiz" ref="carrierBiz" />
+	</bean>
+	
+	<!-- 货代 Action-->
+	<bean id="forwarderAction"
+		class="com.ibs.core.module.mdmintbasedata.action.ForwarderAction"
+		scope="prototype">
+		<property name="forwarderBiz" ref="forwarderBiz" />
+	</bean>
+	<bean id="forwarderUtilAction"
+		class="com.ibs.core.module.mdmintbasedata.action.ForwarderUtilAction"
+		scope="prototype">
+		<property name="forwarderBiz" ref="forwarderBiz" />
+	</bean>
+	<bean id="carrierUtilAction"
+		class="com.ibs.core.module.mdmintbasedata.action.CarrierUtilAction"
+		scope="prototype">
+		<property name="carrierBiz" ref="carrierBiz" />
+	</bean>
+	
+	<bean id="carrierBundleAction"
+		class="com.ibs.core.module.mdmintbasedata.action.CarrierBundleAction"
+		scope="prototype">
+		 
+	</bean>
+	
+	<bean id="forwarderBundleAction"
+		class="com.ibs.core.module.mdmintbasedata.action.ForwarderBundleAction"
+		scope="prototype">
+		 
+	</bean>
+	
+	
+	
+
+	<!-- Biz -->
+	
+	<!-- 承运商 Biz-->
+	<bean id="carrierBiz"
+		class="com.ibs.core.module.mdmintbasedata.biz.impl.CarrierBizImpl">
+		<property name="carrierDao" ref="carrierDao" />
+	</bean>
+	
+	<!-- 货代 Biz-->
+	<bean id="forwarderBiz"
+		class="com.ibs.core.module.mdmintbasedata.biz.impl.ForwarderBizImpl">
+		<property name="forwarderDao" ref="forwarderDao" />
+	</bean>
+
+	<!-- Service -->
+		<!-- 承运商Service -->
+		<bean id="carrierService" class="com.ibs.core.module.mdmintbasedata.service.impl.CarrierServiceImpl">
+			<property name="carrierDao" ref="carrierDao" />
+		</bean>
+		
+		<!-- 货代Service -->
+		<bean id="forwarderService" class="com.ibs.core.module.mdmintbasedata.service.impl.ForwarderServiceImpl">
+			<property name="forwarderDao" ref="forwarderDao" />
+		</bean>
+
+	<!-- Dao -->
+	
+	<!-- 承运商 Dao-->
+	<bean id="carrierDao"
+		class="com.ibs.core.module.mdmintbasedata.dao.impl.CarrierDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<!-- 货代 Dao-->
+	<bean id="forwarderDao"
+		class="com.ibs.core.module.mdmintbasedata.dao.impl.ForwarderDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+	<!-- Cache -->
+	
+
+
+	<!-- 组管理 -->
+
+</beans>

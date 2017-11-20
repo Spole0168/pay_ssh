@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="mdmdatadict-log-ajax" namespace="/mdmdatadict" extends="web-log-ajaxjson">
+		<action name="dataDictDelete" class="dataDictManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<!--
+			新增\修改页面主要进行三个方法操作 create 创建新数据 modify 修改已有数据 saveOrUpdate 保存当前数据
+		-->
+		<action name="dataDictCreate" class="dataDictManagerAction"
+			method="create">
+			<result name="success">/WEB-INF/pages/mdmdatadict/dataDictEdit.jsp
+			</result>
+		</action>
+		<action name="dataDictModify" class="dataDictManagerAction"
+			method="modify">
+			<result name="success">/WEB-INF/pages/mdmdatadict/dataDictEdit.jsp
+			</result>
+		</action>
+		<action name="dataDictSaveOrUpdate" class="dataDictManagerAction"
+			method="saveOrUpdate">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+	</package>
+	<package name="mdmdatadict" namespace="/mdmdatadict" extends="web-default">
+
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="dataDictList" class="dataDictManagerAction"
+			method="list">
+			<result name="success" type="tiles">datadictlist</result>
+		</action>
+		<action name="dataDictListFin" class="dataDictManagerAction"
+			method="listFinancial">
+			<result name="success" type="tiles">datadictlist</result>
+		</action>
+		<action name="dataDictSearch" class="dataDictManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+
+		<action name="validValue" class="dataDictManagerAction" method="validValue">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+
+		<!-- 
+			导出
+		-->
+		<action name="dataDictExport" class="dataDictManagerAction"
+			method="export">
+			<result name="success" type="redirect">../downloadAction.action?fileName=${exportSetting.fileName}&amp;realName=${exportSetting.realName}
+			</result>
+		</action>
+
+	</package>
+	<package name="mdmuserutil-web" namespace="/mdmuserutil" extends="web-default">
+		<action name="autoCompleteUser" class="userUtilAction" method="autoCompleteUser">
+			<result name="ajax" type="json">
+				<param name="include">jsonResult</param>
+				<param name="excludeProperties"></param>
+			</result>
+		</action>
+	</package>
+</struts>

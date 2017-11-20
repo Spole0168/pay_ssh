@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="dataDictManagerAction"
+		class="com.ibs.core.module.mdmbasedata.action.DataDictManagerAction"
+		scope="prototype">
+		<property name="dataDictBiz" ref="dataDictBiz" />
+	</bean>
+	<bean id="userUtilAction"
+		class="com.ibs.core.module.mdmbasedata.action.UserUtilAction"
+		scope="prototype">
+		<property name="userQueryBiz" ref="userQueryBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+
+	<bean id="userQueryBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.UserQueryBizImpl">
+		<property name="userDao" ref="userDao"></property>
+		<!-- <property name="orgInfoService" ref="orgInfoService"></property> -->
+	</bean>
+	
+	<!-- Service -->
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="languageService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.LanguageServiceImpl">
+		<property name="languageDao" ref="languageDao" />
+	</bean>
+
+	<!-- Dao -->
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+	<bean id="languageDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.LanguageDaoImpl"
+		parent="baseEntityDao">
+
+	</bean>
+
+	<!-- Cache -->
+	<bean id="dataDictCache"
+		class="com.ibs.core.module.mdmbasedata.cache.DataDictCacheProvider">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="cacheName">
+			<util:constant
+				static-field="com.ibs.core.module.mdmbasedata.common.Constants.DATA_DICT_CACHE" />
+		</property>
+		<property name="ttl" value="5" />
+		<property name="maxSize" value="10000" />
+	</bean>
+	
+	
+	<!-- jicheng分行 -->	
+	<!-- Dao -->
+	<bean id="pblBankDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.PblBankDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+
+</beans>

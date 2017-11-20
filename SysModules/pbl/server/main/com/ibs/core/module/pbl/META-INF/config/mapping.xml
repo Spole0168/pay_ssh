@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.pbl.domain" schema="PBL">
+    <class name="SysSysCfg" table="T_SYS_SYS_CFG" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="category" column="CATEGORY" type="java.lang.String" not-null="false" length="40"/>
+		<property name="code" column="CODE" type="java.lang.String" not-null="false" length="40"/>
+		<property name="name" column="NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="value" column="VALUE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="version" column="VERSION" type="java.lang.String" not-null="false" length="10"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="2"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+</hibernate-mapping>
+

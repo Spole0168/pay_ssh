@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jaxws="http://cxf.apache.org/jaxws" 
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd">
+	
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/@sys@" />
+		<property name="resourceRef" value="false" />
+	</bean>
+	<bean id="cacheManager" class="com.ibs.portal.framework.server.cache.CacheManager">
+		<property name="jsonRpcServiceMethodName" value="refreshSelf"></property>
+		<property name="cacheManagerPeers">
+			<list>
+				<!-- MDM -->
+				<value>http://localhost:9087/mdm/refreshCache.action</value>
+				<!-- FLT -->
+				<value>http://localhost:9087/flt/refreshCache.action</value>
+				<!-- RUT -->
+				<value>http://localhost:9087/rut/refreshCache.action</value>
+				<!-- ORD -->
+				<value>http://localhost:9087/ord/refreshCache.action</value>
+				<value>http://localhost:9087/ordws/refreshCache.action</value>
+				<value>http://localhost:9087/ordjob/refreshCache.action</value>
+				<!-- STL -->
+				<value>http://localhost:9087/stl/refreshCache.action</value>
+				<!-- MOT -->
+				<value>http://localhost:9087/mot/refreshCache.action</value>
+				<!-- MAT -->
+				<value>http://localhost:9087/mat/refreshCache.action</value>
+				<!-- EXP -->
+				<value>http://localhost:9087/exp/refreshCache.action</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!--
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:resource/application.properties</value>
+        </property>
+    </bean> 
+	-->
+</beans>

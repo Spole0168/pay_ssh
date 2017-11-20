@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.blacklist.domain" schema="PBL">
+    <class name="SysNamelist" table="T_SYS_NAMELIST" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="nlType" column="NL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="nlId" column="NL_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="nlDesc" column="NL_DESC" type="java.lang.String" not-null="false" length="200"/>
+		<property name="accessType" column="ACCESS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="status" column="STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewer" column="REVIEWER" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewTime" column="REVIEW_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+			<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+
+
+    </class>
+</hibernate-mapping>
+

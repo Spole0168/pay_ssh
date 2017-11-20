@@ -1,0 +1,89 @@
+<project name="modules" basedir="../" default="jar">
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	<if>
+		<and>
+			<available file="../Library" type="dir"/>
+		</and>
+		<then>
+			<property name="library.dir" location="../Library" />
+		</then>
+		<else>
+			<property name="library.dir" location="../library" />
+		</else>
+	</if>
+	<echo>${library.dir}</echo>
+	<property name="debug" value="on" />
+	<property name="module.dist" location="${basedir}/build/dist" />
+	<property name="module.bin" location="${basedir}/build/bin" />
+	<property name="package.name" value="modules"></property>
+	
+	<path id="classpath">
+		<fileset dir="${library.dir}/share" includes="*.jar" />
+		<fileset dir="${library.dir}/common" includes="*.jar" excludes="${package.name}.jar"/>
+		<fileset dir="${library.dir}/report" includes="*.jar" />
+		<fileset dir="${library.dir}/test" includes="*.jar" />
+		<fileset dir="${library.dir}/ws" includes="*.jar" />
+		<pathelement location="${module.bin}" />
+	</path>
+	
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+	</tstamp>
+
+	<!-- clean -->
+	<target name="clean">
+		<delete quiet="true" dir="${module.bin}" />
+		<delete file="${library.dir}/common/${package.name}.jar" quiet="true"></delete>
+	</target>
+
+	<!-- init -->
+	<target name="init" depends="clean">
+		<echo message="${module.bin}"/>
+		<mkdir dir="${module.dist}" />
+		<mkdir dir="${module.bin}" />
+		
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init">
+		<echo message="compiling ..." />
+		
+		<javac failonerror="true" srcdir="${basedir}" destdir="${module.bin}" source="1.5" target="1.5" fork="true"
+			encoding="UTF-8" debug="${debug}" includeantruntime="yes" verbose="false" nowarn="true" memoryinitialsize="512m" memorymaximumsize="1024M">
+			<include name="**/server/**/*.java"/>
+			<exclude name="bin/**"/>
+			<exclude name="build/**"/>
+			<exclude name="commonTest/**"/>
+			<exclude name="**/*Test*.java"/>
+			<exclude name="**/test/**"/>
+			<exclude name="sysmanagement/**"/>
+			<exclude name="pda*/**"/>
+			<exclude name="clt*/**"/>
+			<!-- rutmq do not need to be packaged -->
+			<exclude name="rutmq*/**"/>
+			<exclude name="expreport*/**"/>
+			<exclude name="pblscheduler/**"/>
+			<compilerarg value="-Xlint:unchecked" />
+			<!--<compilerarg value="-Xlint:deprecation" />-->
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<!-- jar all modules -->
+	<target name="jar" depends="clean,compile">
+		<jar jarfile="${module.dist}/${package.name}.jar">
+			<fileset dir="${module.bin}">
+				<include name="com/ibs/core/module/**" />
+			</fileset>
+			<manifest>
+				<attribute name="Build-Time" value="${timestamp.datetime}" />
+			</manifest>
+		</jar>
+
+		<copy todir="${library.dir}/common" overwrite="true">
+			<fileset dir="${module.dist}">
+				<include name="${package.name}.jar" />
+			</fileset>
+		</copy>
+	</target>
+</project>

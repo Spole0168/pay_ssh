@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.violationRecord.domain" schema="PBL">
+
+    <class name="SysViolationRecord" table="T_SYS_VIOLATION_RECORD" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>	
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlIntfCode" column="CNL_INTF_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="violationType" column="VIOLATION_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="violationId" column="VIOLATION_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="violationDesc" column="VIOLATION_DESC" type="java.lang.String" not-null="false" length="200"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="violationSubType" column="VIOLATION_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+    </class>
+    <class name="SysEmailHis" table="T_SYS_EMAIL_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="emailAddr" column="EMAIL_ADDR" type="java.lang.String" not-null="false" length="100"/>
+		<property name="tplCode" column="TPL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="emailCnlCode" column="EMAIL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsType" column="SMS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="smsStatus" column="SMS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+
+    </class> 
+    <class name="SysEmailHisHis" table="T_SYS_EMAIL_HIS_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		<property name="tsid" column="T_S_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="tsid2" column="T_S_ID2" type="java.lang.String" not-null="false" length="50"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="emailAddr" column="EMAIL_ADDR" type="java.lang.String" not-null="false" length="100"/>
+		<property name="tplCode" column="TPL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="emailCnlCode" column="EMAIL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsType" column="SMS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="smsStatus" column="SMS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+
+    </class>
+    <class name="SysSmsHis" table="T_SYS_SMS_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="phonenum" column="PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="tplCode" column="TPL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsContent" column="SMS_CONTENT" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsCnlCode" column="SMS_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="msgType" column="MSG_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="msgStatus" column="MSG_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+
+    </class>
+    <class name="SysSmsHisHis" table="T_SYS_SMS_HIS_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		<property name="tsid" column="T_S_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="phonenum" column="PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="tplCode" column="TPL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsContent" column="SMS_CONTENT" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="smsCnlCode" column="SMS_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="msgType" column="MSG_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="msgStatus" column="MSG_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+
+    </class>
+    <class name="SysViolationRecordHis" table="T_SYS_VIOLATION_RECORD_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlIntfCode" column="CNL_INTF_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="violationType" column="VIOLATION_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="violationId" column="VIOLATION_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="violationDesc" column="VIOLATION_DESC" type="java.lang.String" not-null="false" length="200"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.interfaces.domain" schema="CNL">
+    <class name="CnlMsg" table="T_CNL_MSG" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="msgCode" column="MSG_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="msgFileLocation" column="MSG_FILE_LOCATION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="recieveTime" column="RECIEVE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlIntfCode" column="CNL_INTF_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="direction" column="DIRECTION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+</hibernate-mapping>
+

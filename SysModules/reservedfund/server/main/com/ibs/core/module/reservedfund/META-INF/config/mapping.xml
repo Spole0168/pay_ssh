@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.reservedfund.domain" schema="COR">
+    
+    <class name="CorReservedFundAcnt" table="T_COR_RESERVED_FUND_ACNT"
+		lazy="true">
+
+		<id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+
+
+		<property name="bankAcntCode" column="BANK_ACNT_CODE" type="java.lang.String"
+			not-null="false" length="32" />
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String"
+			not-null="false" length="32" />
+		<property name="country" column="COUNTRY" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="custName" column="CUST_NAME" type="java.lang.String"
+			not-null="false" length="50" />
+		<property name="certType" column="CERT_TYPE" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="certNum" column="CERT_NUM" type="java.lang.String"
+			not-null="false" length="20" />
+		<property name="bankName" column="BANK_NAME" type="java.lang.String"
+			not-null="false" length="50" />
+		<property name="bankCode" column="BANK_CODE" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="bankBranchCode" column="BANK_BRANCH_CODE"
+			type="java.lang.String" not-null="false" length="6" />
+		<property name="bankBranchName" column="BANK_BRANCH_NAME"
+			type="java.lang.String" not-null="false" length="50" />
+		<property name="bankCardNum" column="BANK_CARD_NUM" type="java.lang.String"
+			not-null="false" length="20" />
+		<property name="bankCardType" column="BANK_CARD_TYPE" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="status" column="STATUS" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="currency" column="CURRENCY" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="acntCategory" column="ACNT_CATEGORY" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="acntType" column="ACNT_TYPE" type="java.lang.String"
+			not-null="false" length="6" />
+		<property name="lastTransTime" column="LAST_TRANS_TIME" type="java.util.Date"
+			not-null="false" length="11" />
+		<property name="frozenAmoumt" column="FROZEN_AMOUMT" type="java.math.BigDecimal"
+			not-null="false" length="22" />
+		<property name="avaliableAmount" column="AVALIABLE_AMOUNT"
+			type="java.math.BigDecimal" not-null="false" length="22" />
+		<property name="balance" column="BALANCE" type="java.math.BigDecimal"
+			not-null="false" length="22" />
+		<property name="bankNum" column="BANK_NUM" type="java.lang.String"
+			not-null="true" length="32" />
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date"
+			not-null="false" length="11" />
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date"
+			not-null="false" length="11" />
+		<property name="isValid" column="IS_VALID" type="java.lang.String"
+			not-null="false" length="2" />
+		<property name="creator" column="CREATOR" type="java.lang.String"
+			not-null="false" length="40" />
+		<property name="updator" column="UPDATOR" type="java.lang.String"
+			not-null="false" length="40" />
+
+
+
+	</class>
+
+</hibernate-mapping>
+

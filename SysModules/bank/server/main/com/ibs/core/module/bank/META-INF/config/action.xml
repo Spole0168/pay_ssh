@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="bank" namespace="/corBankInfo" extends="web-default">
+	<!--   -->
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="corBankIntfList" class="corBankIntfManagerAction"
+			method="list">
+			<result name="success" type="tiles">corBankIntflist</result>
+		</action>
+		<action name="corBankIntfSearch" class="corBankIntfManagerAction"
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="corBankIntfCreate" class="corBankIntfManagerAction"
+			method="create">
+			<result name="success" type="tiles">corBankIntfAdd</result>
+		</action>
+		<action name="corBankIntfModify" class="corBankIntfManagerAction"
+			method="modify">
+			<result name="success" type="tiles">corBankIntfEdit</result>
+		</action>
+		<action name="corBankIntfSaveOrUpdate" class="corBankIntfManagerAction"
+			method="saveOrUp">
+		</action>
+		<action name="corBankIntfDelete" class="corBankIntfManagerAction"
+			method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="corBankIntfExport" class="corBankIntfManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+		<!-- 银行管理明细 -->
+		<action name="showBankInfoJSP" class="corBankIntfManagerAction" 
+				method="showBankInfoJSP">
+				<result name="success">/WEB-INF/pages/cor/corBankIntfEditDouble.jsp</result>
+		</action>
+
+		<!-- 备付金 -->
+		<action name="bankNum" class="corReservedFundAcntAction" 
+			method="BankNum">
+			<result name="success" type="tiles">corResAcntList</result>
+		</action>
+		<action name="findByBankNum" class="corReservedFundAcntAction" 
+			method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+		<action name="corReservedFundAcntCreate" class="corReservedFundAcntAction" 
+			method="create">
+			<result name="success" type="tiles">corResAcntCreat</result>
+		</action>
+		<action name="corReservedFundAcntModify" class="corReservedFundAcntAction" 
+			method="modify">
+			<result name="success" type="tiles">corResAcntEdit</result>
+		</action>
+		<action name="saveCheckBankNum" class="corReservedFundAcntAction" 
+			method="saveCheckBankNum">
+		</action>
+		<action name="CheckBankNum" class="corReservedFundAcntAction" 
+			method="BankNumCheck">
+		</action>
+		<action name="saveOrUpdate" class="corReservedFundAcntAction" 
+			method="saveOrUp">
+		</action>
+		<action name="corReservedFundAcntDelete" class="corReservedFundAcntAction" 
+			method="deleteById">
+		</action>
+		<!-- end -->
+		<!-- 银行信息管理 新增  判断bankInnerCode是否存在 -->
+		<action name="bankInnerCodeIsSame" class="corBankIntfManagerAction"
+			method="isSame">
+		</action>
+			<!-- 银行信息管理 新增  判断bankInnerCode是否存在 -->
+		<action name="bankInnerCodeIsSameEdit" class="corBankIntfManagerAction"
+			method="isSameEdit">
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		
+	</package>
+
+</struts>

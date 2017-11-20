@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+<!--   -->
+	<!-- Action -->
+	<bean id="corBankIntfManagerAction"
+		class="com.ibs.core.module.bank.action.CorBankIntfManagerAction"
+		scope="prototype">
+		<property name="corBankIntfBiz" ref="corBankIntfBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corBankIntfBiz"
+		class="com.ibs.core.module.bank.biz.impl.CorBankIntfBizImpl">
+		<property name="corBankIntfDao" ref="corBankIntfDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="corBankIntfDao"
+		class="com.ibs.core.module.bank.dao.impl.CorBankIntfDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+<!-- Action -->
+	<bean id="corBankSettingManagerAction"
+		class="com.ibs.core.module.bank.action.CorBankSettingManagerAction"
+		scope="prototype">
+		<property name="corBankSettingBiz" ref="corBankSettingBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corBankSettingBiz"
+		class="com.ibs.core.module.bank.biz.impl.CorBankSettingBizImpl">
+		<property name="corBankSettingDao" ref="corBankSettingDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="corBankSettingDao"
+		class="com.ibs.core.module.bank.dao.impl.CorBankSettingDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+
+
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+	
+	<!-- 备付金操作 -->
+	<bean id="corReservedFundAcntAction"
+		class="com.ibs.core.module.bank.action.CorReservedFundAcntAction"
+		scope="prototype">
+		<property name="corReservedFundAcntBiz" ref="corReservedFundAcntBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz" />
+		<property name="dataDictService" ref="dataDictService" />
+		<property name="corBankSettingBiz" ref="corBankSettingBiz" />
+	</bean>
+	<!-- 备付金操作end -->
+	
+	<!-- Action -->
+	<bean id="corBankMsgManagerAction"
+		class="com.ibs.core.module.bank.action.CorBankMsgManagerAction"
+		scope="prototype">
+		<property name="corBankMsgBiz" ref="corBankMsgBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="corBankMsgBiz"
+		class="com.ibs.core.module.bank.biz.impl.CorBankMsgBizImpl">
+		<property name="corBankLogDir" value="${bank.logdir}" />
+		<property name="corBankMsgDao" ref="corBankMsgDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="corBankMsgDao"
+		class="com.ibs.core.module.bank.dao.impl.CorBankMsgDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+</beans>

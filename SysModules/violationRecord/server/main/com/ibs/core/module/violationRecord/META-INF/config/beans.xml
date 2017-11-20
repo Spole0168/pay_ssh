@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+  
+	<!-- Biz -->
+	<bean id="sysViolationRecordBiz"
+		class="com.ibs.core.module.violationRecord.biz.impl.SysViolationRecordBizImpl">
+		<property name="sysViolationRecordDao" ref="sysViolationRecordDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="sysViolationRecordDao"
+		class="com.ibs.core.module.violationRecord.dao.impl.SysViolationRecordDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- 黑名单 -->
+	<!-- Biz -->
+	<bean id="sysViolationRecordBlackListBiz"
+		class="com.ibs.core.module.violationRecord.biz.impl.SysViolationRecordBlackListBizImpl">
+		<property name="sysViolationRecordBlackListDao" ref="sysViolationRecordBlackListDao" />
+	</bean>
+	
+		<!-- Dao -->
+	<bean id="sysViolationRecordBlackListDao"
+		class="com.ibs.core.module.violationRecord.dao.impl.SysViolationRecordBlackListDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	
+	<!-- 支付超限 -->
+	<!-- Action -->
+	<bean id="sysViolationRecordOverSpendAction"
+		class="com.ibs.core.module.violationRecord.action.SysViolationRecordOverSpendAction"
+		scope="prototype">
+		<property name="sysViolationRecordOverSpendBiz" ref="sysViolationRecordOverSpendBiz" />
+	</bean>
+	
+	<!-- Biz -->
+	<bean id="sysViolationRecordOverSpendBiz"
+		class="com.ibs.core.module.violationRecord.biz.impl.SysViolationRecordOverSpendBizImpl">
+		<property name="sysViolationRecordOverSpendDao" ref="sysViolationRecordOverSpendDao" />
+		
+	</bean>
+	
+		<!-- Dao -->
+	<bean id="sysViolationRecordOverSpendDao"
+		class="com.ibs.core.module.violationRecord.dao.impl.SysViolationRecordOverSpendDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<!-- Action -->
+	<bean id="sysSmsHisManagerAction"
+		class="com.ibs.core.module.violationRecord.action.SysSmsHisManagerAction"
+		scope="prototype">
+		<property name="sysSmsHisBiz" ref="sysSmsHisBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="sysSmsHisBiz"
+		class="com.ibs.core.module.violationRecord.biz.impl.SysSmsHisBizImpl">
+		<property name="sysSmsHisDao" ref="sysSmsHisDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="sysSmsHisDao"
+		class="com.ibs.core.module.violationRecord.dao.impl.SysSmsHisDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+<!-- Action -->
+	<bean id="sysEmailHisManagerAction"
+		class="com.ibs.core.module.violationRecord.action.SysEmailHisManagerAction"
+		scope="prototype">
+		<property name="sysEmailHisBiz" ref="sysEmailHisBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="sysEmailHisBiz"
+		class="com.ibs.core.module.violationRecord.biz.impl.SysEmailHisBizImpl">
+		<property name="sysEmailHisDao" ref="sysEmailHisDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="sysEmailHisDao"
+		class="com.ibs.core.module.violationRecord.dao.impl.SysEmailHisDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+</beans>

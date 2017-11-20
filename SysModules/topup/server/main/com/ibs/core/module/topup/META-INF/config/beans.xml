@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="topupTransTraceManagerAction" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" scope="prototype">
+		<property name="topupTransTraceBiz" ref="topupTransTraceBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="topupTransTraceBiz" class="com.ibs.core.module.topup.biz.impl.TopupTransTraceBizImpl">
+		<property name="topupTransTraceDao" ref="topupTransTraceDao" />
+	</bean>
+
+	<!-- Dao -->
+	<bean id="topupTransTraceDao" class="com.ibs.core.module.topup.dao.impl.TopupTransTraceDaoImpl" parent="baseEntityDao">
+	</bean>
+
+	<bean id="topupTransService" class="com.ibs.core.module.topup.service.impl.TopupTransServiceImpl">
+		<property name="topupTransTraceDao" ref="topupTransTraceDao" />
+	</bean>
+</beans>

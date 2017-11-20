@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sso currentApplication="was_uat_@sys@" userIdManager="com.ibs.common.module.frameworkimpl.sso.UserIdManagerImpl">
+	<application id="was_uat_mdm" vaildateURL="http://116.228.70.211/mdm/validate;jsessionid=0000" />
+	<application id="was_uat_exp" vaildateURL="http://116.228.70.211/exp/validate;jsessionid=0000" />
+	<application id="was_uat_mot" vaildateURL="http://116.228.70.211/mot/validate;jsessionid=0000" />
+	<application id="was_uat_flt" vaildateURL="http://116.228.70.211/flt/validate;jsessionid=0000" />
+	<application id="was_uat_mat" vaildateURL="http://116.228.70.211/mat/validate;jsessionid=0000" />
+	<application id="was_uat_ord" vaildateURL="http://116.228.70.211/ord/validate;jsessionid=0000" />
+	<application id="was_uat_stl" vaildateURL="http://116.228.70.211/stl/validate;jsessionid=0000" />
+	<application id="was_uat_rut" vaildateURL="http://116.228.70.211/rut/validate;jsessionid=0000" />
+	<application id="was_uat_pbl" vaildateURL="http://116.228.70.211/pbl/validate;jsessionid=0000" />
+</sso>

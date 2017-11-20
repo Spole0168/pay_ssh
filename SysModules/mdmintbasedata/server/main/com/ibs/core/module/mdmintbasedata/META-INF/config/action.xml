@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="mdmcarrier" namespace="/mdmcarrier" extends="web-default">
+		<!-- carrier information actions here -->
+		<action name="carrier_*" class="carrierAction" method="{1}">
+			<result name="success" type="tiles">carrierList</result>
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+			<result name="modify">/WEB-INF/pages/mdmintbasedate/carrierEdit.jsp
+			</result>
+			<result name="create">/WEB-INF/pages/mdmintbasedate/carrierEdit.jsp
+			</result>
+
+			<result name="delete" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+			<result name="changeStatus" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+			<result name="deleteerror" type="jsonexception"></result>
+
+			<result name="errorsave" type="jsonexception"></result>
+			<result name="ajaxsave" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="mdmforwarder" namespace="/mdmforwarder" extends="web-default">
+		<!-- forwarder information actions here -->
+		<action name="forwarder_*" class="forwarderAction" method="{1}">
+			<result name="success" type="tiles">forwarderList</result>
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+			<result name="modify">/WEB-INF/pages/mdmintbasedate/forwarderEdit.jsp
+			</result>
+			<result name="create">/WEB-INF/pages/mdmintbasedate/forwarderEdit.jsp
+			</result>
+
+			<result name="delete" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+			<result name="deleteerror" type="jsonexception"></result>
+
+			<result name="errorsave" type="jsonexception"></result>
+			<result name="ajaxsave" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		
+	 
+	</package>
+	<package name="mdmforwarderutil-web" namespace="/mdmforwarderutil" extends="web-default">
+		<action name="autoCompleteForwarders" class="forwarderUtilAction" method="autoCompleteForwarders">
+			<result name="ajax" type="json">
+				<param name="include">jsonResult</param>
+				<param name="excludeProperties"></param>
+			</result>
+		</action>
+		<action name="autoCompleteForwardersWithAllStatus" class="forwarderUtilAction" method="autoCompleteForwardersWithAllStatus">
+			<result name="ajax" type="json">
+				<param name="include">jsonResult</param>
+				<param name="excludeProperties"></param>
+			</result>
+		</action>
+	</package>
+
+	<package name="mdmcarrierutil-web" namespace="/mdmcarrierutil" extends="web-default">
+		<action name="autoCompleteCarriers" class="carrierUtilAction" method="autoCompleteCarriers">
+			<result name="ajax" type="json">
+				<param name="include">jsonResult</param>
+				<param name="excludeProperties"></param>
+			</result>
+		</action>
+	</package>	
+	
+	
+
+	<!-- 提供给客户端下载 -->
+	<package name="mdmcarrier-gui" namespace="/mdmcarrier" extends="gui-default">
+		<action name="synData" class="carrierBundleAction" method="getServerData">
+			<result type="data"></result>
+		</action>
+	</package>
+	<package name="mdmforwarder-gui" namespace="/mdmforwarder"
+		extends="gui-default">
+		<action name="synData" class="forwarderBundleAction" method="getServerData">
+			<result type="data"></result>
+		</action>
+	</package>
+	
+
+</struts>

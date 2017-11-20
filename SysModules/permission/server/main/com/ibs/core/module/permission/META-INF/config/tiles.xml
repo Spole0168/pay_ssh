@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="appList" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/appList.jsp" />
+	</definition>
+
+	<definition name="app" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/app.jsp" />
+	</definition>
+
+	<definition name="userList" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/userList.jsp" />
+	</definition>
+
+	<definition name="userMain" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/userMain.jsp" />
+	</definition>
+
+	<definition name="user" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/user.jsp" />
+	</definition>
+	
+	<definition name="userEdit" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/userEdit.jsp" />
+	</definition>
+
+	<definition name="userRoleList" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/userRoleList.jsp" />
+	</definition>
+
+	<definition name="roleList" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/roleList.jsp" />
+	</definition>
+
+	<definition name="role" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/role.jsp" />
+	</definition>
+
+	<definition name="roleUser" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/roleUser.jsp" />
+	</definition>
+
+	<definition name="roleMenu" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/roleMenu.jsp" />
+	</definition>
+
+	<definition name="roleOper" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/roleOper.jsp" />
+	</definition>
+
+	<definition name="menuTree" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/menuTree.jsp" />
+	</definition>
+
+	<definition name="menu" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/menu.jsp" />
+	</definition>
+	
+	<definition name="menuView" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/menuView.jsp" />
+	</definition>
+	
+	<definition name="operList" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/operList.jsp" />
+	</definition>
+	
+	<definition name="operation" extends="default">
+		<put-attribute name="contant" value="/WEB-INF/pages/mdmpermission/operation.jsp" />
+	</definition>
+
+</tiles-definitions>

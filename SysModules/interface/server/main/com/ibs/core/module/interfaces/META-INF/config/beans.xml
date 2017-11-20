@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+	
+	<!-- Action -->
+	<bean id="cnlReqTransManagerInfDataInqueryAction"
+		class="com.ibs.core.module.interfaces.action.CnlReqTransManagerInfDataInqueryAction"
+		scope="prototype">
+		<property name="cnlReqTransBiz" ref="cnlReqTransInfDataInqueryBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz"></property>
+	</bean>
+	
+	<!-- Biz -->
+	<bean id="cnlReqTransInfDataInqueryBiz"
+		class="com.ibs.core.module.interfaces.biz.impl.CnlReqTransInfDataInqueryBizImpl">
+		<property name="cnlReqTransDao" ref="cnlReqTransInfDataInqueryDao" />
+	</bean>
+	
+	<!-- Dao -->
+	<bean id="cnlReqTransInfDataInqueryDao"
+		class="com.ibs.core.module.interfaces.dao.impl.CnlReqTransInfDataInqueryDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- Action -->
+	<bean id="cnlMsgManagerAction"
+		class="com.ibs.core.module.interfaces.action.CnlMsgManagerAction"
+		scope="prototype">
+		<property name="cnlMsgBiz" ref="cnlMsgBiz" />
+	</bean>
+	<!-- Biz -->
+	<bean id="cnlMsgBiz"
+		class="com.ibs.core.module.interfaces.biz.impl.CnlMsgBizImpl">
+		<property name="cnlSvcLogDir" value="${channelsvc.logdir}" />
+		<property name="cnlMsgDao" ref="cnlMsgDao" />
+	</bean>
+	<!-- Dao -->
+	<bean id="cnlMsgDao"
+		class="com.ibs.core.module.interfaces.dao.impl.CnlMsgDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	
+	
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+	
+	
+	
+</beans>
+
+
+
+
+
+

@@ -1,0 +1,292 @@
+<project name="web" basedir="." default="deploy">
+
+	<!-- location setting -->
+	<property name="src" location="../main" />
+	<property name="web" location="../WebContent" />
+	<property name="bin" location="bin" />
+	<property name="resources" location="resources" />
+	<property name="dist" location="dist" />
+	<!--<property name="library.dir" location="../../Library" />-->
+	<!--<property file="war.properties" />-->
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	
+	<if>
+		<not><isset property="sys"/></not>
+		<then>
+			<propertyregex property="sys" input="${app}" regexp="([^#][^#][^#])" select="\1" defaultvalue="${app}" override="true"/>
+		</then>
+	</if>
+	<echo>Property sys=${sys}</echo>
+
+	<filterset id="variables">
+		<filter token="app" value="${app}"/>
+		<filter token="sys" value="${sys}"/>
+		<filter token="phase" value="${phase}"/>
+	</filterset>
+
+	<if>
+		<equals arg1="${phase}" arg2="release" />
+		<then>
+			<echo message="PHASE:${phase}..." />
+			<property name="this.phase">release</property>
+		</then>
+		<elseif>
+			<equals arg1="${phase}" arg2="uat" />
+			<then>
+				<echo message="PHASE:${phase}..." />
+				<property name="this.phase">uat</property>
+			</then>
+		</elseif>
+		<elseif>
+			<equals arg1="${phase}" arg2="ituat" />
+			<then>
+				<echo message="PHASE:${phase}..." />
+				<property name="this.phase">ituat</property>
+			</then>
+		</elseif>
+		<elseif>
+			<equals arg1="${phase}" arg2="sit" />
+			<then>
+				<echo message="PHASE:${phase}..." />
+				<property name="this.phase">sit</property>
+			</then>
+		</elseif>
+		<elseif>
+			<equals arg1="${phase}" arg2="train" />
+			<then>
+				<echo message="PHASE:${phase}..." />
+				<property name="this.phase">train</property>
+			</then>
+		</elseif>
+		<else>
+			<echo message="PHASE:dev..." />
+			<property name="this.phase">dev</property>
+		</else>
+	</if>
+
+	<path id="classpath">
+		<fileset dir="${library.dir}/report" includes="*.jar" />
+		<fileset dir="${library.dir}/ws" includes="*.jar" />
+		<!--<fileset dir="${library.dir}/common" includes="*.jar" />-->
+
+		<pathelement location="${bin}" />
+	</path>
+
+	<fileset id="non.java.fileset" dir="${src}">
+		<include name="**/main/**" />
+		<exclude name="**/.svn/**" />
+		<exclude name="**/**.java" />
+	</fileset>
+
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+		<format property="stamp" pattern="yyyyMMddHHmm" />
+	</tstamp>
+
+	<target name="initstamp">
+		<tstamp />
+	</target>
+
+	<target name="clean-modules">
+		<ant antfile="${modules.dir}/build/build.xml" dir="${modules.dir}/build" target="clean"/>
+	</target>
+
+	<target name="clean" depends="clean-modules">
+		<mkdir dir="${dist}" />
+		
+		<delete includeEmptyDirs="true">
+			<fileset dir="${dist}">
+				<include name="*.jar" />
+				<include name="*.bak" />
+			</fileset>
+		</delete>
+		
+		<delete quiet="true" dir="${bin}" />
+	</target>
+	
+	<target name="init-pattern">
+		<patternset id="web.jar" excludes="*" />
+		<patternset id="job.jar" excludes="*" />
+		<patternset id="ws.jar" excludes="*" />
+		<patternset id="report.jar" excludes="*" />
+		
+		<for list="${war}" param="jarfile">
+			<sequential>
+				<if>
+					<equals arg1="@{jarfile}" arg2="web" />
+					<then>
+						<echo message="@{jarfile}"/>
+						<patternset id="web.jar" includesfile="${modules.dir}/build/jar-web.properties"/>
+					</then>
+					<elseif>
+						<equals arg1="@{jarfile}" arg2="job" />
+						<then>
+							<echo message="@{jarfile}"/>
+							<patternset id="job.jar" includesfile="${modules.dir}/build/jar-job.properties"/>
+						</then>
+					</elseif>
+					<elseif>
+						<equals arg1="@{jarfile}" arg2="ws" />
+						<then>
+							<echo message="@{jarfile}"/>
+							<patternset id="ws.jar" includesfile="${modules.dir}/build/jar-ws.properties"/>
+						</then>
+					</elseif>
+					<elseif>
+						<equals arg1="@{jarfile}" arg2="report" />
+						<then>
+							<echo message="@{jarfile}"/>
+							<patternset id="report.jar" includesfile="${modules.dir}/build/jar-report.properties"/>
+						</then>
+					</elseif>
+				</if>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="init" depends="init-pattern">
+		<mkdir dir="${bin}/WEB-INF/classes" />
+
+		<copy todir="${bin}" includeemptydirs="false">
+			<fileset refid="non.java.fileset" />
+			<mapper type="regexp" from="main\\(.*)" to="\1" />
+		</copy>
+	</target>
+
+	<target name="copy-web" depends="init">
+		<!-- copy webcontent -->
+		<copy todir="${bin}">
+			<fileset dir="${web}">
+				<!-- <exclude name="**/WEB-INF/lib/**" /> -->
+				<exclude name="**/WEB-INF/classes/**" />
+				<exclude name="**/WEB-INF/sso.xml" />
+			</fileset>
+		</copy>
+		<!-- copy framework properties -->
+		<copy file="${modules.dir}/build/resources/${this.phase}/sso.xml" tofile="${bin}/WEB-INF/sso.xml" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<copy file="${modules.dir}/build/resources/${this.phase}/web.xml" tofile="${bin}/WEB-INF/web.xml" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<!-- copy application properties -->
+		<!--<copy file="${resources}/${this.phase}/sso.xml" tofile="${bin}/WEB-INF/sso.xml" overwrite="Yes" failonerror="no" />-->
+		<copy file="${resources}/${this.phase}/web.xml" tofile="${bin}/WEB-INF/web.xml" overwrite="Yes" failonerror="no" />
+		
+		<!-- copy /WEB-INF/classes -->
+		<copy todir="${bin}/WEB-INF/classes" includeEmptyDirs="no">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.tld" />
+				<include name="**/*.wsdl" />
+				<include name="**/*.schemas" />
+				<include name="**/*.dtd" />
+				<include name="**/*.xsd" />
+				<include name="**/*.vm" />
+				<include name="**/*.ftl" />
+				<include name="**/*.pem" />
+			</fileset>
+		</copy>
+		<!-- copy framework properties -->
+		<copy file="${modules.dir}/build/resources/${this.phase}/log4j.properties" tofile="${bin}/WEB-INF/classes/log4j.properties" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<copy file="${modules.dir}/build/resources/${this.phase}/deployContext.xml" tofile="${bin}/WEB-INF/classes/resource/deployContext.xml" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<copy file="${modules.dir}/build/resources/${this.phase}/dataAccessContext.xml" tofile="${bin}/WEB-INF/classes/resource/dataAccessContext.xml" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<copy file="${modules.dir}/build/resources/${this.phase}/application.properties" tofile="${bin}/WEB-INF/classes/resource/application.properties" overwrite="Yes">
+			<filterset refid="variables"/>
+		</copy>
+		<!-- copy application properties -->
+		<!--<copy file="${resources}/${this.phase}/log4j.properties" tofile="${bin}/WEB-INF/classes/log4j.properties" overwrite="Yes" failonerror="no" />-->
+		<copy file="${resources}/${this.phase}/deployContext.xml" tofile="${bin}/WEB-INF/classes/resource/deployContext.xml" overwrite="Yes" failonerror="no" />
+		<copy file="${resources}/${this.phase}/dataAccessContext.xml" tofile="${bin}/WEB-INF/classes/resource/dataAccessContext.xml" overwrite="Yes" failonerror="no" />
+		<copy file="${resources}/${this.phase}/application.properties" tofile="${bin}/WEB-INF/classes/resource/application.properties" overwrite="Yes" failonerror="no" />
+		<copy todir="${bin}/WEB-INF/classes/resource" overwrite="yes" failonerror="no">
+			<fileset dir="${resources}/${this.phase}">
+				<include name="*.pem" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- compile web -->
+	<target name="compile" depends="copy-web">
+		<javac srcdir="${src}" destdir="${bin}" source="1.5" target="1.5" encoding="UTF-8" debug="${debug}"
+			includeantruntime="yes" verbose="false" deprecation="on" nowarn="off">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<!-- compile modules -->
+	<target name="modules" depends="compile">
+		<echo message="${modules.dir}"/>
+		
+		<ant antfile="${modules.dir}/build/build.xml" dir="${modules.dir}/build"/>
+	</target>
+
+	<target name="war" depends="modules">
+		<move file="${dist}/${app}-${this.phase}.war" tofile="${dist}/${app}-${this.phase}.${timestamp.stamp}.war" overwrite="true" failonerror="no"/>
+		<if>
+			<equals arg1="${this.phase}" arg2="ft" />
+			<then>
+				<war destfile="${dist}/${app}-${this.phase}.war" webxml="${bin}/WEB-INF/web.xml" encoding="utf-8">
+					<!--<lib dir="${library.dir}/common" includes="gbs.ai.portal-framework*.jar" />-->
+					<lib dir="${library.dir}/common" includes="*.jar" />
+					<lib dir="${library.dir}/share">
+						<patternset refid="web.jar" />
+					</lib>
+					<lib dir="${library.dir}/ws">
+						<patternset refid="ws.jar" />
+					</lib>
+					<lib dir="${library.dir}/share">
+						<patternset refid="job.jar" />
+					</lib>
+					<lib dir="${library.dir}/report">
+						<patternset refid="report.jar" />
+					</lib>
+					
+					<fileset dir="${bin}">
+					</fileset>
+					
+					<classes dir="${modules.dir}/build/bin">
+					</classes>
+
+					<manifest>
+						<attribute name="War-Version" value="${version}" />
+						<attribute name="Build-Time" value="${timestamp.datetime}" />
+						<attribute name="Modules" value="${modules}" />
+						<attribute name="Class-Path" value="commons-logging-1.1.1.jar" />
+					</manifest>
+				</war>
+			</then>
+			<else>
+				<war destfile="${dist}/${app}-${this.phase}.war" webxml="${bin}/WEB-INF/web.xml" encoding="utf-8">
+					<!-- <lib dir="${library.dir}/common" includes="gbs.ai.portal-framework*.jar" /> -->
+					<lib dir="${library.dir}/common" includes="*.jar" />
+					
+					<fileset dir="${bin}">
+					</fileset>
+					
+					<classes dir="${modules.dir}/build/bin">
+					</classes>
+
+					<manifest>
+						<attribute name="War-Version" value="${version}" />
+						<attribute name="Build-Time" value="${timestamp.datetime}" />
+						<attribute name="Modules" value="${modules}" />
+						<attribute name="Class-Path" value="commons-logging-1.1.1.jar" />
+					</manifest>
+				</war>
+			</else>
+		</if>
+	</target>
+
+	<target name="deploy" depends="war">
+		<echo message="done" />
+	</target>
+
+</project>

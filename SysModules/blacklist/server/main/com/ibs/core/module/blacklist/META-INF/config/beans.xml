@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+	
+	
+	
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+	
+	
+	<!-- Action -->
+	<bean id="sysNamelistManagerAction"
+		class="com.ibs.core.module.blacklist.action.SysNamelistManagerAction"
+		scope="prototype">
+		<property name="dataDictBiz" ref="dataDictBiz"/> 
+	 	<property name="dataDictService" ref="dataDictService" />
+	 	
+		
+		<property name="sysNamelistBiz" ref="sysNamelistBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="sysNamelistBiz"
+		class="com.ibs.core.module.blacklist.biz.impl.SysNamelistBizImpl">
+		<property name="sysNamelistDao" ref="sysNamelistDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="sysNamelistDao"
+		class="com.ibs.core.module.blacklist.dao.impl.SysNamelistDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+
+</beans>

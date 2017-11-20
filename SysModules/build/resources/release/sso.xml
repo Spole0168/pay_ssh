@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sso currentApplication="exp"
+	userIdManager="com.ibs.common.module.frameworkimpl.sso.UserIdManagerImpl">
+	<application id="mdm" vaildateURL="http://10.1.5.11/mdm/validate;jsessionid=0000" />
+	<application id="mot" vaildateURL="http://10.1.5.11/mot/validate;jsessionid=0000" />
+	<application id="ord" vaildateURL="http://10.1.5.11/ord/validate;jsessionid=0000" />
+	<application id="flt" vaildateURL="http://10.1.5.11/flt/validate;jsessionid=0000" />
+	<application id="mat" vaildateURL="http://10.1.5.11/mat/validate;jsessionid=0000" />
+	<application id="stl" vaildateURL="http://10.1.5.11/stl/validate;jsessionid=0000" />
+	<application id="rut" vaildateURL="http://10.1.5.11/rut/validate;jsessionid=0000" />
+	<application id="pbl" vaildateURL="http://10.1.5.11/pbl/validate;jsessionid=0000" />
+</sso>

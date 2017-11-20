@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.account.domain" schema="CNL">
+
+
+ <class name="CnlReqTrans" table="T_CNL_REQ_TRANS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlIntfCode" column="CNL_INTF_CODE" type="java.lang.String" not-null="true" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqTotalBatch" column="REQ_TOTAL_BATCH" type="long" not-null="false" length="22"/>
+		<property name="reqCnt" column="REQ_CNT" type="long" not-null="false" length="22"/>
+		<property name="reqTotalCnt" column="REQ_TOTAL_CNT" type="long" not-null="false" length="22"/>
+		<property name="reqType" column="REQ_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reqStatus" column="REQ_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="timeZone" column="TIME_ZONE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="msgTime" column="MSG_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="recieveTime" column="RECIEVE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="handleTime" column="HANDLE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="msgCode" column="MSG_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		
+    </class>
+
+    
+	  <class name="CnlTransTrace" table="T_CNL_TRANS_TRACE" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transOrderNum" column="TRANS_ORDER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transLatestAmount" column="TRANS_LATEST_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transRate" column="TRANS_RATE" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="termialType" column="TERMIAL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankHandleNum" column="BANK_HANDLE_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="inglTime" column="INGL_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		<property name="errType" column="ERR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleStatus" column="HANDLE_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="handleResult" column="HANDLE_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="handleMsg" column="HANDLE_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleTime" column="HANDLE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="operator" column="OPERATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewer" column="REVIEWER" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewMsg" column="REVIEW_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="reviewStatus" column="REVIEW_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewResult" column="REVIEW_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewTime" column="REVIEW_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="voucherNum" column="VOUCHER_NUM" type="java.lang.String" not-null="false" length="200"/>
+		<property name="voucherLocation" column="VOUCHER_LOCATION" type="java.lang.String" not-null="false" length="200"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transBankSummary" column="TRANS_BANK_SUMMARY" type="java.lang.String" not-null="false" length="1000"/>
+		
+
+
+    </class>
+
+      <class name="CnlTrans" table="T_CNL_TRANS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="transNum" column="TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transOrderNum" column="TRANS_ORDER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transLatestAmount" column="TRANS_LATEST_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="termialType" column="TERMIAL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="inglTime" column="INGL_TIME" type="java.util.Date" not-null="false" length="11"/>
+
+
+    </class>
+
+
+    
+     <class name="CnlTrans3m" table="T_CNL_TRANS_3M" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="transNum" column="TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transOrderNum" column="TRANS_ORDER_NUM" type="java.lang.String" not-null="true" length="32"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transLatestAmount" column="TRANS_LATEST_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="termialType" column="TERMIAL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		
+
+
+    </class>
+
+    <class name="CnlCustAcntDtl" table="T_CNL_CUST_ACNT_DTL" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="acntDtlCode" column="ACNT_DTL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlAcntCode" column="CNL_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transNum" column="TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="acntType" column="ACNT_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="currency" column="CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="amount" column="AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="direction" column="DIRECTION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="balance" column="BALANCE" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="preBalance" column="PRE_BALANCE" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="voucherNum" column="VOUCHER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+
+   
+    <class name="CnlCustAcnt" table="T_CNL_CUST_ACNT" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlAcntCode" column="CNL_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="pcnlAcntCode" column="P_CNL_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankAcntCode" column="BANK_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="balance" column="BALANCE" type="java.math.BigDecimal" not-null="false" length="22"/>
+		<property name="balanceAvalible" column="BALANCE_AVALIBLE" type="java.math.BigDecimal" not-null="false" length="22"/>
+		<property name="balanceFrozen" column="BALANCE_FROZEN" type="java.math.BigDecimal" not-null="false" length="22"/>
+		<property name="balanceReserved" column="BALANCE_RESERVED" type="java.math.BigDecimal" not-null="false" length="22"/>
+		<property name="isSubsidiary" column="IS_SUBSIDIARY" type="java.lang.String" not-null="false" length="2"/>
+		<property name="currency" column="CURRENCY" type="java.lang.String" not-null="false" length="6"/>
+		<property name="regTime" column="REG_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="acntStatus" column="ACNT_STATUS" type="java.lang.String" not-null="false" length="6"/>
+		<property name="acntType" column="ACNT_TYPE" type="java.lang.String" not-null="false" length="6"/>
+		<property name="dac" column="DAC" type="java.lang.String" not-null="false" length="40"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="2"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+    
+    <class name="CnlCustRealNameInfo" table="T_CNL_CUST_REAL_NAME_INFO" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="realNameCnl" column="REAL_NAME_CNL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="realNameTime" column="REAL_NAME_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="realNameType" column="REAL_NAME_TYPE" type="java.lang.String" not-null="false" length="6"/>
+		<property name="realNameCode" column="REAL_NAME_CODE" type="java.lang.String" not-null="false" length="20"/>
+		<property name="realNameStatus" column="REAL_NAME_STATUS" type="java.lang.String" not-null="false" length="6"/>
+		<property name="realNameExpireDate" column="REAL_NAME_EXPIRE_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="2"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="40"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+    
+     
+    <class name="CnlTransErr" table="T_CNL_TRANS_ERR" lazy="true">
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		<property name="transNum" column="TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="fixReqNum" column="FIX_REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transOrderNum" column="TRANS_ORDER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transLatestAmount" column="TRANS_LATEST_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transRate" column="TRANS_RATE" type="java.math.BigDecimal" not-null="false" length="10"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankHandleNum" column="BANK_HANDLE_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		<property name="termialType" column="TERMIAL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errType" column="ERR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleStatus" column="HANDLE_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="handleMsg" column="HANDLE_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleTime" column="HANDLE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="operator" column="OPERATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reconStatus" column="RECON_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reconTime" column="RECON_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="reviewer" column="REVIEWER" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewMsg" column="REVIEW_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="reviewResult" column="REVIEW_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reviewTime" column="REVIEW_TIME" type="java.util.Date" not-null="false" length="11"/>
+    </class>
+    
+    
+     <class name="CnlTransTraceHis" table="T_CNL_TRANS_TRACE_HIS" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="stlNum" column="STL_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transOrderNum" column="TRANS_ORDER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transLatestAmount" column="TRANS_LATEST_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transRate" column="TRANS_RATE" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="termialType" column="TERMIAL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankHandleNum" column="BANK_HANDLE_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		<property name="errType" column="ERR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleStatus" column="HANDLE_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="handleMsg" column="HANDLE_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleTime" column="HANDLE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="operator" column="OPERATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		
+
+
+    </class>
+    
+    
+    
+    <!-- xl 客户跟踪单start -->
+    <class name="CnlCustTrace" table="T_CNL_CUST_TRACE" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="reqType" column="REQ_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="reqStatus" column="REQ_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="name" column="NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certType" column="CERT_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certNum" column="CERT_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certExpire" column="CERT_EXPIRE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bankCustName" column="BANK_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCardNum" column="BANK_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="phonenum" column="PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="addr" column="ADDR" type="java.lang.String" not-null="false" length="200"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="msgTime" column="MSG_TIME" type="java.util.Date" not-null="false" length="7"/>
+		<property name="errType" column="ERR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="custType" column="CUST_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCode" column="BANK_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="provience" column="PROVIENCE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="city" column="CITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankName" column="BANK_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankBranchName" column="BANK_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankBranchCode" column="BANK_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		
+
+
+    </class>
+   
+   
+    <class name="CnlCustTraceBankVld" table="T_CNL_CUST_TRACE_BANK_VLD" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="reqInnerNum" column="REQ_INNER_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCustCode" column="CNL_CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqNum" column="REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="reqBatch" column="REQ_BATCH" type="long" not-null="false" length="22"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDc" column="TRANS_DC" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transSubType" column="TRANS_SUB_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transAmount" column="TRANS_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transRate" column="TRANS_RATE" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="bankReqTime" column="BANK_REQ_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankAccepteTime" column="BANK_ACCEPTE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankHandleNum" column="BANK_HANDLE_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReturnTime" column="BANK_RETURN_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bankReturnResult" column="BANK_RETURN_RESULT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlType" column="BANK_PMT_CNL_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankPmtCnlCode" column="BANK_PMT_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="cnlCnlCode" column="CNL_CNL_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isinGl" column="ISIN_GL" type="java.lang.String" not-null="false" length="6"/>
+		<property name="printedTime" column="PRINTED_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="isPrinted" column="IS_PRINTED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditBranchCode" column="BANK_CREDIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankReqTrnasDate" column="BANK_REQ_TRNAS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="bnakServiceFeeAct" column="BNAK_SERVICE_FEE_ACT" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankReqTransTime" column="BANK_REQ_TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="bnakHandlePriority" column="BNAK_HANDLE_PRIORITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="returnUrl" column="RETURN_URL" type="java.lang.String" not-null="false" length="200"/>
+		<property name="errType" column="ERR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errMsg" column="ERR_MSG" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="provience" column="PROVIENCE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="city" column="CITY" type="java.lang.String" not-null="false" length="50"/>
+		
+
+
+    </class>
+     <!-- xl  end-->
+</hibernate-mapping>
+

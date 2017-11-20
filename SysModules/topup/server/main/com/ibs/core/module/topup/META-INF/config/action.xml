@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="topupTransTrace" namespace="/topupTransTrace" extends="web-default">
+
+		<!--
+			列表页面主要进行三个方法操作 list 显示列表页面 search 表格异步查询数据 delete 删除某条表格
+		-->
+		<action name="topupTransTraceList" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="list">
+			<result name="success" type="tiles">topupTransTraceList</result>
+		</action>
+
+		<action name="topupTransTraceSearch" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+		</action>
+
+		<action name="topupTransTraceCreate" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="create">
+			<result name="success" type="tiles">topupTransTraceEdit</result>
+		</action>
+
+		<action name="topupTransTraceModify" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="modify">
+			<result name="success" type="tiles">topupTransTraceEdit</result>
+		</action>
+		
+		<action name="topupTransTraceInfo" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="detail">
+			<result name="success" type="tiles">topupTransTraceInfo</result>
+		</action>
+
+		<action name="saveOrUpdate" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="saveOrUpdate">
+			<result name="success" type="redirect">topupTransTraceList.action?loadPageCache=true</result>
+		</action>
+
+		<action name="topupTransTraceChecks" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="checks">
+			<result name="success" type="redirect">/topupTransTrace/topupTransTraceSearch.action?loadPageCache=true</result>
+		</action>
+
+		<action name="topupTransTraceDelete" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+
+		<action name="topupTransTraceExport" class="topupTransTraceManagerAction" method="export">
+	      	<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">downloadAction</param>
+				<param name="fileName">${exportSetting.fileName}</param>
+				<param name="realName">${exportSetting.realName}</param>
+			</result> 			
+		</action>
+		
+		<!-- 审核 复核 -->
+		<action name="topupTransTraceHandle" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="handle">
+			<result name="success" type="tiles">topupTransTraceHandle</result>
+		</action>
+		<action name="topupTransTraceReview" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="review">
+			<result name="success" type="tiles">topupTransTraceReview</result>
+		</action>
+		
+		<action name="topupTransTraceHandleOrReview" class="com.ibs.core.module.topup.action.TopupTransTraceManagerAction" method="handleOrReview">
+			<result name="success" type="redirect">topupTransTraceList.action?loadPageCache=true</result>
+		</action>
+		
+	    <!-- 下载文件 -->
+	    <action name="downloadFile" class="downloadAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType},charset=ISO8859-1</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">${bufferSize}</param>
+			</result>
+		</action>		
+		
+	</package>
+
+</struts>

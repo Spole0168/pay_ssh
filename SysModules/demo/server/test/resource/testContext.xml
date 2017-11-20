@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	
+	<!-- 公共数据访问配置，跟平台和部署无关 -->
+	 
+	<import resource="classpath:com/ibs/common/module/frameworkimpl/META-INF/config/beans.xml"/>
+
+	
+	<!-- 如果测试自己模块，请将下面替换成自己模块所属xml -->
+	<import resource="classpath:com/ibs/core/module/cnlcust/META-INF/config/beans.xml"/>
+	<import resource="classpath:com/ibs/core/module/account/META-INF/config/beans.xml"/>
+	<import resource="classpath:com/ibs/core/module/bank/META-INF/config/beans.xml"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@9.123.200.106:1521:payment"/>
+		<property name="username" value="mdm"/>
+		<property name="password" value="mdm"/>
+	</bean>
+	
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="lobHandler" ref="lobHandler"/>
+		
+		<property name="mappingResources">
+		<!-- 如果测试自己模块，请将下面替换成自己模块所属xml -->	
+			<list>
+				<value>com/ibs/core/module/cnlcust/META-INF/config/mapping.xml</value>
+				<value>com/ibs/core/module/account/META-INF/config/mapping.xml</value>
+				<value>com/ibs/core/module/bank/META-INF/config/mapping.xml</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+				org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>  
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="localTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="lobHandler" lazy-init="true" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+        <property name="nativeJdbcExtractor">
+            <ref bean="nativeJdbcExtractor"/>
+        </property>
+	</bean>
+	
+	<bean id="nativeJdbcExtractor" lazy-init="true" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/>
+	
+</beans>

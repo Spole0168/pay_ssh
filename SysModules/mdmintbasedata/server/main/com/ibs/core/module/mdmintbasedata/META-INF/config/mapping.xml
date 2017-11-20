@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.mdmintbasedata.domain"
+	schema="PBL">
+	<!-- 承运商 -->
+	<class name="Carrier" table="T_MDM_CARRIERS" lazy="true">
+		<id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+		<property column="CODE" length="50" name="code" type="java.lang.String"
+			not-null="true" />
+		<property column="NAME" length="50" name="name" type="java.lang.String"
+			not-null="true" />
+		<property column="ENGLISH_NAME" length="50" name="englishName"
+			type="java.lang.String" />
+		<property column="STATUS" length="10" name="status" type="java.lang.String"
+			not-null="true" />
+		<property column="VERSION_NO" length="100" name="versionNo"
+			type="java.lang.Long" />
+		<property column="CREATE_TIME" name="createTime" type="java.util.Date" />
+		<property column="MODIFY_TIME" name="modifyTime" type="java.util.Date" />
+		<property column="CREATE_USER_CODE" length="50" name="createUserCode"
+			type="java.lang.String" />
+		<property column="MODIFY_USER_CODE" length="50" name="modifyUserCode"
+			type="java.lang.String" />
+		<property column="CREATE_ORG_CODE" length="50" name="createOrgCode"
+			type="java.lang.String" />
+		<property column="MODIFY_ORG_CODE" length="50" name="modifyOrgCode"
+			type="java.lang.String" />
+		<property column="DESCRIPTION" length="255" name="description"
+			type="java.lang.String" not-null="false" />
+		<property column="USED" length="1" name="used" type="char" />
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,291 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+	
+	<bean id="cnlTransManagerAction"
+		class="com.ibs.core.module.account.action.CnlTransManagerAction"
+		scope="prototype">
+		<property name="cnlTransBiz" ref="cnlTransBiz" />
+		<property name="cnlTrans" ref="cnlTrans" />
+	</bean>
+	<bean id="cnlTrans3mManagerAction"
+		class="com.ibs.core.module.account.action.CnlTrans3mManagerAction"
+		scope="prototype">
+		<property name="cnlTrans3mBiz" ref="cnlTrans3mBiz" />
+	</bean>
+
+	<bean id="cnlTransBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlTransBizImpl">
+		<property name="cnlTransDao" ref="cnlTransDao" />
+		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao" />
+	</bean>
+	<bean id="cnlTrans3mBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlTrans3mBizImpl">
+		<property name="cnlTrans3mDao" ref="cnlTrans3mDao" />
+	</bean>
+	<bean id="cnlCnlCfgDao"
+		class="com.ibs.core.module.channel.dao.impl.CnlCnlCfgDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+	<bean id="cnlTransDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTransDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="cnlTrans3mDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTrans3mDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+	<!-- CustPersonalInfo -->
+	<bean id="custPersonalInfoAction"
+		class="com.ibs.core.module.account.action.CustPersonalInfoAction"
+		scope="prototype">
+		<property name="custPersonalInfoBizImpl" ref="custPersonalInfoBizImpl" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="custPersonalInfoBizImpl"
+		class="com.ibs.core.module.account.biz.impl.CustPersonalInfoBizImpl">
+		<property name="custPersonalInfoDao" ref="custPersonalInfoDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="custPersonalInfoDao"
+		class="com.ibs.core.module.account.dao.impl.CustPersonalInfoDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="cnlTrans" class="com.ibs.core.module.account.domain.CnlTrans"></bean>
+	
+	
+	<!-- Action -->
+	<bean id="cnlCustAcntManagerAction"
+		class="com.ibs.core.module.account.action.CnlCustAcntManagerAction"
+		scope="prototype">
+		<property name="cnlCustAcntBiz" ref="cnlCustAcntBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlCustAcntBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlCustAcntBizImpl">
+		<property name="cnlCustAcntDao" ref="cnlCustAcntDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlCustAcntDao"
+		class="com.ibs.core.module.account.dao.impl.CnlCustAcntDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	
+		<!-- zzl============================================================================ -->
+	<!-- Action -->
+	<bean id="cnlTransTraceManagerAction"
+		class="com.ibs.core.module.account.action.CnlTransTraceManagerAction"
+		scope="prototype">
+		<property name="cnlTransTraceBiz" ref="cnlTransTraceBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz"></property>
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlTransTraceBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlTransTraceBizImpl">
+		<property name="cnlTransTraceDao" ref="cnlTransTraceDao" />
+		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao" />
+	</bean>
+
+	<!-- Dao -->
+	<bean id="cnlTransTraceDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTransTraceDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+		<!-- Action -->
+	<bean id="cnlTransErrManagerAction"
+		class="com.ibs.core.module.account.action.CnlTransErrManagerAction"
+		scope="prototype">
+		<property name="cnlTransErrBiz" ref="cnlTransErrBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlTransErrBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlTransErrBizImpl">
+		<property name="cnlTransErrDao" ref="cnlTransErrDao" />
+		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlTransErrDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTransErrDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<!-- zzl============================================================================ -->
+	
+	
+	<!-- Action -->
+	<bean id="cnlCustAcntDtlManagerAction"
+		class="com.ibs.core.module.account.action.CnlCustAcntDtlManagerAction"
+		scope="prototype">
+		<property name="cnlCustAcntDtlBiz" ref="cnlCustAcntDtlBiz" />
+		<property name="cnlTrans3mBiz" ref="cnlTrans3mBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlCustAcntDtlBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlCustAcntDtlBizImpl">
+		<property name="cnlCustAcntDtlDao" ref="cnlCustAcntDtlDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlCustAcntDtlDao"
+		class="com.ibs.core.module.account.dao.impl.CnlCustAcntDtlDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- Action -->
+	<bean id="cnlReqTransManagerAction"
+		class="com.ibs.core.module.account.action.CnlReqTransManagerAction"
+		scope="prototype">
+		<property name="cnlReqTransBiz" ref="cnlReqTransBiz" />
+		<property name="cnlTrans3mBiz" ref="cnlTrans3mBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlReqTransBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlReqTransBizImpl">
+		<property name="cnlReqTransDao" ref="cnlReqTransDao" />
+		<property name="cnlCustDao" ref="cnlCustDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlReqTransDao"
+		class="com.ibs.core.module.account.dao.impl.CnlReqTransDaoImpl"
+		parent="baseEntityDao">
+	</bean> 
+	
+	<!--xl Action -->
+	<bean id="cnlTransTracePendingManagerAction"
+		class="com.ibs.core.module.account.action.CnlTransTracePendingManagerAction"
+		scope="prototype">
+		<property name="cnlTransTracePendingBiz" ref="cnlTransTracePendingBiz" >
+		</property>
+		<property name="filePersistenceService" ref="filePersistenceService"></property>
+		<property name="savePath" value="${file.service.root}"></property>
+	</bean>
+	
+	<!--xl Biz -->
+	<bean id="cnlTransTracePendingBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlTransTracePendingBizImpl">
+		<property name="cnlTransTracePendingDao" ref="cnlTransTracePendingDao" />
+		<property name="bankIntfDao" ref="corBankIntfDao"></property>
+		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao"></property>
+	</bean>
+
+
+	<!--xl Dao -->
+	<bean id="cnlTransTracePendingDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTransTracePendingDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- Service卡片账服务 ICnlTransService/xiaolin start -->
+	<bean id="transService" class="com.ibs.core.module.account.service.impl.CnlTransServiceImpl">
+		<property name="cnlReqTransDao" ref="cnlReqTransDao"></property>
+		<property name="cnlTransTraceDao" ref="cnlTransTraceDao"></property>
+		<property name="cnlTransDao" ref="cnlTransDao"></property>
+		<property name="cnlCustAcntDtlDao" ref="cnlCustAcntDtlDao"></property>
+		<property name="cnlCustAcntDao" ref="cnlCustAcntDao"></property>
+	    <property name="cnlMsgDao" ref="cnlMsgDao"></property>
+		<property name="cnlCustDao" ref="cnlCustDao"></property>
+		<property name="cnlCustAcntService" ref="acntService"></property>	
+		<property name="pblBankDictDao" ref="pblBankDictDao"></property>
+	</bean>
+	
+	
+	<!-- end -->
+	
+<!-- Service卡片帐服务 ICnlCustAcntService/jicheng   start -->
+
+<!-- service -->
+<bean id="acntService"
+class="com.ibs.core.module.account.service.impl.CnlCustAcntServiceimpl" scope="prototype">
+<property name = "cnlCustAcntDao" ref="cnlCustAcntDao"/>
+<property name = "cnlTrans3mDao" ref="cnlTrans3mDao"/>
+<property name="corBankAcntDao" ref="corBankAcntDao"></property>
+<property name="dataDictService" ref="dataDictService"></property>
+<property name="pblBankDictDao" ref="pblBankDictDao"></property>
+<property name="cnlCustTraceDao" ref="cnlCustTraceDao"></property>
+</bean>
+
+<!-- Dao -->
+	<bean id="corBankAcntDao"
+	class = "com.ibs.core.module.bank.dao.impl.CorBankAcntDaoImpl"
+	parent="baseEntityDao">
+	</bean>
+
+<!-- end -->
+
+<!-- Dao -->
+	<bean id="cnlTransTraceHisDao"
+		class="com.ibs.core.module.account.dao.impl.CnlTransTraceHisDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+<!-- xl 企业客户待处理 start -->
+	<!-- Action -->
+	<bean id="cnlCustTraceManagerAction"
+		class="com.ibs.core.module.account.action.CnlCustTraceManagerAction"
+		scope="prototype">
+		<property name="cnlCustTraceBiz" ref="cnlCustTraceBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlCustTraceBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlCustTraceBizImpl">
+		<property name="cnlCustTraceDao" ref="cnlCustTraceDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlCustTraceDao"
+		class="com.ibs.core.module.account.dao.impl.CnlCustTraceDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	
+
+	<!-- Biz -->
+	<bean id="cnlCustTraceBankVldBiz"
+		class="com.ibs.core.module.account.biz.impl.CnlCustTraceBankVldBizImpl">
+		<property name="cnlCustTraceBankVldDao" ref="cnlCustTraceBankVldDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlCustTraceBankVldDao"
+		class="com.ibs.core.module.account.dao.impl.CnlCustTraceBankVldDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+<!-- xl 企业客户待处理 end -->
+
+	<bean id="tmpSettlementService" class="com.ibs.core.module.account.service.impl.TmpSettlementServiceImpl">
+		
+	</bean>
+</beans>
+
+
+
+
+
+

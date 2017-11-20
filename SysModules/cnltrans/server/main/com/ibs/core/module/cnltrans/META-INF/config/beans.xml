@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="cnlSmsValidCodeManagerAction"
+		class="com.ibs.core.module.cnltrans.action.CnlSmsValidCodeManagerAction"
+		scope="prototype">
+		<property name="cnlSmsValidCodeBiz" ref="cnlSmsValidCodeBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlSmsValidCodeBiz"
+		class="com.ibs.core.module.cnltrans.biz.impl.CnlSmsValidCodeBizImpl">
+		<property name="cnlSmsValidCodeDao" ref="cnlSmsValidCodeDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlSmsValidCodeDao"
+		class="com.ibs.core.module.cnltrans.dao.impl.CnlSmsValidCodeDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+
+	<!-- Action -->
+	<bean id="cnlTrans5yManagerAction"
+		class="com.ibs.core.module.cnltrans.action.CnlTrans5yManagerAction"
+		scope="prototype">
+		<property name="cnlTrans5yBiz" ref="cnlTrans5yBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="cnlTrans5yBiz"
+		class="com.ibs.core.module.cnltrans.biz.impl.CnlTrans5yBizImpl">
+		<property name="cnlTrans5yDao" ref="cnlTrans5yDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="cnlTrans5yDao"
+		class="com.ibs.core.module.cnltrans.dao.impl.CnlTrans5yDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	
+</beans>

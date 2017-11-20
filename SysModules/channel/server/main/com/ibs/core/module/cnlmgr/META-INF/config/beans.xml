@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+	
+	<!-- DAO公用 -->
+	<bean id="dataDictDao"
+		class="com.ibs.core.module.mdmbasedata.dao.impl.DataDictDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="cnlCnlCfgDao"
+		class="com.ibs.core.module.cnlmgr.dao.impl.CnlCnlCfgDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	<bean id="cnlSysIntfDao"
+		class="com.ibs.core.module.cnlmgr.dao.impl.CnlSysIntfDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+	
+	<!-- 不同模块配置各自的BIZ和ACTION -->
+	<!-- 商户IP段限定管理  by zhao -->
+ 	<bean id="cnlSysIntfIpLimitManagerAction"
+		class="com.ibs.core.module.cnlmgr.action.CnlSysIntfIpLimitManagerAction"
+		scope="prototype">
+		<property name="cnlSysIntfIpLimitBiz" ref="cnlSysIntfIpLimitBiz" />
+	</bean>
+	
+ 	<bean id="cnlSysIntfIpLimitBiz" 
+ 		class="com.ibs.core.module.cnlmgr.biz.impl.CnlSysIntfIpLimitBizImpl">
+ 		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao"></property>
+ 		<property name="cnlSysIntfDao" ref="cnlSysIntfDao"></property>
+ 	</bean>
+ 	<!-- end -->
+
+
+	<!-- 商户限额管理  by xia -->
+	<bean id="cnlSysIntfManagerAction"
+		class="com.ibs.core.module.cnlmgr.action.CnlSysIntfManagerAction"
+		scope="prototype">
+		<property name="cnlSysIntfBiz" ref="cnlSysIntfBiz" />
+		<property name="cnlCnlCfgBiz" ref="cnlCnlCfgBiz" />
+		<property name="dataDictBiz" ref="dataDictBiz" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+
+	<bean id="cnlSysIntfBiz"
+		class="com.ibs.core.module.cnlmgr.biz.impl.CnlSysIntfBizImpl">
+		<property name="cnlSysIntfDao" ref="cnlSysIntfDao" />
+	</bean>
+	<!-- end -->
+	
+		
+ 	<!--  -->
+	<bean id="dataDictService"
+		class="com.ibs.core.module.mdmbasedata.service.impl.DataDictServiceImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+	</bean>
+	<bean id="dataDictBiz"
+		class="com.ibs.core.module.mdmbasedata.biz.impl.DataDictBizImpl">
+		<property name="dataDictDao" ref="dataDictDao" />
+		<property name="dataDictService" ref="dataDictService" />
+	</bean>
+	
+	
+	
+	<!--cnlcnlcfg Action -->
+	<bean id="cnlCnlCfgManagerAction"
+		class="com.ibs.core.module.cnlmgr.action.CnlCnlCfgManagerAction"
+		scope="prototype">
+	 	<property name="dataDictBiz" ref="dataDictBiz"/> 
+	 	<property name="dataDictService" ref="dataDictService" />
+	 	<property name="cnlCustCompanyDao"  ref="cnlCustCompanyDao"/>
+		<property name="cnlCnlCfgBiz" ref="cnlCnlCfgBiz" />
+	</bean>
+
+	<bean id="cnlCnlCfgBiz"
+		class="com.ibs.core.module.cnlmgr.biz.impl.CnlCnlCfgBizImpl">
+		<property name="cnlCnlCfgDao" ref="cnlCnlCfgDao" />
+	</bean>
+	
+	<bean id="reserveFundBiz"
+		class="com.ibs.core.module.cnlmgr.biz.impl.ReserveFundBizImpl">
+		<property name="cnlSysIntfDao" ref="cnlSysIntfDao" />
+		<property name="cnlTransDao" ref="cnlTransDao" />
+		<property name="sysViolationRecordOverSpendDao" ref="sysViolationRecordOverSpendDao" />
+	</bean>
+</beans>
+
+
+
+
+
+

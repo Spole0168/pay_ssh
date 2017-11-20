@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+			 default-autowire="byName">
+
+	<!-- Action -->
+     <bean id="appManagerAction"
+		class="com.ibs.core.module.permission.action.ApplicationManagerAction"
+		scope="prototype">
+		<property name="permissionBiz" ref="permissionBiz" />
+	</bean>
+	
+	<bean id="menuManagerAction"
+		class="com.ibs.core.module.permission.action.MenuManagerAction"
+		scope="prototype">
+		<property name="permissionBiz" ref="permissionBiz" />
+	</bean>
+	
+	<bean id="operManagerAction"
+		class="com.ibs.core.module.permission.action.OperManagerAction"
+		scope="prototype">
+		<property name="permissionBiz" ref="permissionBiz" />
+	</bean>
+	
+	<bean id="userManagerAction"
+		class="com.ibs.core.module.permission.action.UserManagerAction"
+		scope="prototype">
+		<property name="permissionBiz" ref="permissionBiz" />
+	</bean>
+	
+	<bean id="roleManagerAction"
+		class="com.ibs.core.module.permission.action.RoleManagerAction"
+		scope="prototype">
+		<property name="permissionBiz" ref="permissionBiz" />
+	</bean>
+	
+
+	
+	
+	<!-- Biz -->
+	<bean id="permissionBiz"
+		class="com.ibs.core.module.permission.biz.impl.PermissionBizImpl">
+		<property name="permissionService" ref="permissionService" />
+	</bean>
+	<bean id="userRoleProcessService" class="com.ibs.core.module.permission.service.impl.UserRoleProcessServiceImpl">
+	    <property name="userDao" ref="userDao"></property>
+	    <property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<bean id="userRoleProcessBiz"
+		class="com.ibs.core.module.permission.biz.impl.UserRoleProcessBizImpl">
+		<property name="userRoleProcessService" ref="userRoleProcessService"></property>
+	</bean>
+	
+
+	
+	
+  
+</beans>

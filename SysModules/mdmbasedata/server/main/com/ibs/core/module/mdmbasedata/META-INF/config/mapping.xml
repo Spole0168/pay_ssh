@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.mdmbasedata.domain"
+	schema="PBL">
+	<class name="Language" table="T_MDM_LANGUAGE" lazy="true">
+		<id name="code" column="CODE" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+
+		<property column="CODE" length="100" name="id" type="java.lang.String"
+			insert="false" update="false" />
+
+		<property column="NAME" length="100" name="name" type="java.lang.String"
+			not-null="true" />
+		<property column="DESCRIPTION" length="255" name="description"
+			type="java.lang.String" not-null="false" />
+
+		<property column="DISPLAYORDER" name="displayOrder" type="int" />
+
+	</class>
+	<class name="DataDict" table="T_MDM_DICT" lazy="true">
+		<id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+
+		<property column="CODE" length="50" name="code" type="java.lang.String"
+			not-null="true" />
+		<property column="NAME" length="100" name="name" type="java.lang.String"
+			not-null="true" />
+
+		<property column="STATUS" length="10" name="status" type="java.lang.String"
+			not-null="true" />
+		<property column="VERSION_NO" length="100" name="versionNo"
+			type="java.lang.Long" />
+		<property column="CREATE_TIME" name="createTime" type="java.util.Date" />
+		<property column="MODIFY_TIME" name="modifyTime" type="java.util.Date" />
+		<property column="CREATE_USER_CODE" length="50" name="createUserCode"
+			type="java.lang.String" />
+		<property column="MODIFY_USER_CODE" length="50" name="modifyUserCode"
+			type="java.lang.String" />
+
+		<property column="TYPE" length="100" name="type" type="java.lang.String"
+			not-null="true" />
+		<property column="DISPLAYORDER" name="displayOrder" type="int" />
+
+		<property column="VALUE" length="100" name="value" type="java.lang.String"
+			not-null="false" />
+		<property column="START_DATE" name="fromDate" type="java.util.Date" />
+		<property column="END_DATE" name="endDate" type="java.util.Date" />
+
+		<property column="SCAN_CODE" length="100" name="scanCode"
+			type="java.lang.String" />
+
+		<property column="REMARK" length="4000" name="remark"
+			type="java.lang.String" />
+		<property column="EXTEND_ATT1" length="200" name="extendAtt1"
+			type="java.lang.String" />
+
+		<property column="CAN_MODIFY_CODE" length="1" name="canModifyCode"
+			type="char" />
+
+		<property column="LOCALE" length="50" name="languageCode"
+			type="java.lang.String" />
+		<property column="CTG_CODE" length="50" name="ctgCode" type="java.lang.String"/>
+
+
+		<many-to-one name="locale"
+			class="com.ibs.core.module.mdmbasedata.domain.Language" lazy="false"
+			insert="false" update="false">
+			<column name="LOCALE" not-null="false" />
+		</many-to-one>
+	</class>
+	
+	
+	 <class name="PblBankDict" table="T_PBL_BANK_DICT" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="bankName" column="BANK_NAME" type="java.lang.String" not-null="false" length="200"/>
+		<property name="bankCode" column="BANK_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankBranchName" column="BANK_BRANCH_NAME" type="java.lang.String" not-null="false" length="200"/>
+		<property name="bankBranchCode" column="BANK_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="countryCode" column="COUNTRY_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="description" column="DESCRIPTION" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="displayorder" column="DISPLAYORDER" type="long" not-null="false" length="22"/>
+		<property name="status" column="STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="version" column="VERSION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="provienceCode" column="PROVIENCE_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="provienceName" column="PROVIENCE_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="cityCode" column="CITY_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="cityName" column="CITY_NAME" type="java.lang.String" not-null="false" length="50"/>
+		
+
+
+    </class>
+	
+	
+</hibernate-mapping>

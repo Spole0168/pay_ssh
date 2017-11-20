@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jaxws="http://cxf.apache.org/jaxws" 
+		xmlns:util="http://www.springframework.org/schema/util" 
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+			http://cxf.apache.org/jaxws 
+			http://cxf.apache.org/schemas/jaxws.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+	
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/@sys@" />
+		<property name="resourceRef" value="false" />
+	</bean>
+	<bean id="cacheManageConfiguration" class="com.ibs.portal.framework.server.cache.CacheManageConfiguration">
+		<property name="jsonRpcServiceMethodName" value="refreshSelf"></property>
+		<property name="endpoints">
+			<map>
+				<entry key="mdm1" value="http://localhost:9080/mdm/refreshCache.action"></entry>
+				
+				<!-- expws -->
+				<!-- expqr -->
+				
+			</map>
+		</property>
+		<property name="cacheManagerPeers">
+			<map>
+				<!-- web module -->
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.USER_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.URL_RESOURCE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.BUTTON_RESOURCE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				
+				<!-- all modules -->
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.DATA_DICT_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.DISTRICT_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_BUSINESS_RULE_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_LAYER_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>				
+				</entry>
+				
+				<!-- stl module -->
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.ORG_GROUP_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.PRODUCT_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.core.module.mdmbasedata.common.Constants.FREIGHT_DETAIL_CACHE"/>
+					</key>
+					<list>
+						<value>stl1</value>
+					</list>				
+				</entry>
+				
+				<!-- ord modules -->
+				<entry key="_ord_channel_cache_region">
+					<list>
+						<value>ord1</value>
+					</list>				
+				</entry>
+				<entry key="_ord_failure_reason_cache_region">
+					<list>
+						<value>ord1</value>
+					</list>				
+				</entry>
+				
+				<!-- rut modules -->
+				<entry key="_rut_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_2nd_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_sub_area_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_office_group_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_office_group_cache_region_for_web">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_spe_transit_dep_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_spe_transit_arr_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_int_export_rule_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_frequency_detail_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_frequency_detail_cache_region_for_web">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_org_hierachy_cache_region">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_tansport_cache">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry key="_rut_static_rut_cache">
+					<list>
+						<value>rut1</value>
+						<value>rut2</value>
+						<value>rutstaticrutjob1</value>
+						<value>rutstaticrutjob2</value>
+						<value>rutwaybilljob1</value>
+						<value>rutwaybilljob2</value>
+					</list>				
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.PROPERTY_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>
+				</entry>
+				<entry>
+					<key>
+						<util:constant static-field="com.ibs.common.module.frameworkimpl.common.Constants.MAC_CACHE"/>
+					</key>
+					<list>
+						<value>mdm1</value>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="cacheManager" class="com.ibs.portal.framework.server.cache.CacheManager"
+		factory-method="createInstance">
+		<constructor-arg>
+			<ref local="cacheManageConfiguration"/>
+		</constructor-arg>
+	</bean>
+    <!--<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:resource/application.properties</value>
+        </property>
+    </bean>-->
+
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+
+      <!--   cnlCnlCgf  -->
+    <definition name="cnlCnlCfglist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCommentList.jsp" />
+    </definition> 
+    <definition name="cnlCnlCfgEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCommentEdit.jsp" />
+    </definition> 
+      <definition name="cnlCnlCfgModify" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlCommentModify.jsp" />
+    </definition>
+    <!-- xbh start -->
+    <definition name="cnlSysIntflist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlSysIntfList.jsp" />
+    </definition> 
+    <definition name="cnlSysIntfEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlSysIntfEdit.jsp" />
+    </definition> 
+    <definition name="cnlSysIntfCreate" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlSysIntfCreate.jsp" />
+    </definition> 
+    
+    <!-- xbh end -->
+        <!-- 商户ip地址限制管理 -->
+    <definition name="cnlSysIntfIpLimitList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlSysIntfIpLimitList.jsp" />
+    </definition>
+    <definition name="cnlSysIntfIpLimitEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/cnl/cnlSysIntfIpLimitEdit.jsp" />
+    </definition>
+</tiles-definitions>

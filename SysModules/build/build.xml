@@ -1,0 +1,125 @@
+<project name="module" basedir="." default="deploy">
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	
+	<property name="debug" value="on" />
+	<property name="module.dist" location="${modules.dir}/build/dist" />
+	<property name="module.bin" location="${modules.dir}/build/bin" />
+	<!--<property name="library.dir" location="../../Library" />-->
+	<!--<property file="module.properties" />-->
+	
+	<path id="classpath">
+		<fileset dir="${library.dir}/share" includes="*.jar" />
+		<fileset dir="${library.dir}/common" includes="*.jar" />
+		<!--<fileset dir="${library.dir}/report" includes="*.jar" />-->
+		<fileset dir="${library.dir}/ws" includes="*.jar" />
+		<pathelement location="${module.bin}" />
+	</path>
+	
+	<tstamp prefix="timestamp">
+		<format property="datetime" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+	</tstamp>
+
+	<!-- init -->
+	<target name="init">
+		<echo message="${module.bin}"/>
+		<mkdir dir="${module.dist}" />
+		<mkdir dir="${module.bin}" />
+		
+		<echo>${modules}</echo>
+		<propertyregex property="src_sem" input="${modules}" regexp="([^|,](\w+))+" replace="\.\./\1/server/main" global="true" />
+		<propertyregex property="src_com" input="${src_sem}" regexp="," replace=";" global="true" />
+		<echo>${src_com}</echo>
+	</target>
+
+	<!-- clean -->
+	<target name="clean" depends="init">
+		<delete quiet="true" dir="${module.bin}" />
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init">
+		<echo message="compiling ..." />
+		
+		<javac failonerror="true" sourcepath="../" srcdir="${src_com}" destdir="${module.bin}" source="1.5" target="1.5" 
+			encoding="UTF-8" debug="${debug}" includeantruntime="yes" verbose="false" deprecation="on" nowarn="off">
+			<compilerarg value="-Xlint:unchecked" />
+			<!--<compilerarg value="-Xlint:deprecation" />-->
+			<classpath refid="classpath" />
+			
+		</javac>
+	</target>
+	
+	<!-- copymodules -->
+	<target name="copymodules" depends="init">
+		<foreach list="${src_sem}" target="copymodule" param="module.src" />
+	</target>
+	
+	<target name="copymodule">
+		<echo message="${module.src}" />
+		<copy todir="${module.bin}" includeEmptyDirs="no">
+			<fileset dir="${module.src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.tld" />
+				<include name="**/*.wsdl" />
+				<include name="**/*.schemas" />
+				<include name="**/*.dtd" />
+				<include name="**/*.xsd" />
+				<include name="**/*.vm" />
+				<include name="**/*.pem" />
+				<include name="**/META-INF/pages/*" />
+				<exclude name="**/META-INF/config/action.xml" />
+				<exclude name="**/META-INF/config/tiles.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- copymodules -->
+	<target name="actionmodules" depends="init">
+		<foreach list="${actionmodules}" target="actionmodule" param="module" />
+	</target>
+	
+	<target name="actionmodule">
+		<echo message="${module}" />
+		<copy todir="${module.bin}" includeEmptyDirs="no">
+			<fileset dir="../${module}/server/main" casesensitive="false">
+				<include name="**/${module}/META-INF/config/action.xml" />
+				<include name="**/${module}/META-INF/config/tiles.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- jar module -->
+	<target name="jarmodules">
+		<foreach list="${jarmodules}" target="jarmodule" param="module" />
+	</target>
+
+	<target name="jarmodule">
+		<patternset id="module">
+			<include name="com/ibs/core/module/${module}/**" />
+			<include name="META-INF/**" />
+			<include name="resource/*.xml" />
+			<include name="*.*" />
+			<exclude name="**/hibernate.cfg.xml" />
+		</patternset>
+
+		<jar jarfile="${module.dist}/${package}-${module}-${version}.jar">
+			<fileset dir="${module.bin}">
+				<patternset refid="module" />
+			</fileset>
+			<manifest>
+				<attribute name="Build-Time" value="${timestamp.datetime}" />
+			</manifest>
+		</jar>
+
+		<copy todir="${library.dir}/${app}">
+			<fileset dir="${module.dist}">
+				<include name="${package}-${module}-${version}.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy" depends="compile,copymodules,actionmodules,jarmodules">
+		<echo message="done" />
+	</target>
+</project>

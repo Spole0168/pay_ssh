@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+     
+    <definition name="sysViolationRecordlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/sysViolationRecord/sysViolationRecordList.jsp" />
+    </definition> 
+    <definition name="sysViolationRecordEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/sysViolationRecord/sysViolationRecordEdit.jsp" />
+    </definition> 
+    <definition name="sysViolationRecordBlackList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/sysViolationRecord/sysViolationRecordBlackList.jsp" />
+    </definition> 
+      <definition name="sysViolationRecordOverSpendlist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/sysViolationRecord/sysViolationRecordOverSpend.jsp" />
+    </definition> 
+     
+</tiles-definitions>
+  

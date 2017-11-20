@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.refund.domain" schema="CNL">
+	
+	<class name="RefundTransRefund" table="T_CNL_TRANS_REFUND" lazy="true">
+		<id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+		<property column="REFUND_CODE" length="32" name="refundCode" type="java.lang.String" not-null="false" />
+		<property column="CNL_CNL_CODE" length="32" name="cnlCnlCode" type="java.lang.String" not-null="false" />
+		<property column="REQ_NUM" length="32" name="reqNum" type="java.lang.String" not-null="false" />
+		<property column="REFUND_CONTACT" length="50" name="refundContact" type="java.lang.String" not-null="false" />
+		<property column="REFUND_CONTACT_TEL" length="50" name="refundContactTel" type="java.lang.String" not-null="false" />
+		<property column="REFUND_REASON" length="1000" name="refundReason" type="java.lang.String" not-null="false" />
+		<property column="REFUND_TIME" length="11" name="refundTime" type="java.util.Date" not-null="false" />
+		<property column="REFUND_CURRENCY" length="50" name="refundCurrency" type="java.lang.String" not-null="false" />
+		<property column="REFUND_AMOUNT" length="22" name="refundAmount" type="java.lang.Long" not-null="false" />
+		<property column="REFUND_DATE" length="7" name="refundDate" type="java.util.Date" not-null="false" />
+		<property column="REFUND_STATUS" length="50" name="refundStatus" type="java.lang.String" not-null="false" />
+		<property column="VOUCHER_NUM" length="200" name="voucherNum" type="java.lang.String" not-null="false" />
+		<property column="VOUCHER_LOCATION" length="200" name="voucherLocation" type="java.lang.String" not-null="false" />
+		<property column="REFUND_VOUCHER_NUM" length="200" name="refundVoucherNum" type="java.lang.String" not-null="false" />
+		<property column="REFUND_VOUCHER_LOCATION" length="200" name="refundVoucherLocation" type="java.lang.String" not-null="false" />
+		<property column="REFUND_FAIL_REASON" length="1000" name="refundFailReason" type="java.lang.String" not-null="false" />
+		<property column="BANK_TRANS_NUM" length="32" name="bankTransNum" type="java.lang.String" not-null="false" />
+		<property column="BANK_CREDIT_CUST_NAME" length="50" name="bankCreditCustName" type="java.lang.String" not-null="false" />
+		<property column="BANK_CREDIT_NAME" length="50" name="bankCreditName" type="java.lang.String" not-null="false" />
+		<property column="BANK_CREDIT_CODE" length="50" name="bankCreditCode" type="java.lang.String" not-null="false" />
+		<property column="BANK_CREDIT_CARD_NUM" length="50" name="bankCreditCardNum" type="java.lang.String" not-null="false" />
+		<property column="BANK_DEBIT_CUST_NAME" length="50" name="bankDebitCustName" type="java.lang.String" not-null="false" />
+		<property column="BANK_DEBIT_NAME" length="50" name="bankDebitName" type="java.lang.String" not-null="false" />
+		<property column="BANK_DEBIT_CODE" length="50" name="bankDebitCode" type="java.lang.String" not-null="false" />
+		<property column="BANK_DEBIT_CARD_NUM" length="50" name="bankDebitCardNum" type="java.lang.String" not-null="false" />
+		<property column="HANDLER" length="50" name="handler" type="java.lang.String" not-null="false" />
+		<property column="HANDLE_TIME" length="11" name="handleTime" type="java.util.Date" not-null="false" />
+		<property column="REVIEWER" length="50" name="reviewer" type="java.lang.String" not-null="false" />
+		<property column="REVIEW_RESULT" length="50" name="reviewResult" type="java.lang.String" not-null="false" />
+		<property column="REVIEW_ERR_CODE" length="1000" name="reviewErrCode" type="java.lang.String" not-null="false" />
+		<property column="REVIEW_TIME" length="11" name="reviewTime" type="java.util.Date" not-null="false" />
+		<property column="REVIEW_MSG" length="1000" name="reviewMsg" type="java.lang.String" not-null="false" />
+		<property column="IS_VALID" length="6" name="isValid" type="java.lang.String" not-null="false" />
+		<property column="CREATE_TIME" length="11" name="createTime" type="java.util.Date" not-null="false" />
+		<property column="UPDATE_TIME" length="11" name="updateTime" type="java.util.Date" not-null="false" />
+		<property column="CREATOR" length="50" name="creator" type="java.lang.String" not-null="false" />
+		<property column="UPDATOR" length="50" name="updator" type="java.lang.String" not-null="false" />
+	</class>
+	<!-- -->
+	<class name="RefundTransTraceOpt" table="T_CNL_TRANS_TRACE_OPT" lazy="true">
+		<id name="id" column="ID" type="java.lang.String">
+			<generator class="uuid.hex" />
+		</id>
+		<property column="REF_NUM" length="32" name="refNum" type="java.lang.String" not-null="false" />
+		<property column="CUST_CODE" length="32" name="custCode" type="java.lang.String" not-null="false" />
+		<property column="CNL_CUST_CODE" length="32" name="cnlCustCode" type="java.lang.String" not-null="false" />
+		<property column="REQ_NUM" length="32" name="reqNum" type="java.lang.String" not-null="false" />
+		<property column="REQ_BATCH" length="22" name="reqBatch" type="java.lang.Long" not-null="false" />
+		<property column="OPERATOR" length="50" name="operator" type="java.lang.String" not-null="false" />
+		<property column="OPT_TIME" length="11" name="optTime" type="java.util.Date" not-null="false" />
+ 		<property column="OPT_DESC" length="1000" name="optDesc" type="java.lang.String" not-null="false" />
+		<property column="OPT_RESULT" length="50" name="optResult" type="java.lang.String" not-null="false" />
+		<property column="OPT_CODE" length="50" name="optCode" type="java.lang.String" not-null="false" />
+		<property column="RECORD_TYPE" length="50" name="recordType" type="java.lang.String" not-null="false" />
+		<property column="IS_VALID" length="6" name="isValid" type="java.lang.String" not-null="false" />
+		<property column="CREATOR" length="50" name="creator" type="java.lang.String" not-null="false" />
+		<property column="CREATE_TIME" length="11" name="createTime" type="java.util.Date" not-null="false" />
+		<property column="UPDATOR" length="50" name="updator" type="java.lang.String" not-null="false" />
+		<property column="UPDATE_TIME" length="11" name="updateTime" type="java.util.Date" not-null="false" /> 
+	</class>
+</hibernate-mapping>

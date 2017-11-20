@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+    <definition name="carrierList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/mdmintbasedate/carrierList.jsp" />
+    </definition>  
+    
+    <definition name="carrierEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/mdmintbasedate/carrierEdit.jsp" />
+    </definition>  
+    
+    <definition name="forwarderList" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/mdmintbasedate/forwarderList.jsp" />
+    </definition>  
+    
+    <definition name="forwarderEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/mdmintbasedate/forwarderEdit.jsp" />
+    </definition>
+    
+</tiles-definitions>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="permission" namespace="/permission" extends="web-default">
+		<!-- 应用维护 -->
+		<action name="appList" class="appManagerAction" method="list">
+			<result name="success" type="tiles">appList</result>
+		</action>
+		<!-- 菜单 -->
+		<action name="menu" class="menuManagerAction" method="menu">
+			<result type="tiles">menuTree</result>
+		</action>
+		<action name="getMenuNode" class="menuManagerAction" method="getNode">
+			<result name="success"></result>
+		</action>
+		<action name="getManageNode" class="menuManagerAction" method="getManageNode">
+			<result name="success"></result>
+		</action>
+		<action name="searchMenu" class="menuManagerAction" method="searchMenu">
+			<result name="success"></result>
+		</action>
+		<!-- 操作 -->
+		<action name="operList" class="operManagerAction" method="list">
+			<result type="tiles">operList</result>
+		</action>
+		<action name="validateOperName" class="operManagerAction" method="validateName">
+			<result></result>
+		</action>
+		<!-- 用户 -->
+		<action name="userMain*" class="userManagerAction" method="userMain">
+			<param name="appId">{1}</param>
+			<result type="tiles">userList</result>
+		</action>
+		<action name="getUserNode" class="userManagerAction" method="getNode">
+			<result name="success"></result>
+		</action>
+		<action name="checkUniqueUserName" class="userManagerAction" method="checkUniqueUserName">
+			<result></result>
+		</action>
+		<!-- 角色 -->
+		<action name="roleList" class="roleManagerAction" method="list">
+			<result type="tiles">roleList</result>
+		</action>
+		<action name="checkRoleCode" class="roleManagerAction" method="checkRoleCode">
+			<result></result>
+		</action>
+		<action name="checkRoleName" class="roleManagerAction" method="checkRoleName">
+			<result></result>
+		</action>
+		<action name="appSearch" class="appManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">includedOpers,includedMenus,includedGuiMenus</param>
+			</result>
+		</action>
+		<action name="checkAppName" class="appManagerAction" method="checkAppName">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<!-- 菜单 -->
+		<action name="expendSubMenu" class="menuManagerAction" method="expendSubMenu">
+			<result name="ajax" type="json">
+				<param name="include">treedata</param>
+				<param name="excludeProperties">subTree</param>
+			</result>
+		</action>
+		<action name="menuSelect" class="menuManagerAction" method="menuSelect">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="toBindingMenuToMac" class="menuManagerAction" method="toBindingMenuToMac">
+			<result>/WEB-INF/pages/mdmpermission/bindingMenuToMac.jsp</result>
+		</action>
+		<action name="toMacUsers" class="menuManagerAction" method="toMacUsers">
+			<result>/WEB-INF/pages/mdmpermission/getMacUsers.jsp</result>
+		</action>
+		<!-- 操作 -->
+		<action name="operSearch" class="operManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">includedRoles,parentMenu,application</param>
+			</result>
+		</action>
+		<!-- 用户 -->
+		<action name="userSearch" class="userManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">assignedRoles,orgs,masterOrgs,masterOrg</param>
+			</result>
+		</action>
+		<action name="userRoleList" class="userManagerAction" method="userRoleList">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">grantedMenus,grantedGuiMenus,grantedOpers,includedUsers</param>
+			</result>
+		</action>
+		<!-- 角色 -->
+		<action name="roleSearch" class="roleManagerAction" method="search">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">grantedMenus,grantedGuiMenus,grantedOpers,includedUsers</param>
+			</result>
+		</action>
+		<action name="assignedUserSearch" class="roleManagerAction" method="searchAssignedUser">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">assignedRoles,orgs,masterOrgs,masterOrg</param>
+			</result>
+		</action>
+		<action name="assignedOperSearch" class="roleManagerAction" method="searchAssignedOper">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+				<param name="excludeProperties">includedRoles</param>
+			</result>
+		</action>
+		<!-- 应用维护 -->
+		<action name="appToSaveOrUpdate" class="appManagerAction" method="toSaveOrUpdate">
+			<result>/WEB-INF/pages/mdmpermission/app.jsp</result>
+		</action>
+		<action name="appModify" class="appManagerAction" method="modify">
+			<result>/WEB-INF/pages/mdmpermission/app.jsp</result>
+		</action>
+		<!-- 菜单 -->
+		<action name="menuCreate" class="menuManagerAction" method="create">
+			<result>/WEB-INF/pages/mdmpermission/menu.jsp</result>
+		</action>
+		<action name="menuModify" class="menuManagerAction" method="modify">
+			<result>/WEB-INF/pages/mdmpermission/menu.jsp</result>
+		</action>
+		<action name="menuSearchRole" class="menuManagerAction" method="searchRoleByMenu">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>	
+		</action>		
+		<action name="menuView" class="menuManagerAction" method="view">
+			<result>/WEB-INF/pages/mdmpermission/menu.jsp</result>
+		</action>
+		<action name="menuTree" class="menuManagerAction" method="tree">
+			<result>/WEB-INF/pages/mdmpermission/menuTreePopup.jsp</result>
+		</action>
+		<action name="menuApp" class="menuManagerAction" method="menuApp">
+			<result>/WEB-INF/pages/mdmpermission/appPopup.jsp</result>
+		</action>
+		<action name="checkMenuName" class="menuManagerAction" method="checkMenuName">
+			<result></result>
+		</action>
+		<action name="checkMenuTitle" class="menuManagerAction" method="checkMenuTitle">
+			<result></result>
+		</action>
+		<!-- 操作 -->
+		<action name="operCreate" class="operManagerAction" method="create">
+			<result>/WEB-INF/pages/mdmpermission/operation.jsp</result>
+		</action>
+		<action name="operModify" class="operManagerAction" method="modify">
+			<result>/WEB-INF/pages/mdmpermission/operation.jsp</result>
+		</action>
+		<!-- 用户 -->
+		<action name="leftTree" class="userManagerAction" method="leftTree">
+			<result>/WEB-INF/pages/mdmpermission/orgTree.jsp</result>
+		</action>
+		<action name="userList" class="userManagerAction" method="list">
+			<result>/WEB-INF/pages/mdmpermission/userList.jsp</result>
+		</action>
+		<action name="userCreate" class="userManagerAction" method="create">
+			  <result>/WEB-INF/pages/mdmpermission/userEdit.jsp</result>
+		</action>
+		<action name="userModify" class="userManagerAction" method="modify">
+			<result>/WEB-INF/pages/mdmpermission/userEdit.jsp</result>
+		</action>
+		<action name="userDetail" class="userManagerAction" method="detail">
+			<result>/WEB-INF/pages/mdmpermission/userEdit.jsp</result>
+		</action>
+		<action name="toUserAssignRoles" class="userManagerAction" method="toUserAssignRoles">
+			<result>/WEB-INF/pages/mdmpermission/userRoleList.jsp</result>			
+		</action>
+		<!-- 角色 -->
+		<action name="roleCreate" class="roleManagerAction" method="create">
+			<result>/WEB-INF/pages/mdmpermission/roleEdit.jsp</result>
+		</action>
+		<action name="roleModify" class="roleManagerAction" method="modify">
+			<result name="success">/WEB-INF/pages/mdmpermission/roleEdit.jsp</result>
+			<result name="done">/WEB-INF/pages/mdmpermission/viewUserRole.jsp</result>
+		</action>
+		<action name="toAssignedUser" class="roleManagerAction" method="toAssignedUser">
+			<result>/WEB-INF/pages/mdmpermission/roleUser.jsp</result>
+		</action>
+		<action name="toAssignedMenu" class="roleManagerAction" method="toAssignedMenu">
+			<result>/WEB-INF/pages/mdmpermission/roleMenu.jsp</result>
+		</action>
+		<action name="toAssignedOper" class="roleManagerAction" method="toAssignedOper">
+			<result>/WEB-INF/pages/mdmpermission/roleOper.jsp</result>
+		</action>
+	</package>
+	
+	<package name="permission-log" namespace="/permission" extends="web-log-default">
+		<action name="initUserPwd" class="userManagerAction" method="initUserPwd">
+			<result name="success"></result>
+		</action>
+	</package>
+	
+	<package name="permission-log-ajaxjson" namespace="/permission" extends="web-log-ajaxjson">
+		<action name="appSaveOrUpdate" class="appManagerAction" method="saveOrUpdate">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="appDelete" class="appManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="menuDelete" class="menuManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="operSaveOrUpdate" class="operManagerAction" method="saveOrUpdate">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>		
+		</action>
+		<action name="operDelete" class="operManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="userSaveOrUpdate" class="userManagerAction" method="saveOrUpdate">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>		
+		</action>
+		<action name="userDelete" class="userManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="userAssignRoles" class="userManagerAction" method="userAssignRoles">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="roleDelete" class="roleManagerAction" method="delete">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="assignOper" class="roleManagerAction" method="assignOper">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<action name="removeUserFromRole" class="roleManagerAction" method="removeUserFromRole">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		<!-- 保存菜单和mac的绑定 -->
+		<action name="saveMenuBindingMac" class="menuManagerAction" method="saveMenuBindingMac">
+			<result name="ajax" type="jsonmessage">
+				<param name="message">jsonResult</param>
+			</result>
+			<result name="error" type="jsonexception"></result>
+		</action>
+	</package>
+	
+	<package name="permission-log-ajaxhtml" namespace="/permission" extends="web-log-ajaxhtml">
+		<action name="menuSaveOrUpdate" class="menuManagerAction" method="saveOrUpdate">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		
+		<action name="validValue" class="menuManagerAction" method="validValue">
+			<result name="error" type="jsonexception"></result>
+			<result name="ajax" type="jsonmessage">
+				<param name="message">message</param>
+			</result>
+		</action>
+		
+		<action name="roleSaveOrUpdate" class="roleManagerAction" method="saveOrUpdate">
+			<result name="success">/WEB-INF/pages/mdmpermission/roleEdit.jsp</result>
+		</action>
+		<action name="assignMenu" class="roleManagerAction" method="assignMenu">
+			<result>/WEB-INF/pages/mdmpermission/roleMenu.jsp</result>
+		</action>
+		<action name="assignManageMenu" class="roleManagerAction" method="assignManageMenu">
+			<result>/WEB-INF/pages/mdmpermission/roleMenu.jsp</result>
+		</action>
+	</package>
+	
+	<package name="permission-ajaxjson" namespace="/permission" extends="web-ajaxjson">
+		<action name="searchMac" class="menuManagerAction" method="searchMac">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+			<result name="error" type="jsonexception"></result>
+		</action>
+		<action name="searchMacUsers" class="menuManagerAction" method="searchMacUsers">
+			<result name="ajax" type="json">
+				<param name="include">result</param>
+			</result>
+			<result name="error" type="jsonexception"></result>
+		</action>
+	</package>
+	
+	
+</struts>

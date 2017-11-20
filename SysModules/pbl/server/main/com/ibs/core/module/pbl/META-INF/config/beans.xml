@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- Action -->
+	<bean id="sysSysCfgManagerAction"
+		class="com.ibs.core.module.pbl.action.SysSysCfgManagerAction"
+		scope="prototype">
+		<property name="sysSysCfgBiz" ref="sysSysCfgBiz" />
+	</bean>
+
+	<!-- Biz -->
+	<bean id="sysSysCfgBiz"
+		class="com.ibs.core.module.pbl.biz.impl.SysSysCfgBizImpl">
+		<property name="sysSysCfgDao" ref="sysSysCfgDao" />
+	</bean>
+
+
+	<!-- Dao -->
+	<bean id="sysSysCfgDao"
+		class="com.ibs.core.module.pbl.dao.impl.SysSysCfgDaoImpl"
+		parent="baseEntityDao">
+	</bean>
+
+</beans>

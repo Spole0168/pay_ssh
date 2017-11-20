@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>  
+     
+    <definition name="refundTranslist" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransList.jsp" />
+    </definition> 
+    <definition name="refundTransRefundEdit" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransRefundEdit.jsp" />
+    </definition> 
+    <definition name="refundTransRefundAdd" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransRefundAdd.jsp" />
+    </definition> 
+    
+    <!-- 退款申请审核页面 -->
+    <definition name="refundTransRefundVerify" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransRefundVerify.jsp" />
+    </definition>
+    <!-- 退款申请结果更新页面 -->
+    <definition name="refundTransRefundUpdateResult" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransRefundUpdateResult.jsp" />
+    </definition>
+    <!-- 退款管理查看页面 -->
+    <definition name="refundTransRefundInfo" extends="default"> 
+        <put-attribute name="contant" value="/WEB-INF/pages/topup/refundTransRefundInfo.jsp" />
+    </definition>  
+</tiles-definitions>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ibs.core.module.corcust.domain" schema="COR">
+   <class name="CorCust" table="T_COR_CUST" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="true" length="32"/>
+		<property name="custType" column="CUST_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="localName" column="LOCAL_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="realNameLeve" column="REAL_NAME_LEVE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="firstName" column="FIRST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="lastName" column="LAST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="custLevel" column="CUST_LEVEL" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certType" column="CERT_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certNum" column="CERT_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="certExpireDate" column="CERT_EXPIRE_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="status" column="STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="regTime" column="REG_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="dataSource" column="DATA_SOURCE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="certCopy" column="CERT_COPY" type="java.lang.String" not-null="false" length="50"/>
+		
+	
+
+    </class>
+    
+    <class name="CorCustCompany" table="T_COR_CUST_COMPANY" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="tcid" column="T_C_ID" type="java.lang.String" not-null="false" length="50"/>
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="companyCode" column="COMPANY_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="unitProperty" column="UNIT_PROPERTY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateName" column="CORPORATE_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateCountryCode" column="CORPORATE_COUNTRY_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateCertType" column="CORPORATE_CERT_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateCertNum" column="CORPORATE_CERT_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateCertCopy" column="CORPORATE_CERT_COPY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="corporateCertExpireDate" column="CORPORATE_CERT_EXPIRE_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="corporatePhonenum" column="CORPORATE_PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="regTime" column="REG_TIME" type="java.util.Date" not-null="false" length="7"/>
+		<property name="businessScope" column="BUSINESS_SCOPE" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="industry" column="INDUSTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="companyRegAddr" column="COMPANY_REG_ADDR" type="java.lang.String" not-null="false" length="200"/>
+		<property name="companyFax" column="COMPANY_FAX" type="java.lang.String" not-null="false" length="50"/>
+		<property name="companyWebsite" column="COMPANY_WEBSITE" type="java.lang.String" not-null="false" length="100"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="email" column="EMAIL" type="java.lang.String" not-null="false" length="100"/>
+		
+
+
+    </class>
+    
+    <class name="CorCustPersonal" table="T_COR_CUST_PERSONAL" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="gender" column="GENDER" type="java.lang.String" not-null="false" length="50"/>
+		<property name="birthday" column="BIRTHDAY" type="java.util.Date" not-null="false" length="7"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="provience" column="PROVIENCE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="city" column="CITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="district" column="DISTRICT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="addr" column="ADDR" type="java.lang.String" not-null="false" length="200"/>
+		<property name="highestEdu" column="HIGHEST_EDU" type="java.lang.String" not-null="false" length="50"/>
+		<property name="occupation" column="OCCUPATION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="jobTitle" column="JOB_TITLE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="employer" column="EMPLOYER" type="java.lang.String" not-null="false" length="50"/>
+		<property name="email" column="EMAIL" type="java.lang.String" not-null="false" length="100"/>
+		<property name="postcode" column="POSTCODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isMarried" column="IS_MARRIED" type="java.lang.String" not-null="false" length="6"/>
+		<property name="spouseCountry" column="SPOUSE_COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseLocalName" column="SPOUSE_LOCAL_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseFirstName" column="SPOUSE_FIRST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseLastName" column="SPOUSE_LAST_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseCertType" column="SPOUSE_CERT_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseCertNum" column="SPOUSE_CERT_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="spouseCertExpireDate" column="SPOUSE_CERT_EXPIRE_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="spousePhonenum" column="SPOUSE_PHONENUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="industry" column="INDUSTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+    
+    <class name="CorCustPhones" table="T_COR_CUST_PHONES" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="phoneType" column="PHONE_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="phoneNum" column="PHONE_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="isDefault" column="IS_DEFAULT" type="java.lang.String" not-null="false" length="6"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		
+
+
+    </class>
+    
+    <class name="CorCustAddr" table="T_COR_CUST_ADDR" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="custCode" column="CUST_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="addrType" column="ADDR_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="addr" column="ADDR" type="java.lang.String" not-null="false" length="200"/>
+		<property name="isDefault" column="IS_DEFAULT" type="java.lang.String" not-null="false" length="6"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="provience" column="PROVIENCE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="city" column="CITY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="district" column="DISTRICT" type="java.lang.String" not-null="false" length="50"/>
+		<property name="country" column="COUNTRY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="creator" column="CREATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="updator" column="UPDATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="postcode" column="POSTCODE" type="java.lang.String" not-null="false" length="50"/>
+		
+
+
+    </class>
+    
+    <class name="CorBankAcntTransDtl" table="T_COR_BANK_ACNT_TRANS_DTL" lazy="true">
+
+        <id name="id" column="ID" type="java.lang.String">
+            <generator class="uuid.hex"/>
+        </id>
+		
+		
+		<property name="bankTransNum" column="BANK_TRANS_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditAcntCode" column="BANK_CREDIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankCreditName" column="BANK_CREDIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankCreditCardNum" column="BANK_CREDIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitAcntCode" column="BANK_DEBIT_ACNT_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankDebitName" column="BANK_DEBIT_NAME" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankDebitCardNum" column="BANK_DEBIT_CARD_NUM" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transType" column="TRANS_TYPE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="direction" column="DIRECTION" type="java.lang.String" not-null="false" length="50"/>
+		<property name="amount" column="AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transCurrency" column="TRANS_CURRENCY" type="java.lang.String" not-null="false" length="50"/>
+		<property name="transTime" column="TRANS_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="transDate" column="TRANS_DATE" type="java.util.Date" not-null="false" length="7"/>
+		<property name="transComments" column="TRANS_COMMENTS" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="transStatus" column="TRANS_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="bankMsgCode" column="BANK_MSG_CODE" type="java.lang.String" not-null="false" length="32"/>
+		<property name="createTime" column="CREATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="updateTime" column="UPDATE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="errCode" column="ERR_CODE" type="java.lang.String" not-null="false" length="50"/>
+		<property name="errDesc" column="ERR_DESC" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleTime" column="HANDLE_TIME" type="java.util.Date" not-null="false" length="11"/>
+		<property name="operator" column="OPERATOR" type="java.lang.String" not-null="false" length="50"/>
+		<property name="handleDesc" column="HANDLE_DESC" type="java.lang.String" not-null="false" length="1000"/>
+		<property name="handleStatus" column="HANDLE_STATUS" type="java.lang.String" not-null="false" length="50"/>
+		<property name="orgReqNum" column="ORG_REQ_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="bankBalanceAfterTrans" column="BANK_BALANCE_AFTER_TRANS" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="bankFrozenAmoumt" column="BANK_FROZEN_AMOUMT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="bankAvaliableAmount" column="BANK_AVALIABLE_AMOUNT" type="java.math.BigDecimal" not-null="false" length="20"/>
+		<property name="transRate" column="TRANS_RATE" type="long" not-null="false" length="4"/>
+		<property name="bankNum" column="BANK_NUM" type="java.lang.String" not-null="false" length="32"/>
+		<property name="isValid" column="IS_VALID" type="java.lang.String" not-null="false" length="6"/>
+		<property name="documentStaff" column="DOCUMENT_STAFF" type="java.lang.String" not-null="false" length="50"></property>
+		<property name="documentReviewer" column="DOCUMENT_REVIEWER" type="java.lang.String" not-null="false" length="50"></property>
+		<property name="certType" column="CERT_TYPE" type="java.lang.String" not-null="false" length="50"></property>
+		<property name="certNum" column="CERT_NUM" type="java.lang.String" not-null="false" length="50"></property>
+		<property name="interestsStartDate" column="INTERESTS_START_DATE" type="java.util.Date" not-null="false" length="7"></property>
+        <property name="bankCreditCode" column="BANK_CREDIT_CODE" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankCreditBranchName" column="BANK_CREDIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankCreditBranchCode" column="BANK_CREDIE_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankCreditCustName" column="BANK_CREDIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankDebitCode" column="BANK_DEBIT_CODE" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankDebitBranchName" column="BANK_DEBIT_BRANCH_NAME" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankDebitBranchCode" column="BANK_DEBIT_BRANCH_CODE" type="java.lang.String" not-null="false" length="50"></property>
+        <property name="bankDebitCustName" column="BANK_DEBIT_CUST_NAME" type="java.lang.String" not-null="false" length="50"></property>
+
+    </class>
+
+</hibernate-mapping>
+
